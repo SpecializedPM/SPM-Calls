@@ -1,0 +1,946 @@
+{
+  "received_at": "2026-05-28T00:14:04.366Z",
+  "event": "call.created",
+  "call_id": 3810500306,
+  "call_uuid": "CAe3ed6b062b5b34efbfdcefccebb65c8a",
+  "direction": "inbound",
+  "status": "initial",
+  "number_name": "Concierge DFW/HOU",
+  "number_digits": "+12142337576",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": "+1 214-289-9152",
+  "started_at": 1779927243,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:14:08.331Z",
+  "event": "call.created",
+  "call_id": 3810500399,
+  "call_uuid": "CA92a9214b698d3b4838c7a1cdc81b8803",
+  "direction": "inbound",
+  "status": "initial",
+  "number_name": "Ari Lund DID",
+  "number_digits": "+14695061685",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": "+1 214-713-5305",
+  "started_at": 1779927247,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:14:52.836Z",
+  "event": "call.hungup",
+  "call_id": 3810500399,
+  "call_uuid": "CA92a9214b698d3b4838c7a1cdc81b8803",
+  "direction": "inbound",
+  "status": "done",
+  "number_name": "Ari Lund DID",
+  "number_digits": "+14695061685",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": "+1 214-713-5305",
+  "started_at": 1779927247,
+  "answered_at": null,
+  "ended_at": 1779927291,
+  "duration": 44,
+  "missed_call_reason": "no_available_agent"
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:14:54.971Z",
+  "event": "call.comm_assets_generated",
+  "call_id": 3810500399,
+  "call_uuid": "CA92a9214b698d3b4838c7a1cdc81b8803",
+  "direction": "inbound",
+  "status": "done",
+  "number_name": "Ari Lund DID",
+  "number_digits": "+14695061685",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": "+1 214-713-5305",
+  "started_at": 1779927247,
+  "answered_at": null,
+  "ended_at": 1779927291,
+  "duration": 44,
+  "missed_call_reason": "no_available_agent"
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:15:19.355Z",
+  "event": "contact.updated",
+  "call_id": 474532988,
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": null,
+  "number_digits": null,
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:15:19.507Z",
+  "event": "contact.created",
+  "call_id": 474540412,
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": null,
+  "number_digits": null,
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:15:22.987Z",
+  "event": "call.ended",
+  "call_id": 3810500399,
+  "call_uuid": "CA92a9214b698d3b4838c7a1cdc81b8803",
+  "direction": "inbound",
+  "status": "done",
+  "number_name": "Ari Lund DID",
+  "number_digits": "+14695061685",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": "+1 214-713-5305",
+  "started_at": 1779927247,
+  "answered_at": null,
+  "ended_at": 1779927291,
+  "duration": 44,
+  "missed_call_reason": "no_available_agent"
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:15:25.000Z",
+  "event": "call.voicemail_left",
+  "call_id": 3810500399,
+  "call_uuid": "CA92a9214b698d3b4838c7a1cdc81b8803",
+  "direction": "inbound",
+  "status": "done",
+  "number_name": "Ari Lund DID",
+  "number_digits": "+14695061685",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": "+1 214-713-5305",
+  "started_at": 1779927247,
+  "answered_at": null,
+  "ended_at": 1779927291,
+  "duration": 44,
+  "missed_call_reason": "no_available_agent"
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:15:25.287Z",
+  "event": "contact.created",
+  "call_id": 474540431,
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": null,
+  "number_digits": null,
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:15:44.582Z",
+  "event": "call.hungup",
+  "call_id": 3810500306,
+  "call_uuid": "CAe3ed6b062b5b34efbfdcefccebb65c8a",
+  "direction": "inbound",
+  "status": "done",
+  "number_name": "Concierge DFW/HOU",
+  "number_digits": "+12142337576",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": "+1 214-289-9152",
+  "started_at": 1779927243,
+  "answered_at": null,
+  "ended_at": 1779927343,
+  "duration": 100,
+  "missed_call_reason": "no_available_agent"
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:15:46.967Z",
+  "event": "call.comm_assets_generated",
+  "call_id": 3810500306,
+  "call_uuid": "CAe3ed6b062b5b34efbfdcefccebb65c8a",
+  "direction": "inbound",
+  "status": "done",
+  "number_name": "Concierge DFW/HOU",
+  "number_digits": "+12142337576",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": "+1 214-289-9152",
+  "started_at": 1779927243,
+  "answered_at": null,
+  "ended_at": 1779927343,
+  "duration": 100,
+  "missed_call_reason": "no_available_agent"
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:16:14.730Z",
+  "event": "call.ended",
+  "call_id": 3810500306,
+  "call_uuid": "CAe3ed6b062b5b34efbfdcefccebb65c8a",
+  "direction": "inbound",
+  "status": "done",
+  "number_name": "Concierge DFW/HOU",
+  "number_digits": "+12142337576",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": "+1 214-289-9152",
+  "started_at": 1779927243,
+  "answered_at": null,
+  "ended_at": 1779927343,
+  "duration": 100,
+  "missed_call_reason": "no_available_agent"
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:16:17.109Z",
+  "event": "call.voicemail_left",
+  "call_id": 3810500306,
+  "call_uuid": "CAe3ed6b062b5b34efbfdcefccebb65c8a",
+  "direction": "inbound",
+  "status": "done",
+  "number_name": "Concierge DFW/HOU",
+  "number_digits": "+12142337576",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": "+1 214-289-9152",
+  "started_at": 1779927243,
+  "answered_at": null,
+  "ended_at": 1779927343,
+  "duration": 100,
+  "missed_call_reason": "no_available_agent"
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:18:33.489Z",
+  "event": "contact.updated",
+  "call_id": 173606166,
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": null,
+  "number_digits": null,
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:21:46.772Z",
+  "event": "call.ended",
+  "call_id": 3810294139,
+  "call_uuid": "CAcf594e3d0ff907f6c554e50ca9a179f6",
+  "direction": "inbound",
+  "status": "done",
+  "number_name": "Cesar Esparza DID",
+  "number_digits": "+12142337574",
+  "user_name": "Cesar Esparza",
+  "user_email": "cesparza@specialized247.com",
+  "team_name": null,
+  "caller_number": "+1 901-679-7358",
+  "started_at": 1779918876,
+  "answered_at": 1779918894,
+  "ended_at": 1779919482,
+  "duration": 605,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:23:49.998Z",
+  "event": "user.connected",
+  "call_id": 1929406,
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": null,
+  "number_digits": null,
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:23:49.999Z",
+  "event": "user.connected.v2",
+  "call_id": 1929406,
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": null,
+  "number_digits": null,
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:24:15.292Z",
+  "event": "message.sent",
+  "call_id": "b4c65798-4c8a-41c7-b79d-c3cce27aec02",
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": "Mariana Campos DID",
+  "number_digits": "+14699915842",
+  "user_name": "Mariana Campos",
+  "user_email": "mariana@specialized247.com",
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:24:24.548Z",
+  "event": "message.status_updated",
+  "call_id": "b4c65798-4c8a-41c7-b79d-c3cce27aec02",
+  "call_uuid": null,
+  "direction": null,
+  "status": "delivered",
+  "number_name": "Mariana Campos DID",
+  "number_digits": "+14699915842",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:24:31.736Z",
+  "event": "message.sent",
+  "call_id": "150bfef0-c72b-4fc3-a1c2-3c643346069e",
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": "Mariana Campos DID",
+  "number_digits": "+14699915842",
+  "user_name": "Mariana Campos",
+  "user_email": "mariana@specialized247.com",
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:24:32.671Z",
+  "event": "message.status_updated",
+  "call_id": "150bfef0-c72b-4fc3-a1c2-3c643346069e",
+  "call_uuid": null,
+  "direction": null,
+  "status": "delivered",
+  "number_name": "Mariana Campos DID",
+  "number_digits": "+14699915842",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:24:44.107Z",
+  "event": "message.received",
+  "call_id": "SMeedee3fff77b1c2b7712df9c92bab14a",
+  "call_uuid": null,
+  "direction": null,
+  "status": "received",
+  "number_name": "Mariana Campos DID",
+  "number_digits": "+14699915842",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:27:53.165Z",
+  "event": "user.disconnected",
+  "call_id": 1929406,
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": null,
+  "number_digits": null,
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:27:53.192Z",
+  "event": "user.disconnected.v2",
+  "call_id": 1929406,
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": null,
+  "number_digits": null,
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:30:24.953Z",
+  "event": "contact.created",
+  "call_id": 474543696,
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": null,
+  "number_digits": null,
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:30:24.989Z",
+  "event": "contact.created",
+  "call_id": 474543697,
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": null,
+  "number_digits": null,
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:31:28.980Z",
+  "event": "message.sent",
+  "call_id": "4ef247d5-a752-42c4-8e69-0acd6510266c",
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": "Mariana Campos DID",
+  "number_digits": "+14699915842",
+  "user_name": "Mariana Campos",
+  "user_email": "mariana@specialized247.com",
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:31:29.864Z",
+  "event": "message.status_updated",
+  "call_id": "4ef247d5-a752-42c4-8e69-0acd6510266c",
+  "call_uuid": null,
+  "direction": null,
+  "status": "delivered",
+  "number_name": "Mariana Campos DID",
+  "number_digits": "+14699915842",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:31:37.018Z",
+  "event": "message.sent",
+  "call_id": "5c54afc5-cac7-4b0d-aa45-07002d0d4a8a",
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": "Mariana Campos DID",
+  "number_digits": "+14699915842",
+  "user_name": "Mariana Campos",
+  "user_email": "mariana@specialized247.com",
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:31:38.164Z",
+  "event": "message.status_updated",
+  "call_id": "5c54afc5-cac7-4b0d-aa45-07002d0d4a8a",
+  "call_uuid": null,
+  "direction": null,
+  "status": "delivered",
+  "number_name": "Mariana Campos DID",
+  "number_digits": "+14699915842",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:32:19.541Z",
+  "event": "message.sent",
+  "call_id": "51900874-de27-4ed5-ab01-d68ee3aa285d",
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": "Mariana Campos DID",
+  "number_digits": "+14699915842",
+  "user_name": "Mariana Campos",
+  "user_email": "mariana@specialized247.com",
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:32:20.748Z",
+  "event": "message.status_updated",
+  "call_id": "51900874-de27-4ed5-ab01-d68ee3aa285d",
+  "call_uuid": null,
+  "direction": null,
+  "status": "delivered",
+  "number_name": "Mariana Campos DID",
+  "number_digits": "+14699915842",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:33:17.172Z",
+  "event": "call.created",
+  "call_id": 3810526194,
+  "call_uuid": "CA6a29b9a620c8307e991c789a34a558ff",
+  "direction": "inbound",
+  "status": "initial",
+  "number_name": "ATL Main",
+  "number_digits": "+14045968454",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": "+1 706-974-8325",
+  "started_at": 1779928396,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:33:18.050Z",
+  "event": "user.disconnected",
+  "call_id": 1678926,
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": null,
+  "number_digits": null,
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:33:18.080Z",
+  "event": "user.disconnected.v2",
+  "call_id": 1678926,
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": null,
+  "number_digits": null,
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:33:26.355Z",
+  "event": "call.ivr_option_selected",
+  "call_id": 3810526194,
+  "call_uuid": "CA6a29b9a620c8307e991c789a34a558ff",
+  "direction": "inbound",
+  "status": "initial",
+  "number_name": "ATL Main",
+  "number_digits": "+14045968454",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": "+1 706-974-8325",
+  "started_at": 1779928396,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:34:23.997Z",
+  "event": "user.disconnected.v2",
+  "call_id": 835163,
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": null,
+  "number_digits": null,
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:34:24.027Z",
+  "event": "user.disconnected",
+  "call_id": 835163,
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": null,
+  "number_digits": null,
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:34:33.260Z",
+  "event": "call.hungup",
+  "call_id": 3810526194,
+  "call_uuid": "CA6a29b9a620c8307e991c789a34a558ff",
+  "direction": "inbound",
+  "status": "done",
+  "number_name": "Concierge ATL",
+  "number_digits": "+14044813792",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": "+1 706-974-8325",
+  "started_at": 1779928396,
+  "answered_at": null,
+  "ended_at": 1779928472,
+  "duration": 75,
+  "missed_call_reason": "no_available_agent"
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:35:03.434Z",
+  "event": "call.ended",
+  "call_id": 3810526194,
+  "call_uuid": "CA6a29b9a620c8307e991c789a34a558ff",
+  "direction": "inbound",
+  "status": "done",
+  "number_name": "Concierge ATL",
+  "number_digits": "+14044813792",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": "+1 706-974-8325",
+  "started_at": 1779928396,
+  "answered_at": null,
+  "ended_at": 1779928472,
+  "duration": 75,
+  "missed_call_reason": "no_available_agent"
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:39:28.743Z",
+  "event": "user.connected",
+  "call_id": 1929406,
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": null,
+  "number_digits": null,
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:39:28.773Z",
+  "event": "user.connected.v2",
+  "call_id": 1929406,
+  "call_uuid": null,
+  "direction": null,
+  "status": null,
+  "number_name": null,
+  "number_digits": null,
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+
+{
+  "received_at": "2026-05-28T00:39:49.394Z",
+  "event": "message.received",
+  "call_id": "SMa82da86e10d6b36f3f5b2930b9e2be80",
+  "call_uuid": null,
+  "direction": null,
+  "status": "received",
+  "number_name": "Mariana Campos DID",
+  "number_digits": "+14699915842",
+  "user_name": null,
+  "user_email": null,
+  "team_name": null,
+  "caller_number": null,
+  "started_at": null,
+  "answered_at": null,
+  "ended_at": null,
+  "duration": null,
+  "missed_call_reason": null
+}
+
+====================
+

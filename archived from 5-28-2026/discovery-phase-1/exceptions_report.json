@@ -1,0 +1,33 @@
+[
+  {
+    "type": "Caller called back after missed call",
+    "missed_call_id": 3813860942,
+    "caller": "+1 770-310-8519",
+    "missed_reason": "abandoned_in_ivr",
+    "callback_call_id": 3813871750,
+    "callback_result": "MISSED",
+    "callback_answered_by": null,
+    "seconds_until_callback": 193,
+    "started_at": 1779989905
+  },
+  {
+    "type": "Possible failed answer attempt or unanswered ring",
+    "call_id": 3813864710,
+    "caller": "+1 469-648-4279",
+    "called_number": "Glenda Malone DID (+12142337573)",
+    "rang_agents": "Glenda Malone",
+    "missed_reason": "agents_did_not_answer",
+    "why": "One or more agents were rung, no answer event was recorded, and not every rung agent declined.",
+    "started_at": 1779989983
+  },
+  {
+    "type": "Possible failed answer attempt or unanswered ring",
+    "call_id": 3813867004,
+    "caller": "+1 817-240-0648",
+    "called_number": "ATL/BHM/OKC/MEM Leasing (+14699915845)",
+    "rang_agents": "Nix Cunanan",
+    "missed_reason": "agents_did_not_answer",
+    "why": "One or more agents were rung, no answer event was recorded, and not every rung agent declined.",
+    "started_at": 1779990031
+  }
+]

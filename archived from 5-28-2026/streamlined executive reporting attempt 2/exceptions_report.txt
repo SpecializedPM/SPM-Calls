@@ -1,0 +1,86 @@
+EXCEPTIONS REPORT
+Generated: 5/28/2026, 1:25:40 PM
+
+1. Caller called back after missed call
+   call_id: 3813941001
+   caller: +1 239-227-1984
+   missed_reason: no_available_agent
+   callback_call_id: 3813941855
+   callback_answered_by: April Layacan
+   seconds_after: 14
+
+2. Caller called back after missed call
+   call_id: 3813949164
+   caller: +1 770-630-0765
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3813957321
+   callback_answered_by: null
+   seconds_after: 63
+
+3. Suspected failed answer or unanswered ring
+   call_id: 3813949164
+   caller: +1 770-630-0765
+   called_number: Concierge ATL (+14044813792)
+   rang_agents: Mira Vencilao
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+4. Caller called back after missed call
+   call_id: 3813952523
+   caller: +1 321-265-9937
+   missed_reason: no_available_agent
+   callback_call_id: 3813970573
+   callback_answered_by: Mariana Campos
+   seconds_after: 348
+
+5. Caller called back after missed call
+   call_id: 3813972659
+   caller: +1 949-292-7929
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3813977699
+   callback_answered_by: George Melendez
+   seconds_after: 71
+
+6. Suspected failed answer or unanswered ring
+   call_id: 3813972659
+   caller: +1 949-292-7929
+   called_number: George Melendez DID (+14076983372)
+   rang_agents: George Melendez
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+7. Caller called back after missed call
+   call_id: 3813977562
+   caller: +1 903-780-3053
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3813983975
+   callback_answered_by: null
+   seconds_after: 23
+
+8. Suspected failed answer or unanswered ring
+   call_id: 3813977562
+   caller: +1 903-780-3053
+   called_number: Concierge DFW/HOU (+12142337576)
+   rang_agents: Mira Vencilao, Ana Manlunas
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+9. Caller called back after missed call
+   call_id: 3813980411
+   caller: +1 317-457-2546
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3813983897
+   callback_answered_by: Ana Manlunas
+   seconds_after: 10
+
+10. Suspected failed answer or unanswered ring
+   call_id: 3813980411
+   caller: +1 317-457-2546
+   called_number: Concierge ORL/TPA (+14076983382)
+   rang_agents: Ana Manlunas, Mira Vencilao
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+11. Suspected failed answer or unanswered ring
+   call_id: 3813983975
+   caller: +1 903-780-3053
+   called_number: Concierge DFW/HOU (+12142337576)
+   rang_agents: Mira Vencilao
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+

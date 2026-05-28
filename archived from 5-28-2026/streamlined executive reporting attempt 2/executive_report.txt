@@ -1,0 +1,85 @@
+EXECUTIVE CALL REPORT
+Generated: 5/28/2026, 1:25:40 PM
+
+====================
+COMPANY CALL OUTCOMES
+====================
+Total unique calls: 37
+Answered calls: 22
+Missed calls: 14
+Company answer rate: 59.5%
+Callbacks after missed calls: 6
+Suspected failed answers: 5
+
+====================
+EMPLOYEE RING ACTIVITY
+====================
+Total ring attempts: 20
+Answered ring attempts: 11
+Declined ring attempts: 0
+Unanswered ring attempts: 9
+Employee ring answer rate: 55.0%
+
+====================
+TOP EXCEPTIONS
+====================
+1. Caller called back after missed call
+   Call ID: 3813941001
+   Caller: +1 239-227-1984
+   Callback call: 3813941855
+
+2. Caller called back after missed call
+   Call ID: 3813949164
+   Caller: +1 770-630-0765
+   Callback call: 3813957321
+
+3. Suspected failed answer or unanswered ring
+   Call ID: 3813949164
+   Caller: +1 770-630-0765
+   Called number: Concierge ATL (+14044813792)
+   Reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+4. Caller called back after missed call
+   Call ID: 3813952523
+   Caller: +1 321-265-9937
+   Callback call: 3813970573
+
+5. Caller called back after missed call
+   Call ID: 3813972659
+   Caller: +1 949-292-7929
+   Callback call: 3813977699
+
+6. Suspected failed answer or unanswered ring
+   Call ID: 3813972659
+   Caller: +1 949-292-7929
+   Called number: George Melendez DID (+14076983372)
+   Reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+7. Caller called back after missed call
+   Call ID: 3813977562
+   Caller: +1 903-780-3053
+   Callback call: 3813983975
+
+8. Suspected failed answer or unanswered ring
+   Call ID: 3813977562
+   Caller: +1 903-780-3053
+   Called number: Concierge DFW/HOU (+12142337576)
+   Reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+9. Caller called back after missed call
+   Call ID: 3813980411
+   Caller: +1 317-457-2546
+   Callback call: 3813983897
+
+10. Suspected failed answer or unanswered ring
+   Call ID: 3813980411
+   Caller: +1 317-457-2546
+   Called number: Concierge ORL/TPA (+14076983382)
+   Reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+11. Suspected failed answer or unanswered ring
+   Call ID: 3813983975
+   Caller: +1 903-780-3053
+   Called number: Concierge DFW/HOU (+12142337576)
+   Reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+

@@ -1,0 +1,322 @@
+CALL ID: 3813764298
+Caller: +1 817-933-1055
+Called number: DFW Maintenance IVR (+18178869223)
+Started on: DFW Maintenance IVR (+18178869223)
+Direction: inbound
+Result: IN PROGRESS
+Missed reason: none
+Answered by: none
+Team: none
+DID owner: unknown
+DID owner email: unknown
+DID owner status at call time: unknown
+Why not DID owner: No DID owner mapping found
+Rang agents: none
+Started at: 5/28/2026, 12:05:28 PM
+Answered at: null
+Ended at: null
+Duration: 0 seconds
+Events: call.ivr_option_selected
+API enriched: no
+
+====================
+
+CALL ID: 3813846675
+Caller: +1 510-500-2525
+Called number: ATL/BHM/OKC/MEM Leasing (+14699915845)
+Started on: ATL/BHM/OKC/MEM Leasing (+14699915845)
+Direction: inbound
+Result: ANSWERED
+Missed reason: none
+Answered by: Nix Cunanan
+Team: none
+DID owner: unknown
+DID owner email: unknown
+DID owner status at call time: unknown
+Why not DID owner: No DID owner mapping found
+Rang agents: none
+Started at: 5/28/2026, 12:33:19 PM
+Answered at: 5/28/2026, 12:33:28 PM
+Ended at: 5/28/2026, 12:37:04 PM
+Duration: 224 seconds
+Events: call.hungup -> call.comm_assets_generated -> call.ended
+API enriched: yes
+
+====================
+
+CALL ID: 3813847389
+Caller: +1 469-781-1713
+Called number: Debbie Roberts DID (+18178869230)
+Started on: Debbie Roberts DID (+18178869230)
+Direction: outbound
+Result: ANSWERED
+Missed reason: none
+Answered by: Debbie Roberts
+Team: none
+DID owner: unknown
+DID owner email: unknown
+DID owner status at call time: unknown
+Why not DID owner: No DID owner mapping found
+Rang agents: none
+Started at: 5/28/2026, 12:33:34 PM
+Answered at: 5/28/2026, 12:33:45 PM
+Ended at: 5/28/2026, 12:38:55 PM
+Duration: 321 seconds
+Events: call.hungup -> call.comm_assets_generated -> call.ended
+API enriched: yes
+
+====================
+
+CALL ID: 3813852309
+Caller: +1 352-361-7000
+Called number: Concierge DFW/HOU (+12142337576)
+Started on: Concierge DFW/HOU (+12142337576)
+Direction: inbound
+Result: ANSWERED
+Missed reason: none
+Answered by: Jericson Velasco
+Team: Concierge Team
+DID owner: unknown
+DID owner email: unknown
+DID owner status at call time: unknown
+Why not DID owner: No DID owner mapping found
+Rang agents: none
+Started at: 5/28/2026, 12:35:18 PM
+Answered at: 5/28/2026, 12:36:21 PM
+Ended at: null
+Duration: 0 seconds
+Events: call.hold -> call.unhold -> call.transferred -> call.tagged
+API enriched: no
+
+====================
+
+CALL ID: 3813855673
+Caller: +1 813-504-0664
+Called number: Concierge ORL/TPA (+14076983382)
+Started on: TPA Main (+18135483032)
+Direction: inbound
+Result: ANSWERED
+Missed reason: none
+Answered by: April Layacan
+Team: Concierge Team
+DID owner: unknown
+DID owner email: unknown
+DID owner status at call time: unknown
+Why not DID owner: No DID owner mapping found
+Rang agents: April Layacan (available / always_opened)
+Started at: 5/28/2026, 12:36:29 PM
+Answered at: 5/28/2026, 12:37:32 PM
+Ended at: 5/28/2026, 12:38:36 PM
+Duration: 127 seconds
+Events: call.ivr_option_selected -> call.ringing_on_agent -> call.answered -> call.hungup -> call.comm_assets_generated -> call.ended
+API enriched: yes
+
+====================
+
+CALL ID: 3813860942
+Caller: +1 770-310-8519
+Called number: ATL Main (+14045968454)
+Started on: ATL Main (+14045968454)
+Direction: inbound
+Result: MISSED
+Missed reason: abandoned_in_ivr
+Answered by: none
+Team: none
+DID owner: unknown
+DID owner email: unknown
+DID owner status at call time: unknown
+Why not DID owner: No DID owner mapping found
+Rang agents: none
+Started at: 5/28/2026, 12:38:25 PM
+Answered at: null
+Ended at: 5/28/2026, 12:38:56 PM
+Duration: 31 seconds
+Events: call.created -> call.hungup -> call.ended
+API enriched: yes
+
+====================
+
+CALL ID: 3813864710
+Caller: +1 469-648-4279
+Called number: Glenda Malone DID (+12142337573)
+Started on: Glenda Malone DID (+12142337573)
+Direction: inbound
+Result: MISSED
+Missed reason: agents_did_not_answer
+Answered by: none
+Team: none
+DID owner: unknown
+DID owner email: unknown
+DID owner status at call time: unknown
+Why not DID owner: No DID owner mapping found
+Rang agents: Glenda Malone (available / always_opened)
+Started at: 5/28/2026, 12:39:43 PM
+Answered at: null
+Ended at: 5/28/2026, 12:40:09 PM
+Duration: 26 seconds
+Events: call.created -> call.ringing_on_agent -> call.hungup -> call.ended
+API enriched: yes
+
+====================
+
+CALL ID: 3813866210
+Caller: +1 347-524-6748
+Called number: Concierge ORL/TPA (+14076983382)
+Started on: ORL Main (+14076823355)
+Direction: inbound
+Result: ANSWERED
+Missed reason: none
+Answered by: Ana Manlunas
+Team: Concierge Team
+DID owner: unknown
+DID owner email: unknown
+DID owner status at call time: unknown
+Why not DID owner: No DID owner mapping found
+Rang agents: Mira Vencilao (custom / auto), Ana Manlunas (available / always_opened)
+Started at: 5/28/2026, 12:40:14 PM
+Answered at: 5/28/2026, 12:41:46 PM
+Ended at: null
+Duration: 0 seconds
+Events: call.created -> call.ivr_option_selected -> call.ringing_on_agent -> call.answered
+API enriched: yes
+
+====================
+
+CALL ID: 3813867004
+Caller: +1 817-240-0648
+Called number: ATL/BHM/OKC/MEM Leasing (+14699915845)
+Started on: ATL/BHM/OKC/MEM Leasing (+14699915845)
+Direction: inbound
+Result: MISSED
+Missed reason: agents_did_not_answer
+Answered by: none
+Team: none
+DID owner: unknown
+DID owner email: unknown
+DID owner status at call time: unknown
+Why not DID owner: No DID owner mapping found
+Rang agents: Nix Cunanan (available / always_opened)
+Started at: 5/28/2026, 12:40:31 PM
+Answered at: null
+Ended at: 5/28/2026, 12:41:06 PM
+Duration: 34 seconds
+Events: call.created -> call.ringing_on_agent -> call.hungup -> call.ended
+API enriched: yes
+
+====================
+
+CALL ID: 3813867688
+Caller: +1 845-516-8519
+Called number: Gemma Vazquez DID (+14694587784)
+Started on: Gemma Vazquez DID (+14694587784)
+Direction: outbound
+Result: ANSWERED
+Missed reason: none
+Answered by: Gemma Vazquez
+Team: none
+DID owner: unknown
+DID owner email: unknown
+DID owner status at call time: unknown
+Why not DID owner: No DID owner mapping found
+Rang agents: none
+Started at: 5/28/2026, 12:40:45 PM
+Answered at: 5/28/2026, 12:40:47 PM
+Ended at: 5/28/2026, 12:43:25 PM
+Duration: 160 seconds
+Events: call.created -> call.answered -> call.hungup -> call.comm_assets_generated -> call.ended
+API enriched: yes
+
+====================
+
+CALL ID: 3813868172
+Caller: +1 913-789-3153
+Called number: Mariana Campos DID (+14699915842)
+Started on: Mariana Campos DID (+14699915842)
+Direction: outbound
+Result: ANSWERED
+Missed reason: none
+Answered by: Mariana Campos
+Team: none
+DID owner: unknown
+DID owner email: unknown
+DID owner status at call time: unknown
+Why not DID owner: No DID owner mapping found
+Rang agents: none
+Started at: 5/28/2026, 12:40:55 PM
+Answered at: 5/28/2026, 12:41:21 PM
+Ended at: 5/28/2026, 12:41:48 PM
+Duration: 53 seconds
+Events: call.created -> call.answered -> call.hungup -> call.comm_assets_generated -> call.ended
+API enriched: yes
+
+====================
+
+CALL ID: 3813871750
+Caller: +1 770-310-8519
+Called number: ATL/BHM/MEM/IND Resident Accounting (+17705755953)
+Started on: ATL Main (+14045968454)
+Direction: inbound
+Result: MISSED
+Missed reason: no_available_agent
+Answered by: none
+Team: none
+DID owner: unknown
+DID owner email: unknown
+DID owner status at call time: unknown
+Why not DID owner: No DID owner mapping found
+Rang agents: none
+Started at: 5/28/2026, 12:42:09 PM
+Answered at: null
+Ended at: 5/28/2026, 12:44:18 PM
+Duration: 129 seconds
+Events: call.created -> call.ivr_option_selected -> call.hungup -> call.comm_assets_generated -> call.ended -> call.voicemail_left
+API enriched: yes
+
+====================
+
+CALL ID: 3813871926
+Caller: +1 913-335-2674
+Called number: Mariana Campos DID (+14699915842)
+Started on: Mariana Campos DID (+14699915842)
+Direction: outbound
+Result: ANSWERED
+Missed reason: none
+Answered by: Mariana Campos
+Team: none
+DID owner: unknown
+DID owner email: unknown
+DID owner status at call time: unknown
+Why not DID owner: No DID owner mapping found
+Rang agents: none
+Started at: 5/28/2026, 12:42:12 PM
+Answered at: 5/28/2026, 12:42:42 PM
+Ended at: 5/28/2026, 12:42:58 PM
+Duration: 46 seconds
+Events: call.created -> call.answered -> call.hungup -> call.comm_assets_generated -> call.ended
+API enriched: yes
+
+====================
+
+CALL ID: 3813878069
+Caller: +1 907-206-9713
+Called number: Lynne Cauilan DID (+12147361571)
+Started on: Lynne Cauilan DID (+12147361571)
+Direction: inbound
+Result: IN PROGRESS
+Missed reason: none
+Answered by: none
+Team: none
+DID owner: unknown
+DID owner email: unknown
+DID owner status at call time: unknown
+Why not DID owner: No DID owner mapping found
+Rang agents: none
+Started at: 5/28/2026, 12:44:21 PM
+Answered at: null
+Ended at: null
+Duration: 0 seconds
+Events: call.created
+API enriched: yes
+
+====================
+

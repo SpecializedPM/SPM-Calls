@@ -1,0 +1,280 @@
+USER: Nix Cunanan
+Email: nicole@specialized247.com
+Latest status: available=true, status=available, substatus=always_opened
+Answered calls: 1
+Answered someone else's DID: 0
+Owned DID calls: 0
+Owned DID routed away: 0
+Rang then answered: 0
+Rang but someone else answered: 0
+Rang and call was missed: 1
+
+ANSWERED CALLS
+- Call 3813846675 | ATL/BHM/OKC/MEM Leasing (+14699915845) | Caller: +1 510-500-2525 | Duration: 224s | Answered: 5/28/2026, 12:33:28 PM
+
+ANSWERED SOMEONE ELSE'S DID
+none
+
+OWNED DID ROUTED AWAY
+none
+
+RANG THEN ANSWERED
+none
+
+RANG BUT SOMEONE ELSE ANSWERED
+none
+
+RANG AND CALL WAS MISSED
+- Call 3813867004 | ATL/BHM/OKC/MEM Leasing (+14699915845) | Reason: agents_did_not_answer | Status when rang: available/always_opened | Rang: 5/28/2026, 12:40:32 PM
+
+====================
+
+USER: Debbie Roberts
+Email: debbie@specialized247.com
+Latest status: available=true, status=available, substatus=always_opened
+Answered calls: 1
+Answered someone else's DID: 0
+Owned DID calls: 0
+Owned DID routed away: 0
+Rang then answered: 0
+Rang but someone else answered: 0
+Rang and call was missed: 0
+
+ANSWERED CALLS
+- Call 3813847389 | Debbie Roberts DID (+18178869230) | Caller: +1 469-781-1713 | Duration: 321s | Answered: 5/28/2026, 12:33:45 PM
+
+ANSWERED SOMEONE ELSE'S DID
+none
+
+OWNED DID ROUTED AWAY
+none
+
+RANG THEN ANSWERED
+none
+
+RANG BUT SOMEONE ELSE ANSWERED
+none
+
+RANG AND CALL WAS MISSED
+none
+
+====================
+
+USER: Jericson Velasco
+Email: jericson@specialized247.com
+Latest status: available=true, status=available, substatus=always_opened
+Answered calls: 1
+Answered someone else's DID: 0
+Owned DID calls: 0
+Owned DID routed away: 0
+Rang then answered: 0
+Rang but someone else answered: 0
+Rang and call was missed: 0
+
+ANSWERED CALLS
+- Call 3813852309 | Concierge DFW/HOU (+12142337576) | Caller: +1 352-361-7000 | Duration: 0s | Answered: 5/28/2026, 12:36:21 PM
+
+ANSWERED SOMEONE ELSE'S DID
+none
+
+OWNED DID ROUTED AWAY
+none
+
+RANG THEN ANSWERED
+none
+
+RANG BUT SOMEONE ELSE ANSWERED
+none
+
+RANG AND CALL WAS MISSED
+none
+
+====================
+
+USER: April Layacan
+Email: april@specialized247.com
+Latest status: available=true, status=available, substatus=always_opened
+Answered calls: 1
+Answered someone else's DID: 0
+Owned DID calls: 0
+Owned DID routed away: 0
+Rang then answered: 1
+Rang but someone else answered: 0
+Rang and call was missed: 0
+
+ANSWERED CALLS
+- Call 3813855673 | Concierge ORL/TPA (+14076983382) | Caller: +1 813-504-0664 | Duration: 127s | Answered: 5/28/2026, 12:37:32 PM
+
+ANSWERED SOMEONE ELSE'S DID
+none
+
+OWNED DID ROUTED AWAY
+none
+
+RANG THEN ANSWERED
+- Call 3813855673 | Concierge ORL/TPA (+14076983382) | Status when rang: available/always_opened | Rang: 5/28/2026, 12:37:22 PM
+
+RANG BUT SOMEONE ELSE ANSWERED
+none
+
+RANG AND CALL WAS MISSED
+none
+
+====================
+
+USER: Glenda Malone
+Email: glenda@specialized247.com
+Latest status: available=true, status=available, substatus=always_opened
+Answered calls: 0
+Answered someone else's DID: 0
+Owned DID calls: 0
+Owned DID routed away: 0
+Rang then answered: 0
+Rang but someone else answered: 0
+Rang and call was missed: 1
+
+ANSWERED CALLS
+none
+
+ANSWERED SOMEONE ELSE'S DID
+none
+
+OWNED DID ROUTED AWAY
+none
+
+RANG THEN ANSWERED
+none
+
+RANG BUT SOMEONE ELSE ANSWERED
+none
+
+RANG AND CALL WAS MISSED
+- Call 3813864710 | Glenda Malone DID (+12142337573) | Reason: agents_did_not_answer | Status when rang: available/always_opened | Rang: 5/28/2026, 12:39:52 PM
+
+====================
+
+USER: Ana Manlunas
+Email: ana@specialized247.com
+Latest status: available=true, status=available, substatus=always_opened
+Answered calls: 1
+Answered someone else's DID: 0
+Owned DID calls: 0
+Owned DID routed away: 0
+Rang then answered: 1
+Rang but someone else answered: 0
+Rang and call was missed: 0
+
+ANSWERED CALLS
+- Call 3813866210 | Concierge ORL/TPA (+14076983382) | Caller: +1 347-524-6748 | Duration: 0s | Answered: 5/28/2026, 12:41:46 PM
+
+ANSWERED SOMEONE ELSE'S DID
+none
+
+OWNED DID ROUTED AWAY
+none
+
+RANG THEN ANSWERED
+- Call 3813866210 | Concierge ORL/TPA (+14076983382) | Status when rang: available/always_opened | Rang: 5/28/2026, 12:41:35 PM
+
+RANG BUT SOMEONE ELSE ANSWERED
+none
+
+RANG AND CALL WAS MISSED
+none
+
+====================
+
+USER: Mira Vencilao
+Email: mira@specialized247.com
+Latest status: available=true, status=custom, substatus=auto
+Answered calls: 0
+Answered someone else's DID: 0
+Owned DID calls: 0
+Owned DID routed away: 0
+Rang then answered: 0
+Rang but someone else answered: 1
+Rang and call was missed: 0
+
+ANSWERED CALLS
+none
+
+ANSWERED SOMEONE ELSE'S DID
+none
+
+OWNED DID ROUTED AWAY
+none
+
+RANG THEN ANSWERED
+none
+
+RANG BUT SOMEONE ELSE ANSWERED
+- Call 3813866210 | Concierge ORL/TPA (+14076983382) | Answered by: Ana Manlunas | Status when rang: custom/auto | Rang: 5/28/2026, 12:41:09 PM
+
+RANG AND CALL WAS MISSED
+none
+
+====================
+
+USER: Gemma Vazquez
+Email: gemma@specialized247.com
+Latest status: available=true, status=custom, substatus=auto
+Answered calls: 1
+Answered someone else's DID: 0
+Owned DID calls: 0
+Owned DID routed away: 0
+Rang then answered: 0
+Rang but someone else answered: 0
+Rang and call was missed: 0
+
+ANSWERED CALLS
+- Call 3813867688 | Gemma Vazquez DID (+14694587784) | Caller: +1 845-516-8519 | Duration: 160s | Answered: 5/28/2026, 12:40:47 PM
+
+ANSWERED SOMEONE ELSE'S DID
+none
+
+OWNED DID ROUTED AWAY
+none
+
+RANG THEN ANSWERED
+none
+
+RANG BUT SOMEONE ELSE ANSWERED
+none
+
+RANG AND CALL WAS MISSED
+none
+
+====================
+
+USER: Mariana Campos
+Email: mariana@specialized247.com
+Latest status: available=true, status=available, substatus=always_opened
+Answered calls: 2
+Answered someone else's DID: 0
+Owned DID calls: 0
+Owned DID routed away: 0
+Rang then answered: 0
+Rang but someone else answered: 0
+Rang and call was missed: 0
+
+ANSWERED CALLS
+- Call 3813868172 | Mariana Campos DID (+14699915842) | Caller: +1 913-789-3153 | Duration: 53s | Answered: 5/28/2026, 12:41:21 PM
+- Call 3813871926 | Mariana Campos DID (+14699915842) | Caller: +1 913-335-2674 | Duration: 46s | Answered: 5/28/2026, 12:42:42 PM
+
+ANSWERED SOMEONE ELSE'S DID
+none
+
+OWNED DID ROUTED AWAY
+none
+
+RANG THEN ANSWERED
+none
+
+RANG BUT SOMEONE ELSE ANSWERED
+none
+
+RANG AND CALL WAS MISSED
+none
+
+====================
+

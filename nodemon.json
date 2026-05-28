@@ -1,0 +1,17 @@
+{
+  "watch": [
+    "index.js",
+    "reports",
+    "logic",
+    "services",
+    "storage"
+  ],
+  "ignore": [
+    "*.json",
+    "*.html",
+    "*.txt",
+    "archive/*",
+    "node_modules/*"
+  ],
+  "ext": "js"
+}
