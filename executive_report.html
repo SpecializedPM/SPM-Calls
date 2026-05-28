@@ -141,7 +141,7 @@
         <div>
             <h1>Aircall Executive Report</h1>
             <div class="subtitle">
-                Generated: 5/28/2026, 5:30:30 PM · Auto-refreshes every 5 seconds
+                Generated: 5/28/2026, 5:38:43 PM · Auto-refreshes every 5 seconds
             </div>
         </div>
 
@@ -177,12 +177,12 @@
     <div class="grid">
         <div class="card">
             <div class="label">Total Unique Calls</div>
-            <div class="metric">228</div>
+            <div class="metric">230</div>
         </div>
 
         <div class="card">
             <div class="label">Raw Answer Rate</div>
-            <div class="metric">67.5%</div>
+            <div class="metric">67.4%</div>
         </div>
 
         <div class="card">
@@ -200,8 +200,22 @@
         </div>
 
         <div class="card">
+            <div class="label">After Hours Raw Answer Rate</div>
+
+            <div class="metric">
+                33.3%
+            </div>
+
+            <div class="small">
+                3 /
+                9
+                calls outside 7 AM–5 PM CT
+            </div>
+        </div>
+
+        <div class="card">
             <div class="label">Customer Resolution Rate</div>
-            <div class="metric">76.3%</div>
+            <div class="metric">76.0%</div>
         </div>
 
         <div class="card">
@@ -211,63 +225,143 @@
     </div>
 
     <div class="section">
-        <h2>Company Call Outcomes</h2>
+    <h2>Company Call Outcomes</h2>
 
-        <table>
-            <tr><th>Metric</th><th>Value</th></tr>
+    <table>
+        <tr><th>Metric</th><th>Value</th></tr>
 
-            <tr><td colspan="2" class="group-title">Core Customer Outcome KPIs</td></tr>
-            <tr><td>Total unique calls</td><td>228</td></tr>
-            <tr><td>Answered calls</td><td>154</td></tr>
-            <tr><td>Missed calls</td><td>82</td></tr>
-            <tr><td>Raw answer rate</td><td>67.5%</td></tr>
-            <tr>
-                <td>
-                    Customer resolution rate
-                    <br>
-                    <span class="small">Groups quick repeat calls from the same caller into one customer interaction. If one call in that sequence is answered, the interaction counts as successful.</span>
-                </td>
-                <td>76.3%</td>
-            </tr>
+        <tr><td colspan="2" class="group-title">Core Customer Outcome KPIs</td></tr>
 
-            <tr><td colspan="2" class="group-title">Recovery Metrics</td></tr>
-            <tr><td>Modified customer interactions</td><td>169</td></tr>
-            <tr><td>Successful customer interactions</td><td>129</td></tr>
-            <tr><td>Recovered missed calls</td><td>26</td></tr>
-            <tr><td>Callbacks after missed calls</td><td>30</td></tr>
+        <tr><td>Total unique calls</td><td>230</td></tr>
+        <tr><td>Answered calls</td><td>155</td></tr>
+        <tr><td>Missed calls</td><td>83</td></tr>
 
-            <tr><td colspan="2" class="group-title">Capacity / Staffing Metrics</td></tr>
-            <tr><td>Occupancy missed calls</td><td>0</td></tr>
-            <tr><td>Occupancy miss rate of all calls</td><td>0.0%</td></tr>
-            <tr><td>Occupancy miss rate of missed calls</td><td>0.0%</td></tr>
+        <tr>
+            <td>
+                Raw answer rate
+                <br>
+                <span class="small">All answered calls divided by all captured calls.</span>
+            </td>
+            <td>67.4%</td>
+        </tr>
 
-            <tr><td colspan="2" class="group-title">Avoidable Miss Metrics</td></tr>
-            <tr><td>Declined while available misses</td><td>4</td></tr>
-            <tr><td>Avoidable miss rate of missed calls</td><td>4.9%</td></tr>
+        <tr>
+            <td>
+                Business hours raw answer rate
+                <br>
+                <span class="small">Calls started between 7:00 AM and 5:00 PM Central.</span>
+            </td>
+            <td>68.8%</td>
+        </tr>
 
-            <tr><td colspan="2" class="group-title">System / Telemetry Confidence</td></tr>
-            <tr>
-                <td>
-                    Calls missing ring telemetry
-                    <br>
-                    <span class="small">Missed calls with no captured agent ring data. This can mean true no-ring routing, API-only backfill, webhook gaps, IVR behavior, or incomplete telemetry.</span>
-                </td>
-                <td>49</td>
-            </tr>
-            <tr><td>Other missed calls</td><td>29</td></tr>
-            <tr><td>Suspected failed answers</td><td>30</td></tr>
-        </table>
+        <tr>
+            <td>
+                After hours raw answer rate
+                <br>
+                <span class="small">Calls outside 7:00 AM–5:00 PM Central.</span>
+            </td>
+            <td>33.3%</td>
+        </tr>
+
+        <tr>
+            <td>
+                Routed answer rate
+                <br>
+                <span class="small">Answered calls divided by calls where at least one agent ring event was captured.</span>
+            </td>
+            <td>82.4%</td>
+        </tr>
+
+        <tr>
+            <td>
+                Customer resolution rate
+                <br>
+                <span class="small">Groups quick repeat calls from the same caller into one customer interaction. If one call in that sequence is answered, the interaction counts as successful.</span>
+            </td>
+            <td>76.0%</td>
+        </tr>
+
+        <tr><td colspan="2" class="group-title">Business Hours Detail</td></tr>
+
+        <tr>
+            <td>Business hours calls</td>
+            <td>221</td>
+        </tr>
+
+        <tr>
+            <td>Business hours answered calls</td>
+            <td>152</td>
+        </tr>
+
+        <tr>
+            <td>After hours calls</td>
+            <td>9</td>
+        </tr>
+
+        <tr>
+            <td>After hours answered calls</td>
+            <td>3</td>
+        </tr>
+
+        <tr><td colspan="2" class="group-title">Routing Detail</td></tr>
+
+        <tr>
+            <td>
+                Routed calls
+                <br>
+                <span class="small">Calls where at least one agent ring event was captured.</span>
+            </td>
+            <td>108</td>
+        </tr>
+
+        <tr>
+            <td>Routed answered calls</td>
+            <td>89</td>
+        </tr>
+
+        <tr><td colspan="2" class="group-title">Recovery Metrics</td></tr>
+
+        <tr><td>Modified customer interactions</td><td>171</td></tr>
+        <tr><td>Successful customer interactions</td><td>130</td></tr>
+        <tr><td>Recovered missed calls</td><td>26</td></tr>
+        <tr><td>Callbacks after missed calls</td><td>30</td></tr>
+
+        <tr><td colspan="2" class="group-title">Capacity / Staffing Metrics</td></tr>
+
+        <tr><td>Occupancy missed calls</td><td>0</td></tr>
+        <tr><td>Occupancy miss rate of all calls</td><td>0.0%</td></tr>
+        <tr><td>Occupancy miss rate of missed calls</td><td>0.0%</td></tr>
+
+        <tr><td colspan="2" class="group-title">Avoidable Miss Metrics</td></tr>
+
+        <tr><td>Declined while available misses</td><td>4</td></tr>
+        <tr><td>Avoidable miss rate of missed calls</td><td>4.8%</td></tr>
+
+        <tr><td colspan="2" class="group-title">System / Telemetry Confidence</td></tr>
+
+        <tr>
+            <td>
+                Calls missing ring telemetry
+                <br>
+                <span class="small">Missed calls with no captured agent ring data. This can mean true no-ring routing, API-only backfill, webhook gaps, IVR behavior, or incomplete telemetry.</span>
+            </td>
+            <td>50</td>
+        </tr>
+
+        <tr><td>Other missed calls</td><td>29</td></tr>
+        <tr><td>Suspected failed answers</td><td>30</td></tr>
+    </table>
     </div>
 
     <div class="section">
         <h2>Internal Call Activity</h2>
         <table>
             <tr><th>Metric</th><th>Value</th></tr>
-            <tr><td>Total internal call records</td><td>241</td></tr>
-            <tr><td>Answered internal calls</td><td>149</td></tr>
+            <tr><td>Total internal call records</td><td>243</td></tr>
+            <tr><td>Answered internal calls</td><td>150</td></tr>
             <tr><td>Declined internal calls</td><td>4</td></tr>
-            <tr><td>Unanswered internal calls</td><td>89</td></tr>
-            <tr><td>Internal call answer rate</td><td>61.8%</td></tr>
+            <tr><td>Unanswered internal calls</td><td>90</td></tr>
+            <tr><td>Internal call answer rate</td><td>61.7%</td></tr>
         </table>
     </div>
 

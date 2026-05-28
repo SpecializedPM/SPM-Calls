@@ -458,6 +458,19 @@ function getExecutiveMetrics(calls) {
     const businessHourCalls = allCalls.filter(call =>
     isBusinessHoursCentral(call.call_core?.started_at)
     );
+    const afterHoursCalls = allCalls.filter(call =>
+    !isBusinessHoursCentral(call.call_core?.started_at)
+    );
+
+    const afterHoursAnsweredCalls = afterHoursCalls.filter(call =>
+    call.derived_flags?.answered
+    );
+
+    const afterHoursRawAnswerRate =
+    afterHoursCalls.length > 0
+        ? ((afterHoursAnsweredCalls.length / afterHoursCalls.length) * 100).toFixed(1)
+        : '0.0';
+
     const businessHourAnsweredCalls = businessHourCalls.filter(call =>
     call.derived_flags?.answered
     );
@@ -524,6 +537,9 @@ function getExecutiveMetrics(calls) {
     businessHourAnsweredCalls,
     businessHourRawAnswerRate,
     companyAnswerRate,
+    afterHoursCalls,
+    afterHoursAnsweredCalls,
+    afterHoursRawAnswerRate,
 
     routedCalls,
     routedAnsweredCalls,

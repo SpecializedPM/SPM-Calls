@@ -213,6 +213,20 @@ function buildExecutiveHtml(metrics, reportingStatus) {
         </div>
 
         <div class="card">
+            <div class="label">After Hours Raw Answer Rate</div>
+
+            <div class="metric">
+                ${metrics.afterHoursRawAnswerRate}%
+            </div>
+
+            <div class="small">
+                ${metrics.afterHoursAnsweredCalls.length} /
+                ${metrics.afterHoursCalls.length}
+                calls outside 7 AM–5 PM CT
+            </div>
+        </div>
+
+        <div class="card">
             <div class="label">Customer Resolution Rate</div>
             <div class="metric">${metrics.modifiedCompanyOutcomes.modifiedCompanyAnswerRate}%</div>
         </div>
@@ -224,52 +238,132 @@ function buildExecutiveHtml(metrics, reportingStatus) {
     </div>
 
     <div class="section">
-        <h2>Company Call Outcomes</h2>
+    <h2>Company Call Outcomes</h2>
 
-        <table>
-            <tr><th>Metric</th><th>Value</th></tr>
+    <table>
+        <tr><th>Metric</th><th>Value</th></tr>
 
-            <tr><td colspan="2" class="group-title">Core Customer Outcome KPIs</td></tr>
-            <tr><td>Total unique calls</td><td>${metrics.allCalls.length}</td></tr>
-            <tr><td>Answered calls</td><td>${metrics.answeredCalls.length}</td></tr>
-            <tr><td>Missed calls</td><td>${metrics.missedCalls.length}</td></tr>
-            <tr><td>Raw answer rate</td><td>${metrics.companyAnswerRate}%</td></tr>
-            <tr>
-                <td>
-                    Customer resolution rate
-                    <br>
-                    <span class="small">Groups quick repeat calls from the same caller into one customer interaction. If one call in that sequence is answered, the interaction counts as successful.</span>
-                </td>
-                <td>${metrics.modifiedCompanyOutcomes.modifiedCompanyAnswerRate}%</td>
-            </tr>
+        <tr><td colspan="2" class="group-title">Core Customer Outcome KPIs</td></tr>
 
-            <tr><td colspan="2" class="group-title">Recovery Metrics</td></tr>
-            <tr><td>Modified customer interactions</td><td>${metrics.modifiedCompanyOutcomes.totalModifiedCalls}</td></tr>
-            <tr><td>Successful customer interactions</td><td>${metrics.modifiedCompanyOutcomes.successfulModifiedCalls}</td></tr>
-            <tr><td>Recovered missed calls</td><td>${metrics.modifiedCompanyOutcomes.recoveredMissedCalls}</td></tr>
-            <tr><td>Callbacks after missed calls</td><td>${metrics.callbacksAfterMiss.length}</td></tr>
+        <tr><td>Total unique calls</td><td>${metrics.allCalls.length}</td></tr>
+        <tr><td>Answered calls</td><td>${metrics.answeredCalls.length}</td></tr>
+        <tr><td>Missed calls</td><td>${metrics.missedCalls.length}</td></tr>
 
-            <tr><td colspan="2" class="group-title">Capacity / Staffing Metrics</td></tr>
-            <tr><td>Occupancy missed calls</td><td>${missed.busyCapacityMisses}</td></tr>
-            <tr><td>Occupancy miss rate of all calls</td><td>${missed.busyMissRateOfAllCalls}%</td></tr>
-            <tr><td>Occupancy miss rate of missed calls</td><td>${missed.busyMissRateOfMissedCalls}%</td></tr>
+        <tr>
+            <td>
+                Raw answer rate
+                <br>
+                <span class="small">All answered calls divided by all captured calls.</span>
+            </td>
+            <td>${metrics.companyAnswerRate}%</td>
+        </tr>
 
-            <tr><td colspan="2" class="group-title">Avoidable Miss Metrics</td></tr>
-            <tr><td>Declined while available misses</td><td>${missed.declinedWhileAvailableMisses}</td></tr>
-            <tr><td>Avoidable miss rate of missed calls</td><td>${missed.avoidableDeclineMissRateOfMissedCalls}%</td></tr>
+        <tr>
+            <td>
+                Business hours raw answer rate
+                <br>
+                <span class="small">Calls started between 7:00 AM and 5:00 PM Central.</span>
+            </td>
+            <td>${metrics.businessHourRawAnswerRate}%</td>
+        </tr>
 
-            <tr><td colspan="2" class="group-title">System / Telemetry Confidence</td></tr>
-            <tr>
-                <td>
-                    Calls missing ring telemetry
-                    <br>
-                    <span class="small">Missed calls with no captured agent ring data. This can mean true no-ring routing, API-only backfill, webhook gaps, IVR behavior, or incomplete telemetry.</span>
-                </td>
-                <td>${missed.noRingMisses}</td>
-            </tr>
-            <tr><td>Other missed calls</td><td>${missed.otherMisses}</td></tr>
-            <tr><td>Suspected failed answers</td><td>${metrics.suspectedFailedAnswers.length}</td></tr>
-        </table>
+        <tr>
+            <td>
+                After hours raw answer rate
+                <br>
+                <span class="small">Calls outside 7:00 AM–5:00 PM Central.</span>
+            </td>
+            <td>${metrics.afterHoursRawAnswerRate}%</td>
+        </tr>
+
+        <tr>
+            <td>
+                Routed answer rate
+                <br>
+                <span class="small">Answered calls divided by calls where at least one agent ring event was captured.</span>
+            </td>
+            <td>${metrics.routedAnswerRate}%</td>
+        </tr>
+
+        <tr>
+            <td>
+                Customer resolution rate
+                <br>
+                <span class="small">Groups quick repeat calls from the same caller into one customer interaction. If one call in that sequence is answered, the interaction counts as successful.</span>
+            </td>
+            <td>${metrics.modifiedCompanyOutcomes.modifiedCompanyAnswerRate}%</td>
+        </tr>
+
+        <tr><td colspan="2" class="group-title">Business Hours Detail</td></tr>
+
+        <tr>
+            <td>Business hours calls</td>
+            <td>${metrics.businessHourCalls.length}</td>
+        </tr>
+
+        <tr>
+            <td>Business hours answered calls</td>
+            <td>${metrics.businessHourAnsweredCalls.length}</td>
+        </tr>
+
+        <tr>
+            <td>After hours calls</td>
+            <td>${metrics.afterHoursCalls.length}</td>
+        </tr>
+
+        <tr>
+            <td>After hours answered calls</td>
+            <td>${metrics.afterHoursAnsweredCalls.length}</td>
+        </tr>
+
+        <tr><td colspan="2" class="group-title">Routing Detail</td></tr>
+
+        <tr>
+            <td>
+                Routed calls
+                <br>
+                <span class="small">Calls where at least one agent ring event was captured.</span>
+            </td>
+            <td>${metrics.routedCalls.length}</td>
+        </tr>
+
+        <tr>
+            <td>Routed answered calls</td>
+            <td>${metrics.routedAnsweredCalls.length}</td>
+        </tr>
+
+        <tr><td colspan="2" class="group-title">Recovery Metrics</td></tr>
+
+        <tr><td>Modified customer interactions</td><td>${metrics.modifiedCompanyOutcomes.totalModifiedCalls}</td></tr>
+        <tr><td>Successful customer interactions</td><td>${metrics.modifiedCompanyOutcomes.successfulModifiedCalls}</td></tr>
+        <tr><td>Recovered missed calls</td><td>${metrics.modifiedCompanyOutcomes.recoveredMissedCalls}</td></tr>
+        <tr><td>Callbacks after missed calls</td><td>${metrics.callbacksAfterMiss.length}</td></tr>
+
+        <tr><td colspan="2" class="group-title">Capacity / Staffing Metrics</td></tr>
+
+        <tr><td>Occupancy missed calls</td><td>${missed.busyCapacityMisses}</td></tr>
+        <tr><td>Occupancy miss rate of all calls</td><td>${missed.busyMissRateOfAllCalls}%</td></tr>
+        <tr><td>Occupancy miss rate of missed calls</td><td>${missed.busyMissRateOfMissedCalls}%</td></tr>
+
+        <tr><td colspan="2" class="group-title">Avoidable Miss Metrics</td></tr>
+
+        <tr><td>Declined while available misses</td><td>${missed.declinedWhileAvailableMisses}</td></tr>
+        <tr><td>Avoidable miss rate of missed calls</td><td>${missed.avoidableDeclineMissRateOfMissedCalls}%</td></tr>
+
+        <tr><td colspan="2" class="group-title">System / Telemetry Confidence</td></tr>
+
+        <tr>
+            <td>
+                Calls missing ring telemetry
+                <br>
+                <span class="small">Missed calls with no captured agent ring data. This can mean true no-ring routing, API-only backfill, webhook gaps, IVR behavior, or incomplete telemetry.</span>
+            </td>
+            <td>${missed.noRingMisses}</td>
+        </tr>
+
+        <tr><td>Other missed calls</td><td>${missed.otherMisses}</td></tr>
+        <tr><td>Suspected failed answers</td><td>${metrics.suspectedFailedAnswers.length}</td></tr>
+    </table>
     </div>
 
     <div class="section">
