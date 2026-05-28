@@ -455,7 +455,16 @@ function getExecutiveMetrics(calls) {
 
     const answeredCalls = allCalls.filter(call => call.derived_flags?.answered);
     const missedCalls = allCalls.filter(call => call.derived_flags?.missed);
-
+    const businessHourCalls = allCalls.filter(call =>
+    isBusinessHoursCentral(call.call_core?.started_at)
+    );
+    const businessHourAnsweredCalls = businessHourCalls.filter(call =>
+    call.derived_flags?.answered
+    );
+    const businessHourRawAnswerRate =
+    businessHourCalls.length > 0
+        ? ((businessHourAnsweredCalls.length / businessHourCalls.length) * 100).toFixed(1)
+        : '0.0';
     const companyAnswerRate =
         allCalls.length > 0
             ? ((answeredCalls.length / allCalls.length) * 100).toFixed(1)
@@ -511,7 +520,9 @@ function getExecutiveMetrics(calls) {
     allCalls,
     answeredCalls,
     missedCalls,
-
+    businessHourCalls,
+    businessHourAnsweredCalls,
+    businessHourRawAnswerRate,
     companyAnswerRate,
 
     routedCalls,
@@ -633,6 +644,21 @@ function writeExceptionsReport(calls) {
     }
 
     writeOutputFile('exceptions_report.txt', output);
+}
+
+function isBusinessHoursCentral(unixTimestamp) {
+    if (!unixTimestamp) return false;
+
+    const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Chicago',
+        hour: 'numeric',
+        hour12: false,
+        weekday: 'short'
+    }).formatToParts(new Date(unixTimestamp * 1000));
+
+    const hour = Number(parts.find(part => part.type === 'hour')?.value);
+
+    return hour >= 7 && hour < 17;
 }
 
 module.exports = {

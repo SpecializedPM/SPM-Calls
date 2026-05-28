@@ -199,6 +199,20 @@ function buildExecutiveHtml(metrics, reportingStatus) {
         </div>
 
         <div class="card">
+            <div class="label">Business Hours Raw Answer Rate</div>
+        
+            <div class="metric">
+                ${metrics.businessHourRawAnswerRate}%
+            </div>
+
+            <div class="small">
+                ${metrics.businessHourAnsweredCalls.length} /
+                ${metrics.businessHourCalls.length}
+                calls from 7 AM–5 PM CT
+            </div>
+        </div>
+
+        <div class="card">
             <div class="label">Customer Resolution Rate</div>
             <div class="metric">${metrics.modifiedCompanyOutcomes.modifiedCompanyAnswerRate}%</div>
         </div>
