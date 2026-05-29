@@ -289,15 +289,15 @@ function showUserStats() {
 
     const user = userDailyStats[selectedUser];
 
-    output.innerHTML = \
+    output.innerHTML = \`
         <table>
             <tr><th>Metric</th><th>Value</th></tr>
-            <tr><td>User</td><td>${user.name}</td></tr>
-            <tr><td>Email</td><td>${user.email || ''}</td></tr>
-            <tr><td>Total Rings</td><td>${user.totalRings}</td></tr>
-            <tr><td>Answered Calls</td><td>${user.answeredCalls}</td></tr>
-            <tr><td>Declined Calls</td><td>${user.declinedCalls}</td></tr>
-            <tr><td>Missed Calls They Were Rung On</td><td>${user.missedCalls}</td></tr>
+            <tr><td>User</td><td>\${user.name}</td></tr>
+            <tr><td>Email</td><td>\${user.email || ''}</td></tr>
+            <tr><td>Total Rings</td><td>\${user.totalRings}</td></tr>
+            <tr><td>Answered Calls</td><td>\${user.answeredCalls}</td></tr>
+            <tr><td>Declined Calls</td><td>\${user.declinedCalls}</td></tr>
+            <tr><td>Missed Calls They Were Rung On</td><td>\${user.missedCalls}</td></tr>
         </table>
     \`;
 }
