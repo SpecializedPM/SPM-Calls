@@ -482,36 +482,52 @@ function getExecutiveMetrics(calls) {
 
     const answeredCalls = allCalls.filter(call => call.derived_flags?.answered);
     const missedCalls = allCalls.filter(call => call.derived_flags?.missed);
+
     const businessHourCalls = allCalls.filter(call =>
-    isBusinessHoursCentral(call.call_core?.started_at)
+        isBusinessHoursCentral(call.call_core?.started_at)
     );
+
+    const businessHourAnsweredCalls = businessHourCalls.filter(call =>
+        call.derived_flags?.answered
+    );
+
+    const businessHourRawAnswerRate =
+        businessHourCalls.length > 0
+            ? ((businessHourAnsweredCalls.length / businessHourCalls.length) * 100).toFixed(1)
+            : '0.0';
+
     const afterHoursCalls = allCalls.filter(call =>
-    !isBusinessHoursCentral(call.call_core?.started_at)
+        !isBusinessHoursCentral(call.call_core?.started_at)
     );
 
     const afterHoursAnsweredCalls = afterHoursCalls.filter(call =>
-    call.derived_flags?.answered
+        call.derived_flags?.answered
     );
 
     const afterHoursRawAnswerRate =
-    afterHoursCalls.length > 0
-        ? ((afterHoursAnsweredCalls.length / afterHoursCalls.length) * 100).toFixed(1)
-        : '0.0';
+        afterHoursCalls.length > 0
+            ? ((afterHoursAnsweredCalls.length / afterHoursCalls.length) * 100).toFixed(1)
+            : '0.0';
 
-    const businessHourAnsweredCalls = businessHourCalls.filter(call =>
-    call.derived_flags?.answered
-    );
-    const businessHourRawAnswerRate =
-    businessHourCalls.length > 0
-        ? ((businessHourAnsweredCalls.length / businessHourCalls.length) * 100).toFixed(1)
-        : '0.0';
     const companyAnswerRate =
         allCalls.length > 0
             ? ((answeredCalls.length / allCalls.length) * 100).toFixed(1)
             : '0.0';
+
     const routedCalls = allCalls.filter(call => {
         const routing = call.routing_analysis || {};
         const rangAgents = routing.rang_agents || [];
+        return rangAgents.length > 0;
+    });
+
+    const routedAnsweredCalls = routedCalls.filter(call =>
+        call.derived_flags?.answered
+    );
+
+    const routedAnswerRate =
+        routedCalls.length > 0
+            ? ((routedAnsweredCalls.length / routedCalls.length) * 100).toFixed(1)
+            : '0.0';
 
     const userDailyStats = {};
 
@@ -519,56 +535,47 @@ function getExecutiveMetrics(calls) {
         const core = call.call_core || {};
         const routing = call.routing_analysis || {};
         const rangAgents = routing.rang_agents || [];
+        const declinedAgents = routing.declined_agents || [];
 
-    rangAgents.forEach(agent => {
-        const key = agent.email || agent.name || agent.id || 'unknown';
+        rangAgents.forEach(agent => {
+            const key = agent.email || agent.name || agent.id || 'unknown';
 
-        if (!userDailyStats[key]) {
-            userDailyStats[key] = {
-                name: agent.name || 'Unknown',
-                email: agent.email || '',
-                totalRings: 0,
-                answeredCalls: 0,
-                declinedCalls: 0,
-                missedCalls: 0
-            };
-        }
+            if (!userDailyStats[key]) {
+                userDailyStats[key] = {
+                    name: agent.name || 'Unknown',
+                    email: agent.email || '',
+                    totalRings: 0,
+                    answeredCalls: 0,
+                    declinedCalls: 0,
+                    missedCalls: 0
+                };
+            }
 
-        userDailyStats[key].totalRings += 1;
+            userDailyStats[key].totalRings += 1;
 
-        const declined = routing.declined_agents?.some(d =>
-            d.email === agent.email || d.id === agent.id
-        );
+            const declined = declinedAgents.some(d =>
+                d.email === agent.email || d.id === agent.id
+            );
 
-        const answeredByUser =
-            core.answered_by_email &&
-            agent.email &&
-            core.answered_by_email === agent.email;
+            const answeredByUser =
+                core.answered_by_email &&
+                agent.email &&
+                core.answered_by_email === agent.email;
 
-        if (answeredByUser) {
-            userDailyStats[key].answeredCalls += 1;
-        }
+            if (answeredByUser) {
+                userDailyStats[key].answeredCalls += 1;
+            }
 
-        if (declined) {
-            userDailyStats[key].declinedCalls += 1;
-        }
+            if (declined) {
+                userDailyStats[key].declinedCalls += 1;
+            }
 
-        if (call.derived_flags?.missed) {
-            userDailyStats[key].missedCalls += 1;
-        }
+            if (call.derived_flags?.missed) {
+                userDailyStats[key].missedCalls += 1;
+            }
         });
     });
-        return rangAgents.length > 0;
-});
 
-    const routedAnsweredCalls = routedCalls.filter(call =>
-    call.derived_flags?.answered);
-
-    const routedAnswerRate =
-        routedCalls.length > 0
-            ? ((routedAnsweredCalls.length / routedCalls.length) * 100).toFixed(1)
-            : '0.0';       
-      
     const modifiedCompanyOutcomes = getModifiedCompanyOutcomes(calls);
     const missedCallBreakdown = getMissedCallBreakdown(calls);
 
@@ -602,37 +609,41 @@ function getExecutiveMetrics(calls) {
     const declineBehavior = getDeclineBehavior(calls);
 
     return {
-    allCalls,
-    answeredCalls,
-    missedCalls,
-    businessHourCalls,
-    businessHourAnsweredCalls,
-    businessHourRawAnswerRate,
-    companyAnswerRate,
-    afterHoursCalls,
-    afterHoursAnsweredCalls,
-    afterHoursRawAnswerRate,
-    userDailyStats,
+        allCalls,
+        answeredCalls,
+        missedCalls,
 
-    routedCalls,
-    routedAnsweredCalls,
-    routedAnswerRate,
+        businessHourCalls,
+        businessHourAnsweredCalls,
+        businessHourRawAnswerRate,
 
-    modifiedCompanyOutcomes,
-    missedCallBreakdown,
+        afterHoursCalls,
+        afterHoursAnsweredCalls,
+        afterHoursRawAnswerRate,
 
-    ringAttempts,
-    answeredRingAttempts,
-    declinedRingAttempts,
-    unansweredRingAttempts,
+        companyAnswerRate,
 
-    employeeRingAnswerRate,
+        routedCalls,
+        routedAnsweredCalls,
+        routedAnswerRate,
 
-    callbacksAfterMiss,
-    suspectedFailedAnswers,
+        userDailyStats,
 
-    exceptions,
-    declineBehavior
+        modifiedCompanyOutcomes,
+        missedCallBreakdown,
+
+        ringAttempts,
+        answeredRingAttempts,
+        declinedRingAttempts,
+        unansweredRingAttempts,
+
+        employeeRingAnswerRate,
+
+        callbacksAfterMiss,
+        suspectedFailedAnswers,
+
+        exceptions,
+        declineBehavior
     };
 }
 
