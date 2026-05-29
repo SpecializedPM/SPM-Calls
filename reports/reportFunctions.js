@@ -7,13 +7,40 @@ const { buildBackfillTestHtml } = require('./backfillHtml');
 
 const OUTPUT_DIR = path.join(__dirname, '..');
 
+function formatCentralTime(value) {
+    if (!value) return 'N/A';
+
+    return new Date(value).toLocaleString('en-US', {
+        timeZone: 'America/Chicago',
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        timeZoneName: 'short'
+    });
+}
+
 function writeOutputFile(filename, content) {
     fs.writeFileSync(path.join(OUTPUT_DIR, filename), content);
 }
 
 function formatTime(unixTimestamp) {
     if (!unixTimestamp) return 'unknown';
-    return new Date(unixTimestamp * 1000).toLocaleString();
+
+    return new Date(unixTimestamp * 1000).toLocaleString('en-US', {
+        timeZone: 'America/Chicago',
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        timeZoneName: 'short'
+    });
 }
 
 function getReportingStatusText(reportingState) {

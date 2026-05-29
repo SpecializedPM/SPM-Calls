@@ -1,5 +1,5 @@
 EXECUTIVE CALL REPORT
-Generated: 5/28/2026, 5:38:43 PM
+Generated: 5/28/2026, 8:32:11 PM
 
 REPORTING SESSION
 Status: Reporting
@@ -7,23 +7,23 @@ Reporting Start Time: 5/28/2026, 1:50:16 PM
 Reporting End Time: N/A
 
 COMPANY CALL OUTCOMES
-Total unique calls: 230
-Answered calls: 155
-Missed calls: 83
-Raw answer rate: 67.4%
-Customer resolution rate: 76.0%
-Recovered missed calls: 26
-Callbacks after missed calls: 30
+Total unique calls: 248
+Answered calls: 166
+Missed calls: 91
+Raw answer rate: 66.9%
+Customer resolution rate: 74.9%
+Recovered missed calls: 27
+Callbacks after missed calls: 31
 Occupancy missed calls: 0
 Declined while available misses: 4
-Calls missing ring telemetry: 50
-Suspected failed answers: 30
+Calls missing ring telemetry: 55
+Suspected failed answers: 33
 
 INTERNAL CALL ACTIVITY
-Total internal call records: 243
-Answered internal calls: 150
+Total internal call records: 261
+Answered internal calls: 161
 Declined internal calls: 4
-Unanswered internal calls: 90
+Unanswered internal calls: 97
 Internal call answer rate: 61.7%
 
 DECLINE BEHAVIOR
