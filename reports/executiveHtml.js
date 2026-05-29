@@ -246,6 +246,51 @@ function buildExecutiveHtml(metrics, reportingStatus) {
     </div>
 
     <div class="section">
+    <h2>User Call Stats Today</h2>
+
+    <select id="userStatsSelect" onchange="showUserStats()">
+        <option value="">Select a user...</option>
+        ${Object.entries(metrics.userDailyStats || {}).map(([key, user]) => `
+            <option value="${escapeHtml(key)}">
+                ${escapeHtml(user.name)} ${user.email ? `(${escapeHtml(user.email)})` : ''}
+            </option>
+        `).join('')}
+    </select>
+
+    <div id="userStatsOutput" style="margin-top:16px;">
+        <p class="small">Select a user to view their call activity for today.</p>
+    </div>
+</div>
+
+<script>
+    const userDailyStats = ${JSON.stringify(metrics.userDailyStats || {})};
+
+    function showUserStats() {
+        const selectedUser = document.getElementById('userStatsSelect').value;
+        const output = document.getElementById('userStatsOutput');
+
+        if (!selectedUser || !userDailyStats[selectedUser]) {
+            output.innerHTML = '<p class="small">Select a user to view their call activity for today.</p>';
+            return;
+        }
+
+        const user = userDailyStats[selectedUser];
+
+        output.innerHTML = \`
+            <table>
+                <tr><th>Metric</th><th>Value</th></tr>
+                <tr><td>User</td><td>\${user.name}</td></tr>
+                <tr><td>Email</td><td>\${user.email || ''}</td></tr>
+                <tr><td>Total Rings</td><td>\${user.totalRings}</td></tr>
+                <tr><td>Answered Calls</td><td>\${user.answeredCalls}</td></tr>
+                <tr><td>Declined Calls</td><td>\${user.declinedCalls}</td></tr>
+                <tr><td>Missed Calls They Were Rung On</td><td>\${user.missedCalls}</td></tr>
+            </table>
+        \`;
+    }
+</script>
+
+    <div class="section">
     <h2>Company Call Outcomes</h2>
 
     <table>

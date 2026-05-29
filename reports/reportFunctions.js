@@ -513,6 +513,51 @@ function getExecutiveMetrics(calls) {
         const routing = call.routing_analysis || {};
         const rangAgents = routing.rang_agents || [];
 
+    const userDailyStats = {};
+
+    allCalls.forEach(call => {
+        const core = call.call_core || {};
+        const routing = call.routing_analysis || {};
+        const rangAgents = routing.rang_agents || [];
+
+    rangAgents.forEach(agent => {
+        const key = agent.email || agent.name || agent.id || 'unknown';
+
+        if (!userDailyStats[key]) {
+            userDailyStats[key] = {
+                name: agent.name || 'Unknown',
+                email: agent.email || '',
+                totalRings: 0,
+                answeredCalls: 0,
+                declinedCalls: 0,
+                missedCalls: 0
+            };
+        }
+
+        userDailyStats[key].totalRings += 1;
+
+        const declined = routing.declined_agents?.some(d =>
+            d.email === agent.email || d.id === agent.id
+        );
+
+        const answeredByUser =
+            core.answered_by_email &&
+            agent.email &&
+            core.answered_by_email === agent.email;
+
+        if (answeredByUser) {
+            userDailyStats[key].answeredCalls += 1;
+        }
+
+        if (declined) {
+            userDailyStats[key].declinedCalls += 1;
+        }
+
+        if (call.derived_flags?.missed) {
+            userDailyStats[key].missedCalls += 1;
+        }
+        });
+    });
         return rangAgents.length > 0;
 });
 
@@ -567,6 +612,7 @@ function getExecutiveMetrics(calls) {
     afterHoursCalls,
     afterHoursAnsweredCalls,
     afterHoursRawAnswerRate,
+    userDailyStats,
 
     routedCalls,
     routedAnsweredCalls,
