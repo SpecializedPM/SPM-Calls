@@ -8,6 +8,14 @@ function escapeHtml(value) {
         .replace(/'/g, '&#039;');
 }
 
+function formatCentralDateTime(date = new Date()) {
+    return date.toLocaleString('en-US', {
+        timeZone: 'America/Chicago',
+        dateStyle: 'short',
+        timeStyle: 'medium'
+    });
+}
+
 function buildExecutiveHtml(metrics, reportingStatus) {
     const missed = metrics.missedCallBreakdown;
 
@@ -154,7 +162,7 @@ function buildExecutiveHtml(metrics, reportingStatus) {
         <div>
             <h1>Aircall Executive Report</h1>
             <div class="subtitle">
-                Generated: ${new Date().toLocaleString()} · Auto-refreshes every 5 seconds
+                Generated: ${formatCentralDateTime()} · Auto-refreshes every 5 seconds
             </div>
         </div>
 

@@ -1,17 +1,17 @@
 EXECUTIVE CALL REPORT
-Generated: 5/28/2026, 8:32:11 PM
+Generated: 5/28/2026, 9:12:57 PM
 
 REPORTING SESSION
 Status: Reporting
-Reporting Start Time: 5/28/2026, 1:50:16 PM
+Reporting Start Time: May 28, 2026, 1:50:16 PM CDT
 Reporting End Time: N/A
 
 COMPANY CALL OUTCOMES
-Total unique calls: 248
-Answered calls: 166
+Total unique calls: 249
+Answered calls: 167
 Missed calls: 91
-Raw answer rate: 66.9%
-Customer resolution rate: 74.9%
+Raw answer rate: 67.1%
+Customer resolution rate: 75.0%
 Recovered missed calls: 27
 Callbacks after missed calls: 31
 Occupancy missed calls: 0
@@ -20,11 +20,11 @@ Calls missing ring telemetry: 55
 Suspected failed answers: 33
 
 INTERNAL CALL ACTIVITY
-Total internal call records: 261
-Answered internal calls: 161
+Total internal call records: 262
+Answered internal calls: 162
 Declined internal calls: 4
 Unanswered internal calls: 97
-Internal call answer rate: 61.7%
+Internal call answer rate: 61.8%
 
 DECLINE BEHAVIOR
 1. Alejandro Ramirez (alejandro@specialized247.com)

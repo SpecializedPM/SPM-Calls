@@ -1,6 +1,11 @@
 function formatTime(unixTimestamp) {
     if (!unixTimestamp) return 'unknown';
-    return new Date(unixTimestamp * 1000).toLocaleString();
+
+    return new Date(unixTimestamp * 1000).toLocaleString('en-US', {
+        timeZone: 'America/Chicago',
+        dateStyle: 'short',
+        timeStyle: 'medium'
+    });
 }
 
 function getNumberDigits(data = {}) {

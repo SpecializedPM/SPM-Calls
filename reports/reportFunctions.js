@@ -598,7 +598,17 @@ function writeExecutiveReport(calls, reportingState = null) {
     let output = '';
 
     output += `EXECUTIVE CALL REPORT\n`;
-    output += `Generated: ${new Date().toLocaleString()}\n\n`;
+    output += `Generated: ${new Date().toLocaleString('en-US', {
+        timeZone: 'America/Chicago',
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        timeZoneName: 'short'
+    })}\n\n`;
 
     output += `REPORTING SESSION\n`;
     output += `Status: ${reportingStatus.status}\n`;
@@ -669,7 +679,17 @@ function writeExceptionsReport(calls) {
     let output = '';
 
     output += `EXCEPTIONS REPORT\n`;
-    output += `Generated: ${new Date().toLocaleString()}\n\n`;
+    output += `Generated: ${new Date().toLocaleString('en-US', {
+        timeZone: 'America/Chicago',
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        timeZoneName: 'short'
+    })}\n\n`;
 
     if (!exceptions.length) {
         output += `No exceptions detected.\n`;
