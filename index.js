@@ -9,6 +9,9 @@ const { aircallApi, fetchAllAircallPages } = require('./services/aircallApi');
 //location for json load/save functions
 const { loadJson, saveJson } = require('./storage/jsonStore');
 
+//location of team mappings, data pulled from aircall api into aircall_roster, then teamMappings is the hard coded team structures
+const { teamMappings, userRoleOverrides } = require('./config/teamMappings');
+
 // functions for the report that output to executive html file
 const {
     detectCallbacks,
@@ -78,7 +81,7 @@ function writeAllFiles() {
     saveJson('reporting_state.json', reportingState);
 
     writeExecutiveReport(calls, reportingState);
-    writeExecutiveHtmlReport(calls, reportingState);
+    writeExecutiveHtmlReport(calls, reportingState, teamMappings, userRoleOverrides);
     writeExceptionsReport(calls);
 }
 
@@ -263,6 +266,50 @@ app.get('/', (req, res) => {
 app.get('/report', (req, res) => {
     writeAllFiles();
     res.sendFile(path.join(__dirname, 'executive_report.html'));
+});
+
+app.get('/sync-roster', async (req, res) => {
+    const users = await fetchAllAircallPages('/v1/users', 'users');
+    const numbers = await fetchAllAircallPages('/v1/numbers', 'numbers');
+
+    const now = Math.floor(Date.now() / 1000);
+
+    const roster = {
+        last_synced_at: now,
+        last_synced_at_formatted: new Date().toLocaleString('en-US', {
+            timeZone: 'America/Chicago',
+            year: 'numeric',
+            month: 'short',
+            day: '2-digit',
+            hour: 'numeric',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true,
+            timeZoneName: 'short'
+        }),
+        users,
+        numbers,
+        teams: []
+    };
+
+    saveJson('aircall_roster.json', roster);
+
+    console.log(`Roster saved: ${users.length} users, ${numbers.length} numbers`);
+
+    writeAllFiles();
+
+    res.redirect('/report');
+});
+
+app.get('/find-aircall-user', async (req, res) => {
+    const users = await fetchAllAircallPages('/v1/users', 'users');
+
+    const matches = users.filter(user =>
+        String(user.name || '').toLowerCase().includes('jennifer') ||
+        String(user.email || '').toLowerCase().includes('jennifer')
+    );
+
+    res.json(matches);
 });
 
 app.get('/users', async (req, res) => {

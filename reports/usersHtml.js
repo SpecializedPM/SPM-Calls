@@ -125,6 +125,30 @@ function buildUsersHtml(users = [], numbers = []) {
             vertical-align: top;
         }
 
+        .row-available td {
+        background: #f0fdf4;
+        }
+
+        .row-busy td {
+        background: #fff7ed;
+        }
+
+        .row-wrap td {
+        background: #fefce8;
+        }
+
+        .row-unavailable td {
+        background: #fef2f2;
+        }
+
+        .row-offline td {
+        background: #f9fafb;
+        }
+
+        .row-custom td {
+        background: #eff6ff;
+        }
+
         .sort-hint {
             color: #666;
             font-size: 13px;
@@ -166,11 +190,12 @@ function buildUsersHtml(users = [], numbers = []) {
         }
 
         .status-available { background: #16a34a; }
-        .status-busy { background: #dc2626; }
-        .status-unavailable { background: #6b7280; }
-        .status-offline { background: #111827; }
-        .status-wrap { background: #f59e0b; }
-        .status-unknown { background: #4f46e5; }
+        .status-busy { background: #ea580c; }
+        .status-unavailable { background: #dc2626; }
+        .status-offline { background: #374151; }
+        .status-wrap { background: #ca8a04; }
+        .status-unknown { background: #6b7280; }
+        .status-custom { background: #2563eb; }
     </style>
 </head>
 
@@ -226,7 +251,7 @@ function buildUsersHtml(users = [], numbers = []) {
                             });
 
                             return `
-                                <tr>
+                                <tr class="row-${getAvailabilityClass(availability)}">
                                     <td>${escapeHtml(userName)}</td>
                                     <td>${escapeHtml(user.email || '')}</td>
                                     <td>${escapeHtml(user.id || '')}</td>

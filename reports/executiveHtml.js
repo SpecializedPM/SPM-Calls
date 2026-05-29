@@ -16,9 +16,144 @@ function formatCentralDateTime(date = new Date()) {
     });
 }
 
-function buildExecutiveHtml(metrics, reportingStatus) {
+function buildExecutiveHtml(metrics, reportingStatus, teamMappings = [], userRoleOverrides = {}) {
     const missed = metrics.missedCallBreakdown;
 
+    function getUserStats(email) {
+    return metrics.userDailyStats?.[email] || {
+        name: email,
+        email,
+        totalRings: 0,
+        answeredCalls: 0,
+        missedCalls: 0,
+        declinedCalls: 0,
+        occupancyMisses: 0
+    };
+    }   
+
+    function getAnswerRate(user) {
+        return user.totalRings > 0
+            ? Math.round((user.answeredCalls / user.totalRings) * 100)
+            : 0;
+    }
+
+const teamSections = teamMappings.map(team => {
+
+    const teamUsers = (team.users || []).map(email => getUserStats(email));
+
+    const teamTotalRings = teamUsers.reduce(
+        (sum, user) => sum + (user.totalRings || 0),
+        0
+    );
+
+    const teamAnswered = teamUsers.reduce(
+        (sum, user) => sum + (user.answeredCalls || 0),
+        0
+    );
+
+    const teamMissed = teamUsers.reduce(
+        (sum, user) => sum + (user.missedCalls || 0),
+        0
+    );
+
+    const teamDeclined = teamUsers.reduce(
+        (sum, user) => sum + (user.declinedCalls || 0),
+        0
+    );
+
+    const teamOccupancy = teamUsers.reduce(
+        (sum, user) => sum + (user.occupancyMisses || 0),
+        0
+    );
+
+    const teamAnswerRate = teamTotalRings > 0
+        ? Math.round((teamAnswered / teamTotalRings) * 100)
+        : 0;
+
+    return `
+        <div class="section team-section">
+            <div class="team-header">
+                <div>
+                    <h2>${escapeHtml(team.team_name)} Team</h2>
+                    <p class="small">
+                        Manager: ${escapeHtml(team.manager || 'Not assigned')}
+                        ${
+                            team.supervisors?.length
+                                ? `<br>Supervisors: ${team.supervisors.map(email => escapeHtml(email)).join(', ')}`
+                                : ''
+                        }
+                    </p>
+                </div>
+            </div>
+
+            <div class="team-metric-grid">
+                <div class="card">
+                    <div class="label">Team Answer Rate</div>
+                    <div class="metric">${teamAnswerRate}%</div>
+                </div>
+                <div class="card">
+                    <div class="label">Total Calls</div>
+                    <div class="metric">${teamTotalRings}</div>
+                </div>
+                <div class="card">
+                    <div class="label">Answered</div>
+                    <div class="metric">${teamAnswered}</div>
+                </div>
+                <div class="card">
+                    <div class="label">Missed</div>
+                    <div class="metric">${teamMissed}</div>
+                </div>
+                <div class="card">
+                    <div class="label">Declined</div>
+                    <div class="metric">${teamDeclined}</div>
+                </div>
+                <div class="card">
+                    <div class="label">Occupancy Misses</div>
+                    <div class="metric">${teamOccupancy}</div>
+                </div>
+            </div>
+
+            <table>
+                <tr>
+                    <th>Employee</th>
+                    <th>Answer Rate</th>
+                    <th>Total Calls</th>
+                    <th>Answered</th>
+                    <th>Missed</th>
+                    <th>Declined</th>
+                    <th>Occupancy Misses</th>
+                </tr>
+
+                ${(team.users || []).map(email => {
+                    const user = getUserStats(email);
+                    const answerRate = getAnswerRate(user);
+
+                    return `
+                        <tr>
+                            <td>${escapeHtml(user.name || email)}</td>
+                            <td>${answerRate}%</td>
+                            <td>${user.totalRings || 0}</td>
+                            <td>${user.answeredCalls || 0}</td>
+                            <td>${user.missedCalls || 0}</td>
+                            <td>${user.declinedCalls || 0}</td>
+                            <td>${user.occupancyMisses || 0}</td>
+                        </tr>
+                    `;
+                }).join('')}
+
+                <tr class="team-total-row">
+                    <td><strong>Team Total</strong></td>
+                    <td><strong>${teamAnswerRate}%</strong></td>
+                    <td><strong>${teamTotalRings}</strong></td>
+                    <td><strong>${teamAnswered}</strong></td>
+                    <td><strong>${teamMissed}</strong></td>
+                    <td><strong>${teamDeclined}</strong></td>
+                    <td><strong>${teamOccupancy}</strong></td>
+                </tr>
+            </table>
+        </div>
+    `;
+}).join('');
     return `
 <!DOCTYPE html>
 <html>
@@ -50,11 +185,31 @@ function buildExecutiveHtml(metrics, reportingStatus) {
             flex-wrap: wrap;
         }
 
-        .grid {
+        .team-metric-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            margin-bottom: 24px;
+            grid-template-columns: repeat(6, minmax(120px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .team-metric-grid .card {
+            padding: 14px;
+        }
+
+        .team-metric-grid .metric {
+            font-size: 24px;
+        }
+
+        @media (max-width: 1200px) {
+            .team-metric-grid {
+                grid-template-columns: repeat(3, minmax(120px, 1fr));
+            }
+        }
+
+        @media (max-width: 700px) {
+            .team-metric-grid {
+                grid-template-columns: repeat(2, minmax(120px, 1fr));
+            }
         }
 
         .card, .section {
@@ -197,7 +352,7 @@ function buildExecutiveHtml(metrics, reportingStatus) {
 
     <div class="grid">
         <div class="card">
-            <div class="label">Total Unique Calls</div>
+            <div class="label">Today's Unique Calls</div>
             <div class="metric">${metrics.allCalls.length}</div>
         </div>
 
@@ -246,21 +401,9 @@ function buildExecutiveHtml(metrics, reportingStatus) {
     </div>
 
     <div class="section">
-    <h2>User Call Stats Today</h2>
-
-    <select id="userStatsSelect" onchange="saveAndShowUserStats()">
-        <option value="">Select a user...</option>
-        ${Object.entries(metrics.userDailyStats || {}).map(([key, user]) => `
-            <option value="${escapeHtml(key)}">
-                ${escapeHtml(user.name)} ${user.email ? `(${escapeHtml(user.email)})` : ''}
-            </option>
-        `).join('')}
-    </select>
-
-    <div id="userStatsOutput" style="margin-top:16px;">
-        <p class="small">Select a user to view their call activity for today.</p>
+        <h2>Team Performance</h2>
+        ${teamSections}
     </div>
-</div>
 
 <script>
 const userDailyStats = ${JSON.stringify(metrics.userDailyStats || {})};
@@ -494,6 +637,8 @@ window.addEventListener('load', () => {
                 `
         }
     </div>
+
+
 
     <div class="section">
         <h2>Top Exceptions</h2>

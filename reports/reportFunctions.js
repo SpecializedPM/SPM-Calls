@@ -475,10 +475,34 @@ function getRingAttempts(calls) {
     return ringAttempts;
 }
 
+function isTodayCentral(unixTimestamp) {
+    if (!unixTimestamp) return false;
+
+    const nowCentral = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Chicago',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    }).format(new Date());
+
+    const callCentral = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Chicago',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    }).format(new Date(unixTimestamp * 1000));
+
+    return nowCentral === callCentral;
+}
+
 function getExecutiveMetrics(calls) {
     detectCallbacks(calls);
 
-    const allCalls = Object.values(calls).filter(call => call.call_core);
+    const allHistoricalCalls = Object.values(calls).filter(call => call.call_core);
+
+    const allCalls = allHistoricalCalls.filter(call =>
+        isTodayCentral(call.call_core?.started_at)
+    );
 
     const answeredCalls = allCalls.filter(call => call.derived_flags?.answered);
     const missedCalls = allCalls.filter(call => call.derived_flags?.missed);
@@ -610,6 +634,7 @@ function getExecutiveMetrics(calls) {
 
     return {
         allCalls,
+        allHistoricalCalls,
         answeredCalls,
         missedCalls,
 
@@ -709,10 +734,21 @@ function writeExecutiveReport(calls, reportingState = null) {
     writeOutputFile('executive_report.txt', output);
 }
 
-function writeExecutiveHtmlReport(calls, reportingState = null) {
+function writeExecutiveHtmlReport(
+    calls,
+    reportingState = null,
+    teamMappings = [],
+    userRoleOverrides = {}
+) {
     const metrics = getExecutiveMetrics(calls);
     const reportingStatus = getReportingStatusText(reportingState);
-    const html = buildExecutiveHtml(metrics, reportingStatus);
+
+    const html = buildExecutiveHtml(
+        metrics,
+        reportingStatus,
+        teamMappings,
+        userRoleOverrides
+    );
 
     writeOutputFile('executive_report.html', html);
 }
