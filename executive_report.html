@@ -29,6 +29,25 @@
             flex-wrap: wrap;
         }
 
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(160px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 1400px) {
+            .grid {
+                grid-template-columns: repeat(3, minmax(160px, 1fr));
+            }
+        }
+
+        @media (max-width: 800px) {
+            .grid {
+                grid-template-columns: repeat(2, minmax(160px, 1fr));
+            }
+        }
+
         .team-metric-grid {
             display: grid;
             grid-template-columns: repeat(6, minmax(120px, 1fr));
@@ -38,6 +57,8 @@
 
         .team-metric-grid .card {
             padding: 14px;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         .team-metric-grid .metric {
@@ -56,12 +77,48 @@
             }
         }
 
+        .team-card {
+            background: #628ACB;
+            color: white;
+            border-radius: 10px;
+            padding: 8px;
+        }
+
+        .team-card .label {
+            color: white;
+        }
+
+        .team-card .metric {
+            color: white;
+        }
+
+        .team-card .small {
+            color: #D6DCE5;
+        }
+
         .card, .section {
             background: white;
             padding: 18px;
             border-radius: 10px;
             box-shadow: 0 1px 4px rgba(0,0,0,0.08);
         }
+
+        .executive-card {
+            background: #1f365c;
+            color: white;
+        }
+
+        .executive-card .label {
+            color: white;
+        }
+
+        .executive-card .metric {
+            color: white;
+        }
+
+       .executive-card .small {
+       color: #D6DCE5;
+       }
 
         .section { margin-bottom: 24px; }
 
@@ -72,7 +129,8 @@
         }
 
         .label {
-            color: #666;
+            color: #C97A2B;
+            font-weight: bold;
             font-size: 14px;
         }
 
@@ -100,7 +158,7 @@
         }
 
         .small {
-            color: #777;
+            color: #666;
             font-size: 12px;
         }
 
@@ -161,7 +219,7 @@
         <div>
             <h1>Aircall Executive Report</h1>
             <div class="subtitle">
-                Generated: 5/29/26, 3:46:32 PM · Auto-refreshes every 5 seconds
+                Generated: 5/29/26, 4:31:57 PM · Auto-refreshes every 30 seconds
             </div>
         </div>
 
@@ -195,31 +253,31 @@
     </div>
 
     <div class="grid">
-        <div class="card">
+        <div class="card executive-card">
             <div class="label">Today's Unique Calls</div>
-            <div class="metric">313</div>
+            <div class="metric">344</div>
         </div>
 
-        <div class="card">
+        <div class="card executive-card">
             <div class="label">Raw Answer Rate</div>
-            <div class="metric">54.3%</div>
+            <div class="metric">54.4%</div>
         </div>
 
-        <div class="card">
+        <div class="card executive-card">
             <div class="label">Business Hours Raw Answer Rate</div>
         
             <div class="metric">
-                54.3%
+                54.4%
             </div>
 
             <div class="small">
-                170 /
-                313
+                187 /
+                344
                 calls from 7 AM–5 PM CT
             </div>
         </div>
 
-        <div class="card">
+        <div class="card executive-card">
             <div class="label">After Hours Raw Answer Rate</div>
 
             <div class="metric">
@@ -233,12 +291,12 @@
             </div>
         </div>
 
-        <div class="card">
+        <div class="card executive-card">
             <div class="label">Customer Resolution Rate</div>
-            <div class="metric">70.9%</div>
+            <div class="metric">70.3%</div>
         </div>
 
-        <div class="card">
+        <div class="card executive-card">
             <div class="label">Occupancy Miss Rate</div>
             <div class="metric">0.0%</div>
         </div>
@@ -259,27 +317,27 @@
             </div>
 
             <div class="team-metric-grid">
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Team Answer Rate</div>
-                    <div class="metric">0%</div>
+                    <div class="metric">100%</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Total Calls</div>
-                    <div class="metric">0</div>
+                    <div class="metric">1</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Answered</div>
-                    <div class="metric">0</div>
+                    <div class="metric">1</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Missed</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Declined</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Occupancy Misses</div>
                     <div class="metric">0</div>
                 </div>
@@ -296,43 +354,33 @@
                     <th>Occupancy Misses</th>
                 </tr>
 
-                
-                        <tr>
-                            <td>aaron@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>glizardo@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>sarah@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
+    
+                <tr>
+                    <td>Aaron Miles</td>
+                    <td>100%</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Glenda Lizardo</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
 
                 <tr class="team-total-row">
                     <td><strong>Team Total</strong></td>
-                    <td><strong>0%</strong></td>
-                    <td><strong>0</strong></td>
-                    <td><strong>0</strong></td>
+                    <td><strong>100%</strong></td>
+                    <td><strong>1</strong></td>
+                    <td><strong>1</strong></td>
                     <td><strong>0</strong></td>
                     <td><strong>0</strong></td>
                     <td><strong>0</strong></td>
@@ -352,27 +400,27 @@
             </div>
 
             <div class="team-metric-grid">
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Team Answer Rate</div>
                     <div class="metric">42%</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Total Calls</div>
-                    <div class="metric">105</div>
+                    <div class="metric">119</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Answered</div>
-                    <div class="metric">44</div>
+                    <div class="metric">50</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Missed</div>
-                    <div class="metric">45</div>
+                    <div class="metric">51</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Declined</div>
                     <div class="metric">1</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Occupancy Misses</div>
                     <div class="metric">0</div>
                 </div>
@@ -389,84 +437,84 @@
                     <th>Occupancy Misses</th>
                 </tr>
 
-                
-                        <tr>
-                            <td>ahuizar@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Ana Manlunas</td>
-                            <td>38%</td>
-                            <td>24</td>
-                            <td>9</td>
-                            <td>8</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>April Layacan</td>
-                            <td>53%</td>
-                            <td>19</td>
-                            <td>10</td>
-                            <td>8</td>
-                            <td>1</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>darleen@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Jericson Velasco</td>
-                            <td>60%</td>
-                            <td>10</td>
-                            <td>6</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Jhonrey Joaquin</td>
-                            <td>62%</td>
-                            <td>21</td>
-                            <td>13</td>
-                            <td>6</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Mira Vencilao</td>
-                            <td>19%</td>
-                            <td>31</td>
-                            <td>6</td>
-                            <td>21</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
+    
+                <tr>
+                    <td>Ana Huizar</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Ana Manlunas</td>
+                    <td>38%</td>
+                    <td>29</td>
+                    <td>11</td>
+                    <td>10</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>April Layacan</td>
+                    <td>53%</td>
+                    <td>19</td>
+                    <td>10</td>
+                    <td>8</td>
+                    <td>1</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Darleen Corpin</td>
+                    <td>100%</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Jericson Velasco</td>
+                    <td>60%</td>
+                    <td>10</td>
+                    <td>6</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Jhonrey Joaquin</td>
+                    <td>63%</td>
+                    <td>24</td>
+                    <td>15</td>
+                    <td>7</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Mira Vencilao</td>
+                    <td>19%</td>
+                    <td>36</td>
+                    <td>7</td>
+                    <td>24</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
 
                 <tr class="team-total-row">
                     <td><strong>Team Total</strong></td>
                     <td><strong>42%</strong></td>
-                    <td><strong>105</strong></td>
-                    <td><strong>44</strong></td>
-                    <td><strong>45</strong></td>
+                    <td><strong>119</strong></td>
+                    <td><strong>50</strong></td>
+                    <td><strong>51</strong></td>
                     <td><strong>1</strong></td>
                     <td><strong>0</strong></td>
                 </tr>
@@ -485,27 +533,27 @@
             </div>
 
             <div class="team-metric-grid">
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Team Answer Rate</div>
                     <div class="metric">44%</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Total Calls</div>
                     <div class="metric">16</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Answered</div>
                     <div class="metric">7</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Missed</div>
                     <div class="metric">9</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Declined</div>
                     <div class="metric">1</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Occupancy Misses</div>
                     <div class="metric">0</div>
                 </div>
@@ -522,147 +570,147 @@
                     <th>Occupancy Misses</th>
                 </tr>
 
-                
-                        <tr>
-                            <td>arleth@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>dorian@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Enrique Lopez</td>
-                            <td>100%</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>garrett@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>jacob@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Jennyvyl Suba</td>
-                            <td>75%</td>
-                            <td>4</td>
-                            <td>3</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>liz@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Lynne Cauilan</td>
-                            <td>0%</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Nancy Guadagnino</td>
-                            <td>40%</td>
-                            <td>5</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>1</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Nix Cunanan</td>
-                            <td>33%</td>
-                            <td>3</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>ronalyn@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>sandra@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Stewart Hoy</td>
-                            <td>0%</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>tatiana@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
+    
+                <tr>
+                    <td>Arleth Melendez</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Dorian Griffin</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Enrique Lopez</td>
+                    <td>100%</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Garrett George</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Jacob Rodriguez</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Jennyvyl Suba</td>
+                    <td>75%</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Liz Rodriguez</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Lynne Cauilan</td>
+                    <td>0%</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Nancy Guadagnino</td>
+                    <td>40%</td>
+                    <td>5</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Nix Cunanan</td>
+                    <td>33%</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Ronalyn Siose</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Sandra Olvera</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Stewart Hoy</td>
+                    <td>0%</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Tatiana Sahagun</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
 
                 <tr class="team-total-row">
                     <td><strong>Team Total</strong></td>
@@ -688,27 +736,27 @@
             </div>
 
             <div class="team-metric-grid">
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Team Answer Rate</div>
-                    <div class="metric">76%</div>
+                    <div class="metric">79%</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Total Calls</div>
-                    <div class="metric">25</div>
+                    <div class="metric">28</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Answered</div>
-                    <div class="metric">19</div>
+                    <div class="metric">22</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Missed</div>
                     <div class="metric">6</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Declined</div>
                     <div class="metric">1</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Occupancy Misses</div>
                     <div class="metric">0</div>
                 </div>
@@ -725,163 +773,163 @@
                     <th>Occupancy Misses</th>
                 </tr>
 
-                
-                        <tr>
-                            <td>Aleida Sanchez</td>
-                            <td>100%</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Alejandro Ramirez</td>
-                            <td>0%</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Alfredo Quezada</td>
-                            <td>67%</td>
-                            <td>3</td>
-                            <td>2</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Cesar Esparza</td>
-                            <td>100%</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Gemma Vazquez</td>
-                            <td>75%</td>
-                            <td>4</td>
-                            <td>3</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>George Melendez</td>
-                            <td>50%</td>
-                            <td>2</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Gerardo Gomez</td>
-                            <td>83%</td>
-                            <td>6</td>
-                            <td>5</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>gustavo@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>javier@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Jessica Vazquez</td>
-                            <td>100%</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>jsanchez@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>John Simon</td>
-                            <td>0%</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Joe Kurek</td>
-                            <td>100%</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Romulo Reyes</td>
-                            <td>100%</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>seantel@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
+    
+                <tr>
+                    <td>Aleida Sanchez</td>
+                    <td>100%</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Alejandro Ramirez</td>
+                    <td>0%</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Alfredo Quezada</td>
+                    <td>67%</td>
+                    <td>3</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Cesar Esparza</td>
+                    <td>100%</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Gemma Vazquez</td>
+                    <td>75%</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>George Melendez</td>
+                    <td>67%</td>
+                    <td>3</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Gerardo Gomez</td>
+                    <td>86%</td>
+                    <td>7</td>
+                    <td>6</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Gustavo Marin</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Javier Medina</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Jessica Vazquez</td>
+                    <td>100%</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>John Sanchez</td>
+                    <td>100%</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>John Simon</td>
+                    <td>0%</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Joe Kurek</td>
+                    <td>100%</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Romulo Reyes</td>
+                    <td>100%</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Seantel Hopkins</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
 
                 <tr class="team-total-row">
                     <td><strong>Team Total</strong></td>
-                    <td><strong>76%</strong></td>
-                    <td><strong>25</strong></td>
-                    <td><strong>19</strong></td>
+                    <td><strong>79%</strong></td>
+                    <td><strong>28</strong></td>
+                    <td><strong>22</strong></td>
                     <td><strong>6</strong></td>
                     <td><strong>1</strong></td>
                     <td><strong>0</strong></td>
@@ -901,27 +949,27 @@
             </div>
 
             <div class="team-metric-grid">
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Team Answer Rate</div>
-                    <div class="metric">64%</div>
+                    <div class="metric">58%</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Total Calls</div>
-                    <div class="metric">11</div>
+                    <div class="metric">12</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Answered</div>
                     <div class="metric">7</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Missed</div>
-                    <div class="metric">4</div>
+                    <div class="metric">5</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Declined</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Occupancy Misses</div>
                     <div class="metric">0</div>
                 </div>
@@ -938,54 +986,54 @@
                     <th>Occupancy Misses</th>
                 </tr>
 
-                
-                        <tr>
-                            <td>Debbie Roberts</td>
-                            <td>100%</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Ica Roxas</td>
-                            <td>100%</td>
-                            <td>3</td>
-                            <td>3</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Mariana Campos</td>
-                            <td>43%</td>
-                            <td>7</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>tina@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
+    
+                <tr>
+                    <td>Debbie Roberts</td>
+                    <td>100%</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Ica Roxas</td>
+                    <td>75%</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Mariana Campos</td>
+                    <td>43%</td>
+                    <td>7</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Tina Rogers</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
 
                 <tr class="team-total-row">
                     <td><strong>Team Total</strong></td>
-                    <td><strong>64%</strong></td>
-                    <td><strong>11</strong></td>
+                    <td><strong>58%</strong></td>
+                    <td><strong>12</strong></td>
                     <td><strong>7</strong></td>
-                    <td><strong>4</strong></td>
+                    <td><strong>5</strong></td>
                     <td><strong>0</strong></td>
                     <td><strong>0</strong></td>
                 </tr>
@@ -1004,27 +1052,27 @@
             </div>
 
             <div class="team-metric-grid">
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Team Answer Rate</div>
-                    <div class="metric">80%</div>
+                    <div class="metric">67%</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Total Calls</div>
-                    <div class="metric">5</div>
+                    <div class="metric">6</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Answered</div>
                     <div class="metric">4</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Missed</div>
-                    <div class="metric">1</div>
+                    <div class="metric">2</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Declined</div>
                     <div class="metric">1</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Occupancy Misses</div>
                     <div class="metric">0</div>
                 </div>
@@ -1041,94 +1089,94 @@
                     <th>Occupancy Misses</th>
                 </tr>
 
-                
-                        <tr>
-                            <td>evan@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>jennifer@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Glenda Malone</td>
-                            <td>0%</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Marco Serrano</td>
-                            <td>100%</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>mariano@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>nena@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>nick@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Niño Cinco</td>
-                            <td>100%</td>
-                            <td>3</td>
-                            <td>3</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
+    
+                <tr>
+                    <td>Evan Terana</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Jennifer Potter</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Glenda Malone</td>
+                    <td>0%</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Marco Serrano</td>
+                    <td>100%</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Mariano Gonzalez</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Nena Mercer</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Nick Guadagnino</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Niño Cinco</td>
+                    <td>100%</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
 
                 <tr class="team-total-row">
                     <td><strong>Team Total</strong></td>
-                    <td><strong>80%</strong></td>
-                    <td><strong>5</strong></td>
+                    <td><strong>67%</strong></td>
+                    <td><strong>6</strong></td>
                     <td><strong>4</strong></td>
-                    <td><strong>1</strong></td>
+                    <td><strong>2</strong></td>
                     <td><strong>1</strong></td>
                     <td><strong>0</strong></td>
                 </tr>
@@ -1147,27 +1195,27 @@
             </div>
 
             <div class="team-metric-grid">
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Team Answer Rate</div>
                     <div class="metric">0%</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Total Calls</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Answered</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Missed</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Declined</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Occupancy Misses</div>
                     <div class="metric">0</div>
                 </div>
@@ -1184,67 +1232,57 @@
                     <th>Occupancy Misses</th>
                 </tr>
 
-                
-                        <tr>
-                            <td>jamee@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>jannel@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>kim@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>kristin@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>marie@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>nica@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
+    
+                <tr>
+                    <td>Jamee VanderMolen</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Kim Palmer</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Kristin Day</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Marie Ellanita</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Nica Kho</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
 
                 <tr class="team-total-row">
                     <td><strong>Team Total</strong></td>
@@ -1270,27 +1308,27 @@
             </div>
 
             <div class="team-metric-grid">
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Team Answer Rate</div>
                     <div class="metric">0%</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Total Calls</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Answered</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Missed</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Declined</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Occupancy Misses</div>
                     <div class="metric">0</div>
                 </div>
@@ -1307,97 +1345,47 @@
                     <th>Occupancy Misses</th>
                 </tr>
 
-                
-                        <tr>
-                            <td>jeremy@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>gideon@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>jonathan@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>jorge@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>larry@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>ralph@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>rick@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>tiana@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>wil@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
+    
+                <tr>
+                    <td>Jeremy Humphrey</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Jorge Lahnstein</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Ralph Patton</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Ricardo Hernandez</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
 
                 <tr class="team-total-row">
                     <td><strong>Team Total</strong></td>
@@ -1423,27 +1411,27 @@
             </div>
 
             <div class="team-metric-grid">
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Team Answer Rate</div>
                     <div class="metric">0%</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Total Calls</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Answered</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Missed</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Declined</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Occupancy Misses</div>
                     <div class="metric">0</div>
                 </div>
@@ -1460,87 +1448,87 @@
                     <th>Occupancy Misses</th>
                 </tr>
 
-                
-                        <tr>
-                            <td>axcel@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>catherine@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>ecampos@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>glizardo@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>jean@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>karla@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>phillip@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>sergio@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
+    
+                <tr>
+                    <td>Axcel Sabilona</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Catherine Gulane</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Emmanuel Campos</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Glenda Lizardo</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Jean Petty</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Karla Rodriguez</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Phillip Casalla</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Sergio Ordaz</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
 
                 <tr class="team-total-row">
                     <td><strong>Team Total</strong></td>
@@ -1566,27 +1554,27 @@
             </div>
 
             <div class="team-metric-grid">
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Team Answer Rate</div>
-                    <div class="metric">50%</div>
+                    <div class="metric">25%</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Total Calls</div>
-                    <div class="metric">2</div>
+                    <div class="metric">4</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Answered</div>
                     <div class="metric">1</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Missed</div>
-                    <div class="metric">1</div>
+                    <div class="metric">3</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Declined</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Occupancy Misses</div>
                     <div class="metric">0</div>
                 </div>
@@ -1603,34 +1591,34 @@
                     <th>Occupancy Misses</th>
                 </tr>
 
-                
-                        <tr>
-                            <td>Alexia Calton</td>
-                            <td>50%</td>
-                            <td>2</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>mike@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
+    
+                <tr>
+                    <td>Alexia Calton</td>
+                    <td>50%</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Mike Jeppson</td>
+                    <td>0%</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
 
                 <tr class="team-total-row">
                     <td><strong>Team Total</strong></td>
-                    <td><strong>50%</strong></td>
-                    <td><strong>2</strong></td>
+                    <td><strong>25%</strong></td>
+                    <td><strong>4</strong></td>
                     <td><strong>1</strong></td>
-                    <td><strong>1</strong></td>
+                    <td><strong>3</strong></td>
                     <td><strong>0</strong></td>
                     <td><strong>0</strong></td>
                 </tr>
@@ -1649,27 +1637,27 @@
             </div>
 
             <div class="team-metric-grid">
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Team Answer Rate</div>
                     <div class="metric">0%</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Total Calls</div>
                     <div class="metric">1</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Answered</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Missed</div>
                     <div class="metric">1</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Declined</div>
                     <div class="metric">0</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Occupancy Misses</div>
                     <div class="metric">0</div>
                 </div>
@@ -1686,57 +1674,57 @@
                     <th>Occupancy Misses</th>
                 </tr>
 
-                
-                        <tr>
-                            <td>Alejandro Ramirez</td>
-                            <td>0%</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>jeremy@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>kyle@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>lilly@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>jennifer@specialized247.com</td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    
+    
+                <tr>
+                    <td>Alejandro Ramirez</td>
+                    <td>0%</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Jeremy Humphrey</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Kyle del Mar</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Lilly Vazquez</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
+                <tr>
+                    <td>Jennifer Potter</td>
+                    <td>0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            
 
                 <tr class="team-total-row">
                     <td><strong>Team Total</strong></td>
@@ -1753,7 +1741,7 @@
     </div>
 
 <script>
-const userDailyStats = {"ana@specialized247.com":{"name":"Ana Manlunas","email":"ana@specialized247.com","totalRings":24,"answeredCalls":9,"declinedCalls":0,"missedCalls":8},"mira@specialized247.com":{"name":"Mira Vencilao","email":"mira@specialized247.com","totalRings":31,"answeredCalls":6,"declinedCalls":0,"missedCalls":21},"joaquin@specialized247.com":{"name":"Jhonrey Joaquin","email":"joaquin@specialized247.com","totalRings":21,"answeredCalls":13,"declinedCalls":0,"missedCalls":6},"gerardo@specialized247.com":{"name":"Gerardo Gomez","email":"gerardo@specialized247.com","totalRings":6,"answeredCalls":5,"declinedCalls":0,"missedCalls":1},"gemma@specialized247.com":{"name":"Gemma Vazquez","email":"gemma@specialized247.com","totalRings":4,"answeredCalls":3,"declinedCalls":1,"missedCalls":1},"alexia@specialized247.com":{"name":"Alexia Calton","email":"alexia@specialized247.com","totalRings":2,"answeredCalls":1,"declinedCalls":0,"missedCalls":1},"ica@specialized247.com":{"name":"Ica Roxas","email":"ica@specialized247.com","totalRings":3,"answeredCalls":3,"declinedCalls":0,"missedCalls":0},"nino@specialized247.com":{"name":"Niño Cinco","email":"nino@specialized247.com","totalRings":3,"answeredCalls":3,"declinedCalls":0,"missedCalls":0},"mariana@specialized247.com":{"name":"Mariana Campos","email":"mariana@specialized247.com","totalRings":7,"answeredCalls":3,"declinedCalls":0,"missedCalls":4},"jsuba@specialized247.com":{"name":"Jennyvyl Suba","email":"jsuba@specialized247.com","totalRings":4,"answeredCalls":3,"declinedCalls":0,"missedCalls":1},"cesparza@specialized247.com":{"name":"Cesar Esparza","email":"cesparza@specialized247.com","totalRings":2,"answeredCalls":2,"declinedCalls":0,"missedCalls":0},"enrique@specialized247.com":{"name":"Enrique Lopez","email":"enrique@specialized247.com","totalRings":1,"answeredCalls":1,"declinedCalls":0,"missedCalls":0},"debbie@specialized247.com":{"name":"Debbie Roberts","email":"debbie@specialized247.com","totalRings":1,"answeredCalls":1,"declinedCalls":0,"missedCalls":0},"jericson@specialized247.com":{"name":"Jericson Velasco","email":"jericson@specialized247.com","totalRings":10,"answeredCalls":6,"declinedCalls":0,"missedCalls":2},"april@specialized247.com":{"name":"April Layacan","email":"april@specialized247.com","totalRings":19,"answeredCalls":10,"declinedCalls":1,"missedCalls":8},"george@specialized247.com":{"name":"George Melendez","email":"george@specialized247.com","totalRings":2,"answeredCalls":1,"declinedCalls":0,"missedCalls":1},"jessica@specialized247.com":{"name":"Jessica Vazquez","email":"jessica@specialized247.com","totalRings":2,"answeredCalls":2,"declinedCalls":0,"missedCalls":0},"jkurek@specialized247.com":{"name":"Joe Kurek","email":"jkurek@specialized247.com","totalRings":1,"answeredCalls":1,"declinedCalls":0,"missedCalls":0},"nancy@specialized247.com":{"name":"Nancy Guadagnino","email":"nancy@specialized247.com","totalRings":5,"answeredCalls":2,"declinedCalls":1,"missedCalls":3},"nicole@specialized247.com":{"name":"Nix Cunanan","email":"nicole@specialized247.com","totalRings":3,"answeredCalls":1,"declinedCalls":0,"missedCalls":2},"alfredo@specialized247.com":{"name":"Alfredo Quezada","email":"alfredo@specialized247.com","totalRings":3,"answeredCalls":2,"declinedCalls":0,"missedCalls":1},"john@specialized247.com":{"name":"John Simon","email":"john@specialized247.com","totalRings":1,"answeredCalls":0,"declinedCalls":0,"missedCalls":1},"romulo@specialized247.com":{"name":"Romulo Reyes","email":"romulo@specialized247.com","totalRings":1,"answeredCalls":1,"declinedCalls":0,"missedCalls":0},"stewart@specialized247.com":{"name":"Stewart Hoy","email":"stewart@specialized247.com","totalRings":2,"answeredCalls":0,"declinedCalls":0,"missedCalls":2},"glenda@specialized247.com":{"name":"Glenda Malone","email":"glenda@specialized247.com","totalRings":1,"answeredCalls":0,"declinedCalls":1,"missedCalls":1},"lynne@specialized247.com":{"name":"Lynne Cauilan","email":"lynne@specialized247.com","totalRings":1,"answeredCalls":0,"declinedCalls":0,"missedCalls":1},"alejandro@specialized247.com":{"name":"Alejandro Ramirez","email":"alejandro@specialized247.com","totalRings":1,"answeredCalls":0,"declinedCalls":0,"missedCalls":1},"marco@specialized247.com":{"name":"Marco Serrano","email":"marco@specialized247.com","totalRings":1,"answeredCalls":1,"declinedCalls":0,"missedCalls":0},"aleida@specialized247.com":{"name":"Aleida Sanchez","email":"aleida@specialized247.com","totalRings":2,"answeredCalls":2,"declinedCalls":0,"missedCalls":0}};
+const userDailyStats = {"ana@specialized247.com":{"name":"Ana Manlunas","email":"ana@specialized247.com","totalRings":29,"answeredCalls":11,"declinedCalls":0,"missedCalls":10},"mira@specialized247.com":{"name":"Mira Vencilao","email":"mira@specialized247.com","totalRings":36,"answeredCalls":7,"declinedCalls":0,"missedCalls":24},"joaquin@specialized247.com":{"name":"Jhonrey Joaquin","email":"joaquin@specialized247.com","totalRings":24,"answeredCalls":15,"declinedCalls":0,"missedCalls":7},"gerardo@specialized247.com":{"name":"Gerardo Gomez","email":"gerardo@specialized247.com","totalRings":7,"answeredCalls":6,"declinedCalls":0,"missedCalls":1},"gemma@specialized247.com":{"name":"Gemma Vazquez","email":"gemma@specialized247.com","totalRings":4,"answeredCalls":3,"declinedCalls":1,"missedCalls":1},"alexia@specialized247.com":{"name":"Alexia Calton","email":"alexia@specialized247.com","totalRings":2,"answeredCalls":1,"declinedCalls":0,"missedCalls":1},"ica@specialized247.com":{"name":"Ica Roxas","email":"ica@specialized247.com","totalRings":4,"answeredCalls":3,"declinedCalls":0,"missedCalls":1},"nino@specialized247.com":{"name":"Niño Cinco","email":"nino@specialized247.com","totalRings":3,"answeredCalls":3,"declinedCalls":0,"missedCalls":0},"mariana@specialized247.com":{"name":"Mariana Campos","email":"mariana@specialized247.com","totalRings":7,"answeredCalls":3,"declinedCalls":0,"missedCalls":4},"jsuba@specialized247.com":{"name":"Jennyvyl Suba","email":"jsuba@specialized247.com","totalRings":4,"answeredCalls":3,"declinedCalls":0,"missedCalls":1},"cesparza@specialized247.com":{"name":"Cesar Esparza","email":"cesparza@specialized247.com","totalRings":2,"answeredCalls":2,"declinedCalls":0,"missedCalls":0},"enrique@specialized247.com":{"name":"Enrique Lopez","email":"enrique@specialized247.com","totalRings":1,"answeredCalls":1,"declinedCalls":0,"missedCalls":0},"debbie@specialized247.com":{"name":"Debbie Roberts","email":"debbie@specialized247.com","totalRings":1,"answeredCalls":1,"declinedCalls":0,"missedCalls":0},"jericson@specialized247.com":{"name":"Jericson Velasco","email":"jericson@specialized247.com","totalRings":10,"answeredCalls":6,"declinedCalls":0,"missedCalls":2},"april@specialized247.com":{"name":"April Layacan","email":"april@specialized247.com","totalRings":19,"answeredCalls":10,"declinedCalls":1,"missedCalls":8},"george@specialized247.com":{"name":"George Melendez","email":"george@specialized247.com","totalRings":3,"answeredCalls":2,"declinedCalls":0,"missedCalls":1},"jessica@specialized247.com":{"name":"Jessica Vazquez","email":"jessica@specialized247.com","totalRings":2,"answeredCalls":2,"declinedCalls":0,"missedCalls":0},"jkurek@specialized247.com":{"name":"Joe Kurek","email":"jkurek@specialized247.com","totalRings":1,"answeredCalls":1,"declinedCalls":0,"missedCalls":0},"nancy@specialized247.com":{"name":"Nancy Guadagnino","email":"nancy@specialized247.com","totalRings":5,"answeredCalls":2,"declinedCalls":1,"missedCalls":3},"nicole@specialized247.com":{"name":"Nix Cunanan","email":"nicole@specialized247.com","totalRings":3,"answeredCalls":1,"declinedCalls":0,"missedCalls":2},"alfredo@specialized247.com":{"name":"Alfredo Quezada","email":"alfredo@specialized247.com","totalRings":3,"answeredCalls":2,"declinedCalls":0,"missedCalls":1},"john@specialized247.com":{"name":"John Simon","email":"john@specialized247.com","totalRings":1,"answeredCalls":0,"declinedCalls":0,"missedCalls":1},"romulo@specialized247.com":{"name":"Romulo Reyes","email":"romulo@specialized247.com","totalRings":1,"answeredCalls":1,"declinedCalls":0,"missedCalls":0},"stewart@specialized247.com":{"name":"Stewart Hoy","email":"stewart@specialized247.com","totalRings":2,"answeredCalls":0,"declinedCalls":0,"missedCalls":2},"glenda@specialized247.com":{"name":"Glenda Malone","email":"glenda@specialized247.com","totalRings":2,"answeredCalls":0,"declinedCalls":1,"missedCalls":2},"lynne@specialized247.com":{"name":"Lynne Cauilan","email":"lynne@specialized247.com","totalRings":1,"answeredCalls":0,"declinedCalls":0,"missedCalls":1},"alejandro@specialized247.com":{"name":"Alejandro Ramirez","email":"alejandro@specialized247.com","totalRings":1,"answeredCalls":0,"declinedCalls":0,"missedCalls":1},"marco@specialized247.com":{"name":"Marco Serrano","email":"marco@specialized247.com","totalRings":1,"answeredCalls":1,"declinedCalls":0,"missedCalls":0},"aleida@specialized247.com":{"name":"Aleida Sanchez","email":"aleida@specialized247.com","totalRings":2,"answeredCalls":2,"declinedCalls":0,"missedCalls":0},"mike@specialized247.com":{"name":"Mike Jeppson","email":"mike@specialized247.com","totalRings":2,"answeredCalls":0,"declinedCalls":0,"missedCalls":2},"aaron@specialized247.com":{"name":"Aaron Miles","email":"aaron@specialized247.com","totalRings":1,"answeredCalls":1,"declinedCalls":0,"missedCalls":0},"jsanchez@specialized247.com":{"name":"John Sanchez","email":"jsanchez@specialized247.com","totalRings":1,"answeredCalls":1,"declinedCalls":0,"missedCalls":0},"darleen@specialized247.com":{"name":"Darleen Corpin","email":"darleen@specialized247.com","totalRings":1,"answeredCalls":1,"declinedCalls":0,"missedCalls":0}};
 
 function saveAndShowUserStats() {
     const selectedUser =
@@ -1818,9 +1806,9 @@ window.addEventListener('load', () => {
 
         <tr><td colspan="2" class="group-title">Core Customer Outcome KPIs</td></tr>
 
-        <tr><td>Total unique calls</td><td>313</td></tr>
-        <tr><td>Answered calls</td><td>170</td></tr>
-        <tr><td>Missed calls</td><td>143</td></tr>
+        <tr><td>Total unique calls</td><td>344</td></tr>
+        <tr><td>Answered calls</td><td>187</td></tr>
+        <tr><td>Missed calls</td><td>156</td></tr>
 
         <tr>
             <td>
@@ -1828,7 +1816,7 @@ window.addEventListener('load', () => {
                 <br>
                 <span class="small">All answered calls divided by all captured calls.</span>
             </td>
-            <td>54.3%</td>
+            <td>54.4%</td>
         </tr>
 
         <tr>
@@ -1837,7 +1825,7 @@ window.addEventListener('load', () => {
                 <br>
                 <span class="small">Calls started between 7:00 AM and 5:00 PM Central.</span>
             </td>
-            <td>54.3%</td>
+            <td>54.4%</td>
         </tr>
 
         <tr>
@@ -1855,7 +1843,7 @@ window.addEventListener('load', () => {
                 <br>
                 <span class="small">Answered calls divided by calls where at least one agent ring event was captured.</span>
             </td>
-            <td>62.4%</td>
+            <td>61.6%</td>
         </tr>
 
         <tr>
@@ -1864,19 +1852,19 @@ window.addEventListener('load', () => {
                 <br>
                 <span class="small">Groups quick repeat calls from the same caller into one customer interaction. If one call in that sequence is answered, the interaction counts as successful.</span>
             </td>
-            <td>70.9%</td>
+            <td>70.3%</td>
         </tr>
 
         <tr><td colspan="2" class="group-title">Business Hours Detail</td></tr>
 
         <tr>
             <td>Business hours calls</td>
-            <td>313</td>
+            <td>344</td>
         </tr>
 
         <tr>
             <td>Business hours answered calls</td>
-            <td>170</td>
+            <td>187</td>
         </tr>
 
         <tr>
@@ -1897,20 +1885,20 @@ window.addEventListener('load', () => {
                 <br>
                 <span class="small">Calls where at least one agent ring event was captured.</span>
             </td>
-            <td>133</td>
+            <td>151</td>
         </tr>
 
         <tr>
             <td>Routed answered calls</td>
-            <td>83</td>
+            <td>93</td>
         </tr>
 
         <tr><td colspan="2" class="group-title">Recovery Metrics</td></tr>
 
-        <tr><td>Modified customer interactions</td><td>412</td></tr>
-        <tr><td>Successful customer interactions</td><td>292</td></tr>
-        <tr><td>Recovered missed calls</td><td>57</td></tr>
-        <tr><td>Callbacks after missed calls</td><td>69</td></tr>
+        <tr><td>Modified customer interactions</td><td>437</td></tr>
+        <tr><td>Successful customer interactions</td><td>307</td></tr>
+        <tr><td>Recovered missed calls</td><td>59</td></tr>
+        <tr><td>Callbacks after missed calls</td><td>73</td></tr>
 
         <tr><td colspan="2" class="group-title">Capacity / Staffing Metrics</td></tr>
 
@@ -1921,7 +1909,7 @@ window.addEventListener('load', () => {
         <tr><td colspan="2" class="group-title">Avoidable Miss Metrics</td></tr>
 
         <tr><td>Declined while available misses</td><td>8</td></tr>
-        <tr><td>Avoidable miss rate of missed calls</td><td>3.4%</td></tr>
+        <tr><td>Avoidable miss rate of missed calls</td><td>3.2%</td></tr>
 
         <tr><td colspan="2" class="group-title">System / Telemetry Confidence</td></tr>
 
@@ -1931,11 +1919,11 @@ window.addEventListener('load', () => {
                 <br>
                 <span class="small">Missed calls with no captured agent ring data. This can mean true no-ring routing, API-only backfill, webhook gaps, IVR behavior, or incomplete telemetry.</span>
             </td>
-            <td>149</td>
+            <td>154</td>
         </tr>
 
-        <tr><td>Other missed calls</td><td>78</td></tr>
-        <tr><td>Suspected failed answers</td><td>47</td></tr>
+        <tr><td>Other missed calls</td><td>86</td></tr>
+        <tr><td>Suspected failed answers</td><td>55</td></tr>
     </table>
     </div>
 
@@ -1943,11 +1931,11 @@ window.addEventListener('load', () => {
         <h2>Internal Call Activity</h2>
         <table>
             <tr><th>Metric</th><th>Value</th></tr>
-            <tr><td>Total internal call records</td><td>607</td></tr>
-            <tr><td>Answered internal calls</td><td>323</td></tr>
+            <tr><td>Total internal call records</td><td>642</td></tr>
+            <tr><td>Answered internal calls</td><td>338</td></tr>
             <tr><td>Declined internal calls</td><td>8</td></tr>
-            <tr><td>Unanswered internal calls</td><td>277</td></tr>
-            <tr><td>Internal call answer rate</td><td>53.2%</td></tr>
+            <tr><td>Unanswered internal calls</td><td>297</td></tr>
+            <tr><td>Internal call answer rate</td><td>52.6%</td></tr>
         </table>
     </div>
 

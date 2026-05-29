@@ -16,20 +16,29 @@ function formatCentralDateTime(date = new Date()) {
     });
 }
 
-function buildExecutiveHtml(metrics, reportingStatus, teamMappings = [], userRoleOverrides = {}) {
+function buildExecutiveHtml(metrics, reportingStatus, teamMappings = [], userRoleOverrides = {}, roster = {}) {
     const missed = metrics.missedCallBreakdown;
 
+    function getRosterUser(email) {
+        return (roster.users || []).find(user =>
+            String(user.email || '').toLowerCase() === String(email || '').toLowerCase()
+        );
+    }
+
     function getUserStats(email) {
-    return metrics.userDailyStats?.[email] || {
-        name: email,
-        email,
-        totalRings: 0,
-        answeredCalls: 0,
-        missedCalls: 0,
-        declinedCalls: 0,
-        occupancyMisses: 0
-    };
-    }   
+        const rosterUser = getRosterUser(email);
+        const stats = metrics.userDailyStats?.[email] || {};
+
+        return {
+            name: stats.name || rosterUser?.name || email,
+            email,
+            totalRings: stats.totalRings || 0,
+            answeredCalls: stats.answeredCalls || 0,
+            missedCalls: stats.missedCalls || 0,
+            declinedCalls: stats.declinedCalls || 0,
+            occupancyMisses: stats.occupancyMisses || 0
+        };
+    }
 
     function getAnswerRate(user) {
         return user.totalRings > 0
@@ -37,9 +46,12 @@ function buildExecutiveHtml(metrics, reportingStatus, teamMappings = [], userRol
             : 0;
     }
 
-const teamSections = teamMappings.map(team => {
-
-    const teamUsers = (team.users || []).map(email => getUserStats(email));
+    const teamSections = teamMappings.map(team => {
+    
+    const teamUsers = (team.users || [])
+        .filter(email => getRosterUser(email))
+        .map(email => getUserStats(email)
+    );
 
     const teamTotalRings = teamUsers.reduce(
         (sum, user) => sum + (user.totalRings || 0),
@@ -87,27 +99,27 @@ const teamSections = teamMappings.map(team => {
             </div>
 
             <div class="team-metric-grid">
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Team Answer Rate</div>
                     <div class="metric">${teamAnswerRate}%</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Total Calls</div>
                     <div class="metric">${teamTotalRings}</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Answered</div>
                     <div class="metric">${teamAnswered}</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Missed</div>
                     <div class="metric">${teamMissed}</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Declined</div>
                     <div class="metric">${teamDeclined}</div>
                 </div>
-                <div class="card">
+                <div class="team-card">
                     <div class="label">Occupancy Misses</div>
                     <div class="metric">${teamOccupancy}</div>
                 </div>
@@ -124,22 +136,24 @@ const teamSections = teamMappings.map(team => {
                     <th>Occupancy Misses</th>
                 </tr>
 
-                ${(team.users || []).map(email => {
-                    const user = getUserStats(email);
-                    const answerRate = getAnswerRate(user);
+    ${(team.users || [])
+        .filter(email => getRosterUser(email))
+        .map(email => {
+            const user = getUserStats(email);
+            const answerRate = getAnswerRate(user);
 
-                    return `
-                        <tr>
-                            <td>${escapeHtml(user.name || email)}</td>
-                            <td>${answerRate}%</td>
-                            <td>${user.totalRings || 0}</td>
-                            <td>${user.answeredCalls || 0}</td>
-                            <td>${user.missedCalls || 0}</td>
-                            <td>${user.declinedCalls || 0}</td>
-                            <td>${user.occupancyMisses || 0}</td>
-                        </tr>
-                    `;
-                }).join('')}
+            return `
+                <tr>
+                    <td>${escapeHtml(user.name || email)}</td>
+                    <td>${answerRate}%</td>
+                    <td>${user.totalRings || 0}</td>
+                    <td>${user.answeredCalls || 0}</td>
+                    <td>${user.missedCalls || 0}</td>
+                    <td>${user.declinedCalls || 0}</td>
+                    <td>${user.occupancyMisses || 0}</td>
+                </tr>
+            `;
+        }).join('')}
 
                 <tr class="team-total-row">
                     <td><strong>Team Total</strong></td>
@@ -185,6 +199,25 @@ const teamSections = teamMappings.map(team => {
             flex-wrap: wrap;
         }
 
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(160px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 1400px) {
+            .grid {
+                grid-template-columns: repeat(3, minmax(160px, 1fr));
+            }
+        }
+
+        @media (max-width: 800px) {
+            .grid {
+                grid-template-columns: repeat(2, minmax(160px, 1fr));
+            }
+        }
+
         .team-metric-grid {
             display: grid;
             grid-template-columns: repeat(6, minmax(120px, 1fr));
@@ -194,6 +227,8 @@ const teamSections = teamMappings.map(team => {
 
         .team-metric-grid .card {
             padding: 14px;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         .team-metric-grid .metric {
@@ -212,12 +247,48 @@ const teamSections = teamMappings.map(team => {
             }
         }
 
+        .team-card {
+            background: #628ACB;
+            color: white;
+            border-radius: 10px;
+            padding: 8px;
+        }
+
+        .team-card .label {
+            color: white;
+        }
+
+        .team-card .metric {
+            color: white;
+        }
+
+        .team-card .small {
+            color: #D6DCE5;
+        }
+
         .card, .section {
             background: white;
             padding: 18px;
             border-radius: 10px;
             box-shadow: 0 1px 4px rgba(0,0,0,0.08);
         }
+
+        .executive-card {
+            background: #1f365c;
+            color: white;
+        }
+
+        .executive-card .label {
+            color: white;
+        }
+
+        .executive-card .metric {
+            color: white;
+        }
+
+       .executive-card .small {
+       color: #D6DCE5;
+       }
 
         .section { margin-bottom: 24px; }
 
@@ -228,7 +299,8 @@ const teamSections = teamMappings.map(team => {
         }
 
         .label {
-            color: #666;
+            color: #C97A2B;
+            font-weight: bold;
             font-size: 14px;
         }
 
@@ -256,7 +328,7 @@ const teamSections = teamMappings.map(team => {
         }
 
         .small {
-            color: #777;
+            color: #666;
             font-size: 12px;
         }
 
@@ -317,7 +389,7 @@ const teamSections = teamMappings.map(team => {
         <div>
             <h1>Aircall Executive Report</h1>
             <div class="subtitle">
-                Generated: ${formatCentralDateTime()} · Auto-refreshes every 5 seconds
+                Generated: ${formatCentralDateTime()} · Auto-refreshes every 30 seconds
             </div>
         </div>
 
@@ -351,17 +423,17 @@ const teamSections = teamMappings.map(team => {
     </div>
 
     <div class="grid">
-        <div class="card">
+        <div class="card executive-card">
             <div class="label">Today's Unique Calls</div>
             <div class="metric">${metrics.allCalls.length}</div>
         </div>
 
-        <div class="card">
+        <div class="card executive-card">
             <div class="label">Raw Answer Rate</div>
             <div class="metric">${metrics.companyAnswerRate}%</div>
         </div>
 
-        <div class="card">
+        <div class="card executive-card">
             <div class="label">Business Hours Raw Answer Rate</div>
         
             <div class="metric">
@@ -375,7 +447,7 @@ const teamSections = teamMappings.map(team => {
             </div>
         </div>
 
-        <div class="card">
+        <div class="card executive-card">
             <div class="label">After Hours Raw Answer Rate</div>
 
             <div class="metric">
@@ -389,12 +461,12 @@ const teamSections = teamMappings.map(team => {
             </div>
         </div>
 
-        <div class="card">
+        <div class="card executive-card">
             <div class="label">Customer Resolution Rate</div>
             <div class="metric">${metrics.modifiedCompanyOutcomes.modifiedCompanyAnswerRate}%</div>
         </div>
 
-        <div class="card">
+        <div class="card executive-card">
             <div class="label">Occupancy Miss Rate</div>
             <div class="metric">${missed.busyMissRateOfAllCalls}%</div>
         </div>

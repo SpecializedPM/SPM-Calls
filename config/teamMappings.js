@@ -137,7 +137,6 @@ const teamMappings = [
         subteams: { },
         users: [
             'jamee@specialized247.com',
-            'jannel@specialized247.com',
             'kim@specialized247.com',
             'kristin@specialized247.com',
             'marie@specialized247.com',

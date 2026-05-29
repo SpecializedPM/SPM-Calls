@@ -80,8 +80,13 @@ function writeAllFiles() {
     saveJson('user_status_history.json', userStatusHistory);
     saveJson('reporting_state.json', reportingState);
 
+    const roster = loadJson('aircall_roster.json', {
+        users: [],
+        numbers: [],
+        teams: []
+    });
     writeExecutiveReport(calls, reportingState);
-    writeExecutiveHtmlReport(calls, reportingState, teamMappings, userRoleOverrides);
+    writeExecutiveHtmlReport(calls, reportingState, teamMappings, userRoleOverrides, roster);
     writeExceptionsReport(calls);
 }
 
@@ -366,4 +371,45 @@ app.get('/reset', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
+});
+
+app.get('/debug-team-mapping', (req, res) => {
+    const roster = loadJson('aircall_roster.json', {
+        users: [],
+        numbers: [],
+        teams: []
+    });
+
+    const rosterEmails = new Set(
+        (roster.users || [])
+            .map(user => String(user.email || '').toLowerCase())
+            .filter(Boolean)
+    );
+
+    const missing = [];
+
+    teamMappings.forEach(team => {
+        const emails = [
+            team.manager,
+            ...(team.supervisors || []),
+            ...(team.users || [])
+        ].filter(Boolean);
+
+        emails.forEach(email => {
+            const normalizedEmail = String(email).toLowerCase();
+
+            if (!rosterEmails.has(normalizedEmail)) {
+                missing.push({
+                    team: team.team_name,
+                    email: normalizedEmail
+                });
+            }
+        });
+    });
+
+    res.json({
+        roster_user_count: roster.users.length,
+        missing_count: missing.length,
+        missing
+    });
 });

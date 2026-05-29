@@ -738,7 +738,8 @@ function writeExecutiveHtmlReport(
     calls,
     reportingState = null,
     teamMappings = [],
-    userRoleOverrides = {}
+    userRoleOverrides = {},
+    roster = {}
 ) {
     const metrics = getExecutiveMetrics(calls);
     const reportingStatus = getReportingStatusText(reportingState);
@@ -747,7 +748,8 @@ function writeExecutiveHtmlReport(
         metrics,
         reportingStatus,
         teamMappings,
-        userRoleOverrides
+        userRoleOverrides,
+        roster
     );
 
     writeOutputFile('executive_report.html', html);
