@@ -24,7 +24,7 @@ function buildExecutiveHtml(metrics, reportingStatus) {
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="5">
+    <meta http-equiv="refresh" content="30">
     <title>Aircall Executive Report</title>
 
     <style>
@@ -248,7 +248,7 @@ function buildExecutiveHtml(metrics, reportingStatus) {
     <div class="section">
     <h2>User Call Stats Today</h2>
 
-    <select id="userStatsSelect" onchange="showUserStats()">
+    <select id="userStatsSelect" onchange="saveAndShowUserStats()">
         <option value="">Select a user...</option>
         ${Object.entries(metrics.userDailyStats || {}).map(([key, user]) => `
             <option value="${escapeHtml(key)}">
@@ -263,31 +263,61 @@ function buildExecutiveHtml(metrics, reportingStatus) {
 </div>
 
 <script>
-    const userDailyStats = ${JSON.stringify(metrics.userDailyStats || {})};
+const userDailyStats = ${JSON.stringify(metrics.userDailyStats || {})};
 
-    function showUserStats() {
-        const selectedUser = document.getElementById('userStatsSelect').value;
-        const output = document.getElementById('userStatsOutput');
+function saveAndShowUserStats() {
+    const selectedUser =
+        document.getElementById('userStatsSelect').value;
 
-        if (!selectedUser || !userDailyStats[selectedUser]) {
-            output.innerHTML = '<p class="small">Select a user to view their call activity for today.</p>';
-            return;
-        }
+    localStorage.setItem('selectedUserStats', selectedUser);
 
-        const user = userDailyStats[selectedUser];
+    showUserStats();
+}
 
-        output.innerHTML = \`
-            <table>
-                <tr><th>Metric</th><th>Value</th></tr>
-                <tr><td>User</td><td>\${user.name}</td></tr>
-                <tr><td>Email</td><td>\${user.email || ''}</td></tr>
-                <tr><td>Total Rings</td><td>\${user.totalRings}</td></tr>
-                <tr><td>Answered Calls</td><td>\${user.answeredCalls}</td></tr>
-                <tr><td>Declined Calls</td><td>\${user.declinedCalls}</td></tr>
-                <tr><td>Missed Calls They Were Rung On</td><td>\${user.missedCalls}</td></tr>
-            </table>
-        \`;
+function showUserStats() {
+    const selectedUser =
+        document.getElementById('userStatsSelect').value;
+
+    const output =
+        document.getElementById('userStatsOutput');
+
+    if (!selectedUser || !userDailyStats[selectedUser]) {
+        output.innerHTML =
+            '<p class="small">Select a user to view their call activity for today.</p>';
+        return;
     }
+
+    const user = userDailyStats[selectedUser];
+
+    output.innerHTML = \
+        <table>
+            <tr><th>Metric</th><th>Value</th></tr>
+            <tr><td>User</td><td>${user.name}</td></tr>
+            <tr><td>Email</td><td>${user.email || ''}</td></tr>
+            <tr><td>Total Rings</td><td>${user.totalRings}</td></tr>
+            <tr><td>Answered Calls</td><td>${user.answeredCalls}</td></tr>
+            <tr><td>Declined Calls</td><td>${user.declinedCalls}</td></tr>
+            <tr><td>Missed Calls They Were Rung On</td><td>${user.missedCalls}</td></tr>
+        </table>
+    \`;
+}
+
+window.addEventListener('load', () => {
+    const savedUser =
+        localStorage.getItem('selectedUserStats');
+
+    if (
+        savedUser &&
+        document.querySelector(
+            '#userStatsSelect option[value="' + savedUser + '"]'
+        )
+    ) {
+        document.getElementById('userStatsSelect').value =
+            savedUser;
+
+        showUserStats();
+    }
+});
 </script>
 
     <div class="section">
