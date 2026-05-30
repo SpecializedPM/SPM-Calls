@@ -463,6 +463,17 @@ app.get('/debug-answer-fallback', (req, res) => {
     });
 });
 
+app.get('/debug-calls/:ids', (req, res) => {
+    const ids = String(req.params.ids || '').split(',');
+    const results = {};
+
+    ids.forEach(id => {
+        results[id] = calls[id] || null;
+    });
+
+    res.json(results);
+});
+
 app.get('/debug-team-mapping', (req, res) => {
     const roster = loadJson('aircall_roster.json', {
         users: [],
