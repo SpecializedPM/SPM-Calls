@@ -1,5 +1,5 @@
 EXCEPTIONS REPORT
-Generated: May 29, 2026, 7:58:27 PM CDT
+Generated: May 29, 2026, 9:58:07 PM CDT
 
 1. Caller called back after missed call
    call_id: 3814046815
@@ -481,6 +481,190 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
 65. Caller called back after missed call
+   call_id: 3814794331
+   caller: +1 214-713-5305
+   missed_reason: short_abandoned
+   callback_call_id: 3814794628
+   callback_answered_by: null
+   seconds_after: 6
+
+66. Caller called back after missed call
+   call_id: 3816541023
+   caller: +1 401-541-8080
+   missed_reason: no_available_agent
+   callback_call_id: 3816544461
+   callback_answered_by: null
+   seconds_after: 36
+
+67. Caller called back after missed call
+   call_id: 3816544461
+   caller: +1 401-541-8080
+   missed_reason: no_available_agent
+   callback_call_id: 3816589188
+   callback_answered_by: null
+   seconds_after: 572
+
+68. Caller called back after missed call
+   call_id: 3816599967
+   caller: +1 858-229-6256
+   missed_reason: no_available_agent
+   callback_call_id: 3816606578
+   callback_answered_by: null
+   seconds_after: 4
+
+69. Caller called back after missed call
+   call_id: 3816618935
+   caller: +1 863-256-7423
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3816637267
+   callback_answered_by: Mira Vencilao
+   seconds_after: 163
+
+70. Caller called back after missed call
+   call_id: 3816738915
+   caller: +1 352-817-6453
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3816766051
+   callback_answered_by: Jericson Velasco
+   seconds_after: 128
+
+71. Caller called back after missed call
+   call_id: 3816776456
+   caller: +1 352-817-6453
+   missed_reason: abandoned_in_ivr
+   callback_call_id: 3816781653
+   callback_answered_by: April Layacan
+   seconds_after: 12
+
+72. Caller called back after missed call
+   call_id: 3816900423
+   caller: +1 913-243-8983
+   missed_reason: abandoned_in_ivr
+   callback_call_id: 3816906334
+   callback_answered_by: null
+   seconds_after: 35
+
+73. Caller called back after missed call
+   call_id: 3817066360
+   caller: +1 678-849-8119
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3817072732
+   callback_answered_by: null
+   seconds_after: 11
+
+74. Caller called back after missed call
+   call_id: 3817072732
+   caller: +1 678-849-8119
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3817080077
+   callback_answered_by: null
+   seconds_after: 27
+
+75. Caller called back after missed call
+   call_id: 3817120015
+   caller: +1 214-892-9630
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3817132892
+   callback_answered_by: null
+   seconds_after: 122
+
+76. Caller called back after missed call
+   call_id: 3817132892
+   caller: +1 214-892-9630
+   missed_reason: short_abandoned
+   callback_call_id: 3817134387
+   callback_answered_by: null
+   seconds_after: 13
+
+77. Caller called back after missed call
+   call_id: 3817148105
+   caller: +1 662-420-6814
+   missed_reason: no_available_agent
+   callback_call_id: 3817151125
+   callback_answered_by: Romulo Reyes
+   seconds_after: 19
+
+78. Caller called back after missed call
+   call_id: 3817160405
+   caller: +1 901-330-7359
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3817177848
+   callback_answered_by: null
+   seconds_after: 111
+
+79. Caller called back after missed call
+   call_id: 3817177848
+   caller: +1 901-330-7359
+   missed_reason: no_available_agent
+   callback_call_id: 3817188920
+   callback_answered_by: null
+   seconds_after: 43
+
+80. Caller called back after missed call
+   call_id: 3817234649
+   caller: +1 301-910-4772
+   missed_reason: abandoned_in_ivr
+   callback_call_id: 3817238893
+   callback_answered_by: Jericson Velasco
+   seconds_after: 21
+
+81. Caller called back after missed call
+   call_id: 3817243812
+   caller: +1 630-362-5186
+   missed_reason: no_available_agent
+   callback_call_id: 3817245245
+   callback_answered_by: April Layacan
+   seconds_after: 5
+
+82. Caller called back after missed call
+   call_id: 3817269552
+   caller: +1 765-246-1224
+   missed_reason: short_abandoned
+   callback_call_id: 3817291229
+   callback_answered_by: null
+   seconds_after: 277
+
+83. Caller called back after missed call
+   call_id: 3817269655
+   caller: +1 505-350-5627
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3817273758
+   callback_answered_by: Alfredo Quezada
+   seconds_after: 10
+
+84. Caller called back after missed call
+   call_id: 3817345641
+   caller: +1 850-572-7520
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3817359867
+   callback_answered_by: Ana Manlunas
+   seconds_after: 77
+
+85. Caller called back after missed call
+   call_id: 3817382517
+   caller: +1 214-901-2416
+   missed_reason: no_available_agent
+   callback_call_id: 3817384556
+   callback_answered_by: null
+   seconds_after: 16
+
+86. Caller called back after missed call
+   call_id: 3817444115
+   caller: +1 407-708-8378
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3817448178
+   callback_answered_by: Gemma Vazquez
+   seconds_after: 13
+
+87. Caller called back after missed call
+   call_id: 3817516300
+   caller: +1 817-888-1335
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3817540608
+   callback_answered_by: Marco Serrano
+   seconds_after: 377
+
+88. Caller called back after missed call
    call_id: 3817547257
    caller: +1 678-943-0077
    missed_reason: agents_did_not_answer
@@ -488,14 +672,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Ana Manlunas
    seconds_after: 78
 
-66. Suspected failed answer or unanswered ring
+89. Suspected failed answer or unanswered ring
    call_id: 3817547257
    caller: +1 678-943-0077
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Ana Manlunas, Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-67. Caller called back after missed call
+90. Caller called back after missed call
    call_id: 3817550401
    caller: +1 407-219-0700
    missed_reason: no_available_agent
@@ -503,7 +687,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 5
 
-68. Caller called back after missed call
+91. Caller called back after missed call
    call_id: 3817558428
    caller: +1 214-289-8167
    missed_reason: agents_did_not_answer
@@ -511,14 +695,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 9
 
-69. Suspected failed answer or unanswered ring
+92. Suspected failed answer or unanswered ring
    call_id: 3817558428
    caller: +1 214-289-8167
    called_number: Client Accounting (+18176970589)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-70. Caller called back after missed call
+93. Caller called back after missed call
    call_id: 3817564353
    caller: +1 510-415-9135
    missed_reason: null
@@ -526,7 +710,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Niño Cinco
    seconds_after: 543
 
-71. Caller called back after missed call
+94. Caller called back after missed call
    call_id: 3817565316
    caller: +1 214-289-8167
    missed_reason: agents_did_not_answer
@@ -534,14 +718,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Ana Manlunas
    seconds_after: 482
 
-72. Suspected failed answer or unanswered ring
+95. Suspected failed answer or unanswered ring
    call_id: 3817565316
    caller: +1 214-289-8167
    called_number: Client Accounting (+18176970589)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-73. Caller called back after missed call
+96. Caller called back after missed call
    call_id: 3817592613
    caller: +1 317-664-4425
    missed_reason: agents_did_not_answer
@@ -549,14 +733,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Gerardo Gomez
    seconds_after: 69
 
-74. Suspected failed answer or unanswered ring
+97. Suspected failed answer or unanswered ring
    call_id: 3817592613
    caller: +1 317-664-4425
    called_number: Gerardo Gomez DID (+14055946925)
    rang_agents: Gerardo Gomez
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-75. Caller called back after missed call
+98. Caller called back after missed call
    call_id: 3817595660
    caller: +1 973-234-9608
    missed_reason: agents_did_not_answer
@@ -564,14 +748,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Gemma Vazquez
    seconds_after: 7
 
-76. Suspected failed answer or unanswered ring
+99. Suspected failed answer or unanswered ring
    call_id: 3817596204
    caller: +1 817-886-9233
    called_number: Concierge BHM (+12054177715)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-77. Caller called back after missed call
+100. Caller called back after missed call
    call_id: 3817607043
    caller: +1 214-289-8167
    missed_reason: agents_did_not_answer
@@ -579,14 +763,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Ana Manlunas
    seconds_after: 21
 
-78. Suspected failed answer or unanswered ring
+101. Suspected failed answer or unanswered ring
    call_id: 3817607043
    caller: +1 214-289-8167
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-79. Caller called back after missed call
+102. Caller called back after missed call
    call_id: 3817629043
    caller: +1 312-451-4390
    missed_reason: no_available_agent
@@ -594,7 +778,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Jhonrey Joaquin
    seconds_after: 12
 
-80. Caller called back after missed call
+103. Caller called back after missed call
    call_id: 3817643132
    caller: +1 281-235-6978
    missed_reason: agents_did_not_answer
@@ -602,14 +786,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Alexia Calton
    seconds_after: 13
 
-81. Suspected failed answer or unanswered ring
+104. Suspected failed answer or unanswered ring
    call_id: 3817643132
    caller: +1 281-235-6978
    called_number: Alexia Calton DID (+14699915848)
    rang_agents: Alexia Calton
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-82. Caller called back after missed call
+105. Caller called back after missed call
    call_id: 3817646185
    caller: +1 408-416-7923
    missed_reason: no_available_agent
@@ -617,7 +801,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Jhonrey Joaquin
    seconds_after: 23
 
-83. Caller called back after missed call
+106. Caller called back after missed call
    call_id: 3817657561
    caller: +1 334-552-0404
    missed_reason: no_available_agent
@@ -625,28 +809,28 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Jennyvyl Suba
    seconds_after: 5
 
-84. Suspected failed answer or unanswered ring
+107. Suspected failed answer or unanswered ring
    call_id: 3817660215
    caller: +1 352-618-6289
    called_number: ORL/TPA/JAX Resident Accounting (+18327304097)
    rang_agents: Mariana Campos
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-85. Suspected failed answer or unanswered ring
+108. Suspected failed answer or unanswered ring
    call_id: 3817670733
    caller: +1 972-971-6229
    called_number: Mira Vencilao DID (+14075379507)
    rang_agents: Mira Vencilao, Ana Manlunas, Jhonrey Joaquin
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-86. Suspected failed answer or unanswered ring
+109. Suspected failed answer or unanswered ring
    call_id: 3817671136
    caller: +1 662-275-1949
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Ana Manlunas
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-87. Caller called back after missed call
+110. Caller called back after missed call
    call_id: 3817699263
    caller: +1 972-302-5755
    missed_reason: agents_did_not_answer
@@ -654,14 +838,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Ica Roxas
    seconds_after: 592
 
-88. Suspected failed answer or unanswered ring
+111. Suspected failed answer or unanswered ring
    call_id: 3817699263
    caller: +1 972-302-5755
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-89. Caller called back after missed call
+112. Caller called back after missed call
    call_id: 3817708336
    caller: +1 407-577-6867
    missed_reason: no_available_agent
@@ -669,7 +853,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 7
 
-90. Caller called back after missed call
+113. Caller called back after missed call
    call_id: 3817708669
    caller: +1 408-416-7923
    missed_reason: no_available_agent
@@ -677,7 +861,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 6
 
-91. Caller called back after missed call
+114. Caller called back after missed call
    call_id: 3817709295
    caller: +1 407-577-6867
    missed_reason: no_available_agent
@@ -685,7 +869,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 142
 
-92. Caller called back after missed call
+115. Caller called back after missed call
    call_id: 3817709530
    caller: +1 408-416-7923
    missed_reason: agents_did_not_answer
@@ -693,14 +877,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Gemma Vazquez
    seconds_after: 56
 
-93. Suspected failed answer or unanswered ring
+116. Suspected failed answer or unanswered ring
    call_id: 3817709530
    caller: +1 408-416-7923
    called_number: Concierge ORL/TPA (+14076983382)
    rang_agents: Mira Vencilao, April Layacan, Ana Manlunas
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-94. Caller called back after missed call
+117. Caller called back after missed call
    call_id: 3817716090
    caller: +1 407-577-6867
    missed_reason: no_available_agent
@@ -708,7 +892,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 335
 
-95. Caller called back after missed call
+118. Caller called back after missed call
    call_id: 3817725540
    caller: +1 205-234-1074
    missed_reason: agents_did_not_answer
@@ -716,14 +900,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 21
 
-96. Suspected failed answer or unanswered ring
+119. Suspected failed answer or unanswered ring
    call_id: 3817725540
    caller: +1 205-234-1074
    called_number: ORL/TPA/JAX Resident Accounting (+18327304097)
    rang_agents: Mariana Campos
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-97. Caller called back after missed call
+120. Caller called back after missed call
    call_id: 3817730559
    caller: +1 205-234-1074
    missed_reason: abandoned_in_ivr
@@ -731,7 +915,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 5
 
-98. Caller called back after missed call
+121. Caller called back after missed call
    call_id: 3817743110
    caller: +1 407-756-2994
    missed_reason: agents_did_not_answer
@@ -739,14 +923,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Nancy Guadagnino
    seconds_after: 197
 
-99. Suspected failed answer or unanswered ring
+122. Suspected failed answer or unanswered ring
    call_id: 3817753198
    caller: +1 817-907-3190
    called_number: ATL/BHM/OKC/MEM Leasing (+14699915845)
    rang_agents: Nix Cunanan
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-100. Caller called back after missed call
+123. Caller called back after missed call
    call_id: 3817757224
    caller: +1 405-808-4057
    missed_reason: no_available_agent
@@ -754,7 +938,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 33
 
-101. Caller called back after missed call
+124. Caller called back after missed call
    call_id: 3817758910
    caller: +1 917-982-5451
    missed_reason: abandoned_in_ivr
@@ -762,7 +946,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 5
 
-102. Caller called back after missed call
+125. Caller called back after missed call
    call_id: 3817759268
    caller: +1 405-808-4057
    missed_reason: no_available_agent
@@ -770,7 +954,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Ica Roxas
    seconds_after: 338
 
-103. Caller called back after missed call
+126. Caller called back after missed call
    call_id: 3817764730
    caller: +1 404-931-5766
    missed_reason: no_available_agent
@@ -778,7 +962,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 185
 
-104. Caller called back after missed call
+127. Caller called back after missed call
    call_id: 3817770961
    caller: +1 205-234-1074
    missed_reason: no_available_agent
@@ -786,7 +970,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 14
 
-105. Caller called back after missed call
+128. Caller called back after missed call
    call_id: 3817773223
    caller: +1 404-931-5766
    missed_reason: no_available_agent
@@ -794,7 +978,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 580
 
-106. Caller called back after missed call
+129. Caller called back after missed call
    call_id: 3817775888
    caller: +1 205-234-1074
    missed_reason: no_available_agent
@@ -802,7 +986,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Mariana Campos
    seconds_after: 31
 
-107. Caller called back after missed call
+130. Caller called back after missed call
    call_id: 3817798966
    caller: +1 404-290-6733
    missed_reason: no_available_agent
@@ -810,7 +994,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 14
 
-108. Caller called back after missed call
+131. Caller called back after missed call
    call_id: 3817800132
    caller: +1 404-290-6733
    missed_reason: no_available_agent
@@ -818,7 +1002,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 4
 
-109. Caller called back after missed call
+132. Caller called back after missed call
    call_id: 3817804763
    caller: +1 215-803-2140
    missed_reason: agents_did_not_answer
@@ -826,21 +1010,21 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Mira Vencilao
    seconds_after: 315
 
-110. Suspected failed answer or unanswered ring
+133. Suspected failed answer or unanswered ring
    call_id: 3817804763
    caller: +1 215-803-2140
    called_number: ORL NEW Maintenance (+14079798420)
    rang_agents: Alfredo Quezada, John Simon, George Melendez
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-111. Suspected failed answer or unanswered ring
+134. Suspected failed answer or unanswered ring
    call_id: 3817805222
    caller: +1 309-531-0975
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-112. Caller called back after missed call
+135. Caller called back after missed call
    call_id: 3817819334
    caller: +1 901-330-7359
    missed_reason: no_available_agent
@@ -848,7 +1032,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 11
 
-113. Caller called back after missed call
+136. Caller called back after missed call
    call_id: 3817823558
    caller: +1 901-330-7359
    missed_reason: short_abandoned
@@ -856,7 +1040,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 4
 
-114. Caller called back after missed call
+137. Caller called back after missed call
    call_id: 3817823703
    caller: +1 901-330-7359
    missed_reason: no_available_agent
@@ -864,21 +1048,21 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 154
 
-115. Suspected failed answer or unanswered ring
+138. Suspected failed answer or unanswered ring
    call_id: 3817826512
    caller: +1 972-898-3522
    called_number: ATL/BHM/OKC/MEM Leasing (+14699915845)
    rang_agents: Nix Cunanan
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-116. Suspected failed answer or unanswered ring
+139. Suspected failed answer or unanswered ring
    call_id: 3817830647
    caller: +1 901-330-7359
    called_number: Concierge MEM (+19016666864)
    rang_agents: Ana Manlunas
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-117. Caller called back after missed call
+140. Caller called back after missed call
    call_id: 3817840499
    caller: +1 215-803-2140
    missed_reason: short_abandoned
@@ -886,7 +1070,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Gerardo Gomez
    seconds_after: 311
 
-118. Caller called back after missed call
+141. Caller called back after missed call
    call_id: 3817850508
    caller: +1 248-444-4921
    missed_reason: agents_did_not_answer
@@ -894,14 +1078,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 46
 
-119. Suspected failed answer or unanswered ring
+142. Suspected failed answer or unanswered ring
    call_id: 3817850508
    caller: +1 248-444-4921
    called_number: Evan Terana DID (+18178869227)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-120. Caller called back after missed call
+143. Caller called back after missed call
    call_id: 3817851921
    caller: +1 786-355-6825
    missed_reason: short_abandoned
@@ -909,7 +1093,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 5
 
-121. Caller called back after missed call
+144. Caller called back after missed call
    call_id: 3817852204
    caller: +1 786-355-6825
    missed_reason: agents_did_not_answer
@@ -917,14 +1101,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Ana Manlunas
    seconds_after: 3
 
-122. Suspected failed answer or unanswered ring
+145. Suspected failed answer or unanswered ring
    call_id: 3817852204
    caller: +1 786-355-6825
    called_number: Concierge ORL/TPA (+14076983382)
    rang_agents: Ana Manlunas, Mira Vencilao, Jhonrey Joaquin
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-123. Caller called back after missed call
+146. Caller called back after missed call
    call_id: 3817854234
    caller: +1 248-444-4921
    missed_reason: agents_did_not_answer
@@ -932,14 +1116,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 145
 
-124. Suspected failed answer or unanswered ring
+147. Suspected failed answer or unanswered ring
    call_id: 3817854234
    caller: +1 248-444-4921
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Mira Vencilao, Ana Manlunas
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-125. Caller called back after missed call
+148. Caller called back after missed call
    call_id: 3817860983
    caller: +1 917-940-8426
    missed_reason: agents_did_not_answer
@@ -947,14 +1131,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 9
 
-126. Suspected failed answer or unanswered ring
+149. Suspected failed answer or unanswered ring
    call_id: 3817860983
    caller: +1 917-940-8426
    called_number: Nancy Guadagnino DID (+14076983379)
    rang_agents: Nancy Guadagnino
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-127. Caller called back after missed call
+150. Caller called back after missed call
    call_id: 3817861990
    caller: +1 248-444-4921
    missed_reason: agents_did_not_answer
@@ -962,14 +1146,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 443
 
-128. Suspected failed answer or unanswered ring
+151. Suspected failed answer or unanswered ring
    call_id: 3817861990
    caller: +1 248-444-4921
    called_number: Stewart Hoy DID (+14045968386)
    rang_agents: Stewart Hoy
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-129. Caller called back after missed call
+152. Caller called back after missed call
    call_id: 3817863760
    caller: +1 901-330-7359
    missed_reason: agents_did_not_answer
@@ -977,14 +1161,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 71
 
-130. Suspected failed answer or unanswered ring
+153. Suspected failed answer or unanswered ring
    call_id: 3817863760
    caller: +1 901-330-7359
    called_number: Concierge MEM (+19016666864)
    rang_agents: Jhonrey Joaquin, April Layacan
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-131. Caller called back after missed call
+154. Caller called back after missed call
    call_id: 3817864254
    caller: +1 917-940-8426
    missed_reason: agents_did_not_answer
@@ -992,14 +1176,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Nancy Guadagnino
    seconds_after: 365
 
-132. Suspected failed answer or unanswered ring
+155. Suspected failed answer or unanswered ring
    call_id: 3817864254
    caller: +1 917-940-8426
    called_number: Nancy Guadagnino DID (+14076983379)
    rang_agents: Nancy Guadagnino
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-133. Caller called back after missed call
+156. Caller called back after missed call
    call_id: 3817867794
    caller: +1 901-330-7359
    missed_reason: no_available_agent
@@ -1007,7 +1191,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 84
 
-134. Caller called back after missed call
+157. Caller called back after missed call
    call_id: 3817882446
    caller: +1 248-444-4921
    missed_reason: agents_did_not_answer
@@ -1015,14 +1199,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 9
 
-135. Suspected failed answer or unanswered ring
+158. Suspected failed answer or unanswered ring
    call_id: 3817882446
    caller: +1 248-444-4921
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-136. Caller called back after missed call
+159. Caller called back after missed call
    call_id: 3817885313
    caller: +1 786-393-8377
    missed_reason: agents_did_not_answer
@@ -1030,14 +1214,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 52
 
-137. Suspected failed answer or unanswered ring
+160. Suspected failed answer or unanswered ring
    call_id: 3817885313
    caller: +1 786-393-8377
    called_number: ORL/TPA/JAX Resident Accounting (+18327304097)
    rang_agents: Mariana Campos
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-138. Caller called back after missed call
+161. Caller called back after missed call
    call_id: 3817886701
    caller: +1 248-444-4921
    missed_reason: agents_did_not_answer
@@ -1045,14 +1229,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 5
 
-139. Suspected failed answer or unanswered ring
+162. Suspected failed answer or unanswered ring
    call_id: 3817886701
    caller: +1 248-444-4921
    called_number: Stewart Hoy DID (+14045968386)
    rang_agents: Stewart Hoy
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-140. Caller called back after missed call
+163. Caller called back after missed call
    call_id: 3817888693
    caller: +1 248-444-4921
    missed_reason: agents_did_not_answer
@@ -1060,21 +1244,21 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 4
 
-141. Suspected failed answer or unanswered ring
+164. Suspected failed answer or unanswered ring
    call_id: 3817888693
    caller: +1 248-444-4921
    called_number: Evan Terana DID (+18178869227)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-142. Suspected failed answer or unanswered ring
+165. Suspected failed answer or unanswered ring
    call_id: 3817890426
    caller: +1 248-444-4921
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Mira Vencilao, Jhonrey Joaquin, April Layacan
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-143. Caller called back after missed call
+166. Caller called back after missed call
    call_id: 3817892448
    caller: +1 786-393-8377
    missed_reason: no_available_agent
@@ -1082,7 +1266,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Mariana Campos
    seconds_after: 537
 
-144. Caller called back after missed call
+167. Caller called back after missed call
    call_id: 3817905277
    caller: +1 954-856-8383
    missed_reason: agents_did_not_answer
@@ -1090,14 +1274,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Jericson Velasco
    seconds_after: 5
 
-145. Suspected failed answer or unanswered ring
+168. Suspected failed answer or unanswered ring
    call_id: 3817905277
    caller: +1 954-856-8383
    called_number: Concierge ORL/TPA (+14076983382)
    rang_agents: Jericson Velasco
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-146. Caller called back after missed call
+169. Caller called back after missed call
    call_id: 3817936056
    caller: +1 863-207-8688
    missed_reason: agents_did_not_answer
@@ -1105,28 +1289,28 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Jhonrey Joaquin
    seconds_after: 171
 
-147. Suspected failed answer or unanswered ring
+170. Suspected failed answer or unanswered ring
    call_id: 3817936056
    caller: +1 863-207-8688
    called_number: Concierge ORL/TPA (+14076983382)
    rang_agents: Jhonrey Joaquin, Jericson Velasco, Ana Manlunas
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-148. Suspected failed answer or unanswered ring
+171. Suspected failed answer or unanswered ring
    call_id: 3817952422
    caller: +1 713-410-8787
    called_number: Lynne Cauilan DID (+12147361571)
    rang_agents: Lynne Cauilan
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-149. Suspected failed answer or unanswered ring
+172. Suspected failed answer or unanswered ring
    call_id: 3817972085
    caller: +1 407-808-4602
    called_number: Alejandro Ramirez DID (+18178869232)
    rang_agents: Alejandro Ramirez
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-150. Caller called back after missed call
+173. Caller called back after missed call
    call_id: 3817978562
    caller: +1 469-867-5300
    missed_reason: abandoned_in_ivr
@@ -1134,7 +1318,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 592
 
-151. Caller called back after missed call
+174. Caller called back after missed call
    call_id: 3817995454
    caller: +1 512-925-3952
    missed_reason: agents_did_not_answer
@@ -1142,14 +1326,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 19
 
-152. Suspected failed answer or unanswered ring
+175. Suspected failed answer or unanswered ring
    call_id: 3817995454
    caller: +1 512-925-3952
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Jhonrey Joaquin, April Layacan
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-153. Caller called back after missed call
+176. Caller called back after missed call
    call_id: 3817999736
    caller: +1 512-925-3952
    missed_reason: no_available_agent
@@ -1157,7 +1341,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 31
 
-154. Caller called back after missed call
+177. Caller called back after missed call
    call_id: 3818001720
    caller: +1 469-867-5300
    missed_reason: no_available_agent
@@ -1165,7 +1349,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: April Layacan
    seconds_after: 19
 
-155. Caller called back after missed call
+178. Caller called back after missed call
    call_id: 3818019886
    caller: +1 860-622-8821
    missed_reason: agents_did_not_answer
@@ -1173,14 +1357,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Mariana Campos
    seconds_after: 49
 
-156. Suspected failed answer or unanswered ring
+179. Suspected failed answer or unanswered ring
    call_id: 3818019886
    caller: +1 860-622-8821
    called_number: Mariana Campos DID (+14699915842)
    rang_agents: Mariana Campos
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-157. Caller called back after missed call
+180. Caller called back after missed call
    call_id: 3818020614
    caller: +1 239-227-1984
    missed_reason: agents_did_not_answer
@@ -1188,14 +1372,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Ana Manlunas
    seconds_after: 8
 
-158. Suspected failed answer or unanswered ring
+181. Suspected failed answer or unanswered ring
    call_id: 3818020614
    caller: +1 239-227-1984
    called_number: Jennyvyl Suba DID (+19017168032)
    rang_agents: Jennyvyl Suba
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-159. Caller called back after missed call
+182. Caller called back after missed call
    call_id: 3818023342
    caller: +1 407-371-2298
    missed_reason: null
@@ -1203,7 +1387,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 10
 
-160. Caller called back after missed call
+183. Caller called back after missed call
    call_id: 3818024462
    caller: +1 407-371-2298
    missed_reason: null
@@ -1211,7 +1395,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 14
 
-161. Caller called back after missed call
+184. Caller called back after missed call
    call_id: 3818029104
    caller: +1 209-792-4206
    missed_reason: null
@@ -1219,7 +1403,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Jessica Vazquez
    seconds_after: 3
 
-162. Caller called back after missed call
+185. Caller called back after missed call
    call_id: 3818042558
    caller: +1 786-303-8689
    missed_reason: no_available_agent
@@ -1227,7 +1411,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Jennyvyl Suba
    seconds_after: 67
 
-163. Caller called back after missed call
+186. Caller called back after missed call
    call_id: 3818043068
    caller: +1 415-699-3895
    missed_reason: null
@@ -1235,7 +1419,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Aleida Sanchez
    seconds_after: 14
 
-164. Caller called back after missed call
+187. Caller called back after missed call
    call_id: 3818063409
    caller: +1 770-331-5523
    missed_reason: no_available_agent
@@ -1243,14 +1427,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: April Layacan
    seconds_after: 155
 
-165. Suspected failed answer or unanswered ring
+188. Suspected failed answer or unanswered ring
    call_id: 3818070782
    caller: +1 407-794-2296
    called_number: Concierge ORL/TPA (+14076983382)
    rang_agents: April Layacan
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-166. Caller called back after missed call
+189. Caller called back after missed call
    call_id: 3818081057
    caller: +1 512-925-3952
    missed_reason: no_available_agent
@@ -1258,7 +1442,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 3
 
-167. Caller called back after missed call
+190. Caller called back after missed call
    call_id: 3818081363
    caller: +1 630-362-5186
    missed_reason: no_available_agent
@@ -1266,7 +1450,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 12
 
-168. Caller called back after missed call
+191. Caller called back after missed call
    call_id: 3818089192
    caller: +1 330-814-7349
    missed_reason: agents_did_not_answer
@@ -1274,21 +1458,21 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: April Layacan
    seconds_after: 363
 
-169. Suspected failed answer or unanswered ring
+192. Suspected failed answer or unanswered ring
    call_id: 3818089192
    caller: +1 330-814-7349
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: April Layacan
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-170. Suspected failed answer or unanswered ring
+193. Suspected failed answer or unanswered ring
    call_id: 3818114103
    caller: +1 434-996-9288
    called_number: Evan Terana DID (+18178869227)
    rang_agents: April Layacan
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-171. Caller called back after missed call
+194. Caller called back after missed call
    call_id: 3818119140
    caller: +1 321-557-0745
    missed_reason: agents_did_not_answer
@@ -1296,28 +1480,28 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Alfredo Quezada
    seconds_after: 48
 
-172. Suspected failed answer or unanswered ring
+195. Suspected failed answer or unanswered ring
    call_id: 3818119140
    caller: +1 321-557-0745
    called_number: Client Accounting (+18176970589)
    rang_agents: April Layacan
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-173. Suspected failed answer or unanswered ring
+196. Suspected failed answer or unanswered ring
    call_id: 3818137952
    caller: +1 972-979-1273
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-174. Suspected failed answer or unanswered ring
+197. Suspected failed answer or unanswered ring
    call_id: 3818138892
    caller: +1 404-563-3106
    called_number: Concierge ATL (+14044813792)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-175. Caller called back after missed call
+198. Caller called back after missed call
    call_id: 3818138901
    caller: +1 661-440-3670
    missed_reason: agents_did_not_answer
@@ -1325,14 +1509,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 64
 
-176. Suspected failed answer or unanswered ring
+199. Suspected failed answer or unanswered ring
    call_id: 3818138901
    caller: +1 661-440-3670
    called_number: Niño Cinco DID (+12142337578)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-177. Caller called back after missed call
+200. Caller called back after missed call
    call_id: 3818141362
    caller: +1 661-440-3670
    missed_reason: agents_did_not_answer
@@ -1340,14 +1524,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 208
 
-178. Suspected failed answer or unanswered ring
+201. Suspected failed answer or unanswered ring
    call_id: 3818141362
    caller: +1 661-440-3670
    called_number: Niño Cinco DID (+12142337578)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-179. Caller called back after missed call
+202. Caller called back after missed call
    call_id: 3818147374
    caller: +1 754-214-4631
    missed_reason: agents_did_not_answer
@@ -1355,14 +1539,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 395
 
-180. Suspected failed answer or unanswered ring
+203. Suspected failed answer or unanswered ring
    call_id: 3818147374
    caller: +1 754-214-4631
    called_number: Concierge ORL/TPA (+14076983382)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-181. Caller called back after missed call
+204. Caller called back after missed call
    call_id: 3818149236
    caller: +1 661-440-3670
    missed_reason: agents_did_not_answer
@@ -1370,14 +1554,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 495
 
-182. Suspected failed answer or unanswered ring
+205. Suspected failed answer or unanswered ring
    call_id: 3818149236
    caller: +1 661-440-3670
    called_number: Niño Cinco DID (+12142337578)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-183. Caller called back after missed call
+206. Caller called back after missed call
    call_id: 3818162142
    caller: +1 754-214-4631
    missed_reason: agents_did_not_answer
@@ -1385,21 +1569,21 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Mira Vencilao
    seconds_after: 108
 
-184. Suspected failed answer or unanswered ring
+207. Suspected failed answer or unanswered ring
    call_id: 3818162142
    caller: +1 754-214-4631
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-185. Suspected failed answer or unanswered ring
+208. Suspected failed answer or unanswered ring
    call_id: 3818163652
    caller: +1 940-374-4936
    called_number: Mike Jeppson DID (+12143477394)
    rang_agents: Mike Jeppson
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-186. Caller called back after missed call
+209. Caller called back after missed call
    call_id: 3818165469
    caller: +1 469-754-8195
    missed_reason: null
@@ -1407,49 +1591,49 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 4
 
-187. Suspected failed answer or unanswered ring
+210. Suspected failed answer or unanswered ring
    call_id: 3818166255
    caller: +1 661-440-3670
    called_number: Niño Cinco DID (+12142337578)
    rang_agents: Mira Vencilao
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-188. Suspected failed answer or unanswered ring
+211. Suspected failed answer or unanswered ring
    call_id: 3818168092
    caller: +1 713-249-5183
    called_number: Client Accounting (+18176970589)
    rang_agents: Ana Manlunas
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-189. Suspected failed answer or unanswered ring
+212. Suspected failed answer or unanswered ring
    call_id: 3818187012
    caller: +1 912-306-3527
    called_number: Mike Jeppson DID (+12143477394)
    rang_agents: Mike Jeppson
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-190. Suspected failed answer or unanswered ring
+213. Suspected failed answer or unanswered ring
    call_id: 3818192332
    caller: +1 214-282-1911
    called_number: Glenda Malone DID (+12142337573)
    rang_agents: Glenda Malone
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-191. Suspected failed answer or unanswered ring
+214. Suspected failed answer or unanswered ring
    call_id: 3818199038
    caller: +1 469-271-5633
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Mira Vencilao, Jhonrey Joaquin, Ana Manlunas
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-192. Suspected failed answer or unanswered ring
+215. Suspected failed answer or unanswered ring
    call_id: 3818222374
    caller: +1 645-225-3388
    called_number: DFW/SAT/HOU/OKC Resident Accounting (+18172007054)
    rang_agents: Ica Roxas
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-193. Caller called back after missed call
+216. Caller called back after missed call
    call_id: 3818258605
    caller: +1 317-441-2519
    missed_reason: no_available_agent
@@ -1457,7 +1641,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 68
 
-194. Caller called back after missed call
+217. Caller called back after missed call
    call_id: 3818260552
    caller: +1 317-441-2519
    missed_reason: agents_did_not_answer
@@ -1465,14 +1649,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 3
 
-195. Suspected failed answer or unanswered ring
+218. Suspected failed answer or unanswered ring
    call_id: 3818260552
    caller: +1 317-441-2519
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Ana Manlunas
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-196. Caller called back after missed call
+219. Caller called back after missed call
    call_id: 3818263010
    caller: +1 317-441-2519
    missed_reason: agents_did_not_answer
@@ -1480,14 +1664,14 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 19
 
-197. Suspected failed answer or unanswered ring
+220. Suspected failed answer or unanswered ring
    call_id: 3818263010
    caller: +1 317-441-2519
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Ana Manlunas
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-198. Caller called back after missed call
+221. Caller called back after missed call
    call_id: 3818265363
    caller: +1 317-441-2519
    missed_reason: no_available_agent
@@ -1495,7 +1679,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 74
 
-199. Caller called back after missed call
+222. Caller called back after missed call
    call_id: 3818267493
    caller: +1 317-441-2519
    missed_reason: agents_did_not_answer
@@ -1503,28 +1687,28 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 176
 
-200. Suspected failed answer or unanswered ring
+223. Suspected failed answer or unanswered ring
    call_id: 3818267493
    caller: +1 317-441-2519
    called_number: DFW/SAT/HOU/OKC Resident Accounting (+18172007054)
    rang_agents: Ica Roxas
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-201. Suspected failed answer or unanswered ring
+224. Suspected failed answer or unanswered ring
    call_id: 3818275632
    caller: +1 317-441-2519
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Jhonrey Joaquin
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-202. Suspected failed answer or unanswered ring
+225. Suspected failed answer or unanswered ring
    call_id: 3818285689
    caller: +1 805-285-6104
    called_number: Marco Serrano DID (+12142337577)
    rang_agents: Marco Serrano
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-203. Caller called back after missed call
+226. Caller called back after missed call
    call_id: 3818288357
    caller: +1 817-233-8665
    missed_reason: out_of_opening_hours
@@ -1532,7 +1716,7 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 2
 
-204. Caller called back after missed call
+227. Caller called back after missed call
    call_id: 3818291555
    caller: +1 407-745-7730
    missed_reason: agents_did_not_answer
@@ -1540,35 +1724,35 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: null
    seconds_after: 46
 
-205. Suspected failed answer or unanswered ring
+228. Suspected failed answer or unanswered ring
    call_id: 3818291555
    caller: +1 407-745-7730
    called_number: Alfredo Quezada DID (+14076983435)
    rang_agents: Alfredo Quezada
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-206. Suspected failed answer or unanswered ring
+229. Suspected failed answer or unanswered ring
    call_id: 3818293340
    caller: +1 407-745-7730
    called_number: Alfredo Quezada DID (+14076983435)
    rang_agents: Alfredo Quezada
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-207. Suspected failed answer or unanswered ring
+230. Suspected failed answer or unanswered ring
    call_id: 3818311073
    caller: +1 407-745-7730
    called_number: Alfredo Quezada DID (+14076983435)
    rang_agents: Alfredo Quezada
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-208. Suspected failed answer or unanswered ring
+231. Suspected failed answer or unanswered ring
    call_id: 3818334782
    caller: +1 808-896-9899
    called_number: Niño Cinco DID (+12142337578)
    rang_agents: Ana Manlunas, Jhonrey Joaquin
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-209. Caller called back after missed call
+232. Caller called back after missed call
    call_id: 3818336434
    caller: +1 406-781-5217
    missed_reason: agents_did_not_answer
@@ -1576,28 +1760,28 @@ Generated: May 29, 2026, 7:58:27 PM CDT
    callback_answered_by: Ana Manlunas
    seconds_after: 58
 
-210. Suspected failed answer or unanswered ring
+233. Suspected failed answer or unanswered ring
    call_id: 3818336434
    caller: +1 406-781-5217
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Ana Manlunas, Jhonrey Joaquin
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-211. Suspected failed answer or unanswered ring
+234. Suspected failed answer or unanswered ring
    call_id: 3818355210
    caller: +1 718-669-0786
    called_number: Gerardo Gomez DID (+14055946925)
    rang_agents: Gerardo Gomez
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-212. Suspected failed answer or unanswered ring
+235. Suspected failed answer or unanswered ring
    call_id: 3818373456
    caller: +1 469-271-5633
    called_number: Concierge DFW/HOU (+12142337576)
    rang_agents: Jhonrey Joaquin, Ana Manlunas
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
 
-213. Caller called back after missed call
+236. Caller called back after missed call
    call_id: 3818407032
    caller: +1 469-761-3965
    missed_reason: no_available_agent

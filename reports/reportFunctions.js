@@ -1,6 +1,16 @@
 const fs = require('fs');
 const path = require('path');
 
+function loadRoster() {
+    const filePath = path.join(__dirname, '..', 'aircall_roster.json');
+
+    if (!fs.existsSync(filePath)) {
+        return { users: [], numbers: [], teams: [] };
+    }
+
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
 const { buildExecutiveHtml } = require('./executiveHtml');
 const { buildUsersHtml } = require('./usersHtml');
 const { buildBackfillTestHtml } = require('./backfillHtml');
@@ -500,13 +510,6 @@ function getExecutiveMetrics(calls) {
 
     const allHistoricalCalls = Object.values(calls).filter(call => call.call_core);
 
-    [3817502210, 3816776158].forEach(id => {
-    const call = calls[id];
-    const core = call?.call_core || {};
-    const routing = call?.routing_analysis || {};
-
-});
-
     const allCalls = allHistoricalCalls.filter(call =>
         isTodayCentral(call.call_core?.started_at)
     );
@@ -569,6 +572,7 @@ function getExecutiveMetrics(calls) {
             : '0.0';
 
     const userDailyStats = {};
+    const roster = loadRoster();    
 
         inboundCalls.forEach(call => {
         const core = call.call_core || {};
@@ -617,29 +621,62 @@ function getExecutiveMetrics(calls) {
 
         const answeredEmail = core.answered_by_email;
 
-if (answeredEmail) {
-    const alreadyCountedAsRing = rangAgents.some(agent =>
-        agent.email === answeredEmail
-    );
+        if (answeredEmail) {
+            const alreadyCountedAsRing = rangAgents.some(agent =>
+                agent.email === answeredEmail
+            );
 
-    const key = answeredEmail;
+            const key = answeredEmail;
 
-    if (!userDailyStats[key]) {
-        userDailyStats[key] = {
-            name: core.answered_by_name || answeredEmail,
-            email: answeredEmail,
-            totalRings: 0,
-            answeredCalls: 0,
-            declinedCalls: 0,
-            missedCalls: 0
-        };
-    }
+            if (!userDailyStats[key]) {
+                userDailyStats[key] = {
+                    name: core.answered_by_name || answeredEmail,
+                    email: answeredEmail,
+                    totalRings: 0,
+                    answeredCalls: 0,
+                    declinedCalls: 0,
+                    missedCalls: 0
+                };
+            }
 
-    if (!alreadyCountedAsRing) {
-        userDailyStats[key].totalRings += 1;
-        userDailyStats[key].answeredCalls += 1;
-    }
-}
+            if (!alreadyCountedAsRing) {
+                userDailyStats[key].totalRings += 1;
+                userDailyStats[key].answeredCalls += 1;
+            }
+        }
+
+        const isMissed = call.derived_flags?.missed;
+        const numberName = String(core.called_number_name || '');
+        const isDidCall = numberName.toLowerCase().endsWith(' did');
+
+        if (isMissed && isDidCall && rangAgents.length === 0) {
+            const didOwnerName = numberName
+                .replace(/\s+DID$/i, '')
+                .trim()
+                .toLowerCase();
+
+            const didOwner = (roster.users || []).find(user =>
+                String(user.name || '').trim().toLowerCase() === didOwnerName
+            );
+
+            if (didOwner?.email) {
+                const key = String(didOwner.email).toLowerCase();
+
+                if (!userDailyStats[key]) {
+                    userDailyStats[key] = {
+                        name: didOwner.name || numberName,
+                        email: key,
+                        totalRings: 0,
+                        answeredCalls: 0,
+                        declinedCalls: 0,
+                        missedCalls: 0
+                    };
+                }
+
+                userDailyStats[key].totalRings += 1;
+                userDailyStats[key].missedCalls += 1;
+            }
+        }
 
         
     });
@@ -873,5 +910,6 @@ module.exports = {
     writeExecutiveHtmlReport,
     writeUsersHtmlReport,
     writeBackfillTestHtmlReport,
-    writeExceptionsReport
+    writeExceptionsReport,
+    getExecutiveMetrics
 };
