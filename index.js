@@ -369,8 +369,98 @@ app.get('/reset', (req, res) => {
     res.redirect('/report');
 });
 
+app.get('/calls-json', (req, res) => {
+    res.sendFile(path.join(__dirname, 'calls.json'));
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
+});
+
+app.get('/debug-user-calls/:email', (req, res) => {
+    const email = String(req.params.email || '').toLowerCase();
+
+    const matches = Object.values(calls)
+        .filter(call => {
+            const core = call.call_core || {};
+            const routing = call.routing_analysis || {};
+            const rangAgents = routing.rang_agents || [];
+
+            const rangThisUser = rangAgents.some(agent =>
+                String(agent.email || '').toLowerCase() === email
+            );
+
+            const answeredByThisUser =
+                String(core.answered_by_email || '').toLowerCase() === email;
+
+            return rangThisUser || answeredByThisUser;
+        })
+        .map(call => {
+            const core = call.call_core || {};
+            const routing = call.routing_analysis || {};
+            const rangAgents = routing.rang_agents || [];
+
+            return {
+                call_id: core.call_id,
+                number: core.called_number_name,
+                result: core.result,
+                answered_by: core.answered_by_name,
+                answered_by_email: core.answered_by_email,
+                rang_agents_count: rangAgents.length,
+                rang_agents: rangAgents.map(agent => ({
+                    name: agent.name,
+                    email: agent.email
+                })),
+                source_reason: rangAgents.some(agent =>
+                    String(agent.email || '').toLowerCase() === email
+                )
+                    ? 'rang_agent'
+                    : 'answered_by_fallback'
+            };
+        });
+
+    res.json({
+        email,
+        count: matches.length,
+        calls: matches
+    });
+});
+
+app.get('/debug-answer-fallback', (req, res) => {
+    const { getExecutiveMetrics } = require('./reports/reportFunctions');
+    const metrics = getExecutiveMetrics(calls);
+
+    const fallbackAnsweredCalls = Object.values(calls)
+        .filter(call => {
+            const core = call.call_core || {};
+            const routing = call.routing_analysis || {};
+            const rangAgents = routing.rang_agents || [];
+
+            return (
+                core.answered_by_email &&
+                rangAgents.length === 0 &&
+                call.derived_flags?.answered
+            );
+        })
+        .map(call => {
+            const core = call.call_core || {};
+            const stats = metrics.userDailyStats[core.answered_by_email];
+
+            return {
+                call_id: core.call_id,
+                number: core.called_number_name,
+                answered_by: core.answered_by_name,
+                answered_by_email: core.answered_by_email,
+                counted_in_user_stats: Boolean(stats),
+                user_total_rings: stats?.totalRings || 0,
+                user_answered_calls: stats?.answeredCalls || 0
+            };
+        });
+
+    res.json({
+        count: fallbackAnsweredCalls.length,
+        calls: fallbackAnsweredCalls
+    });
 });
 
 app.get('/debug-team-mapping', (req, res) => {

@@ -18,7 +18,6 @@ function formatCentralDateTime(date = new Date()) {
 
 function buildExecutiveHtml(metrics, reportingStatus, teamMappings = [], userRoleOverrides = {}, roster = {}) {
     const missed = metrics.missedCallBreakdown;
-
     function getRosterUser(email) {
         return (roster.users || []).find(user =>
             String(user.email || '').toLowerCase() === String(email || '').toLowerCase()
@@ -83,6 +82,7 @@ function buildExecutiveHtml(metrics, reportingStatus, teamMappings = [], userRol
         : 0;
 
     return `
+
         <div class="section team-section">
             <div class="team-header">
                 <div>
@@ -422,55 +422,62 @@ function buildExecutiveHtml(metrics, reportingStatus, teamMappings = [], userRol
         </table>
     </div>
 
-    <div class="grid">
-        <div class="card executive-card">
-            <div class="label">Today's Unique Calls</div>
-            <div class="metric">${metrics.allCalls.length}</div>
-        </div>
+<div class="grid">
+    <div class="card executive-card">
+        <div class="label">Today's Unique Calls</div>
+        <div class="metric">${metrics.allCalls.length}</div>
+    </div>
 
-        <div class="card executive-card">
-            <div class="label">Raw Answer Rate</div>
-            <div class="metric">${metrics.companyAnswerRate}%</div>
-        </div>
+    <div class="card executive-card">
+        <div class="label">All Calls</div>
+        <div class="metric">${metrics.allCalls.length}</div>
+    </div>
 
-        <div class="card executive-card">
-            <div class="label">Business Hours Raw Answer Rate</div>
-        
-            <div class="metric">
-                ${metrics.businessHourRawAnswerRate}%
-            </div>
+    <div class="card executive-card">
+        <div class="label">Inbound Calls</div>
+        <div class="metric">${metrics.inboundCalls?.length || 0}</div>
+    </div>
 
-            <div class="small">
-                ${metrics.businessHourAnsweredCalls.length} /
-                ${metrics.businessHourCalls.length}
-                calls from 7 AM–5 PM CT
-            </div>
-        </div>
+    <div class="card executive-card">
+        <div class="label">Outbound Calls</div>
+        <div class="metric">${metrics.outboundCalls?.length || 0}</div>
+    </div>
 
-        <div class="card executive-card">
-            <div class="label">After Hours Raw Answer Rate</div>
+    <div class="card executive-card">
+        <div class="label">Raw Answer Rate</div>
+        <div class="metric">${metrics.companyAnswerRate}%</div>
+    </div>
 
-            <div class="metric">
-                ${metrics.afterHoursRawAnswerRate}%
-            </div>
-
-            <div class="small">
-                ${metrics.afterHoursAnsweredCalls.length} /
-                ${metrics.afterHoursCalls.length}
-                calls outside 7 AM–5 PM CT
-            </div>
-        </div>
-
-        <div class="card executive-card">
-            <div class="label">Customer Resolution Rate</div>
-            <div class="metric">${metrics.modifiedCompanyOutcomes.modifiedCompanyAnswerRate}%</div>
-        </div>
-
-        <div class="card executive-card">
-            <div class="label">Occupancy Miss Rate</div>
-            <div class="metric">${missed.busyMissRateOfAllCalls}%</div>
+    <div class="card executive-card">
+        <div class="label">Business Hours Raw Answer Rate</div>
+        <div class="metric">${metrics.businessHourRawAnswerRate}%</div>
+        <div class="small">
+            ${metrics.businessHourAnsweredCalls.length} /
+            ${metrics.businessHourCalls.length}
+            calls from 7 AM–5 PM CT
         </div>
     </div>
+
+    <div class="card executive-card">
+        <div class="label">After Hours Raw Answer Rate</div>
+        <div class="metric">${metrics.afterHoursRawAnswerRate}%</div>
+        <div class="small">
+            ${metrics.afterHoursAnsweredCalls.length} /
+            ${metrics.afterHoursCalls.length}
+            calls outside 7 AM–5 PM CT
+        </div>
+    </div>
+
+    <div class="card executive-card">
+        <div class="label">Customer Resolution Rate</div>
+        <div class="metric">${metrics.modifiedCompanyOutcomes.modifiedCompanyAnswerRate}%</div>
+    </div>
+
+    <div class="card executive-card">
+        <div class="label">Occupancy Miss Rate</div>
+        <div class="metric">${missed.busyMissRateOfAllCalls}%</div>
+    </div>
+</div>
 
     <div class="section">
         <h2>Team Performance</h2>

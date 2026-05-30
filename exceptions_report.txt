@@ -1,5 +1,5 @@
 EXCEPTIONS REPORT
-Generated: May 29, 2026, 4:31:57 PM CDT
+Generated: May 29, 2026, 7:58:27 PM CDT
 
 1. Caller called back after missed call
    call_id: 3814046815
@@ -1448,4 +1448,160 @@ Generated: May 29, 2026, 4:31:57 PM CDT
    called_number: DFW/SAT/HOU/OKC Resident Accounting (+18172007054)
    rang_agents: Ica Roxas
    reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+193. Caller called back after missed call
+   call_id: 3818258605
+   caller: +1 317-441-2519
+   missed_reason: no_available_agent
+   callback_call_id: 3818260552
+   callback_answered_by: null
+   seconds_after: 68
+
+194. Caller called back after missed call
+   call_id: 3818260552
+   caller: +1 317-441-2519
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3818263010
+   callback_answered_by: null
+   seconds_after: 3
+
+195. Suspected failed answer or unanswered ring
+   call_id: 3818260552
+   caller: +1 317-441-2519
+   called_number: Concierge DFW/HOU (+12142337576)
+   rang_agents: Ana Manlunas
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+196. Caller called back after missed call
+   call_id: 3818263010
+   caller: +1 317-441-2519
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3818265363
+   callback_answered_by: null
+   seconds_after: 19
+
+197. Suspected failed answer or unanswered ring
+   call_id: 3818263010
+   caller: +1 317-441-2519
+   called_number: Concierge DFW/HOU (+12142337576)
+   rang_agents: Ana Manlunas
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+198. Caller called back after missed call
+   call_id: 3818265363
+   caller: +1 317-441-2519
+   missed_reason: no_available_agent
+   callback_call_id: 3818267493
+   callback_answered_by: null
+   seconds_after: 74
+
+199. Caller called back after missed call
+   call_id: 3818267493
+   caller: +1 317-441-2519
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3818275632
+   callback_answered_by: null
+   seconds_after: 176
+
+200. Suspected failed answer or unanswered ring
+   call_id: 3818267493
+   caller: +1 317-441-2519
+   called_number: DFW/SAT/HOU/OKC Resident Accounting (+18172007054)
+   rang_agents: Ica Roxas
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+201. Suspected failed answer or unanswered ring
+   call_id: 3818275632
+   caller: +1 317-441-2519
+   called_number: Concierge DFW/HOU (+12142337576)
+   rang_agents: Jhonrey Joaquin
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+202. Suspected failed answer or unanswered ring
+   call_id: 3818285689
+   caller: +1 805-285-6104
+   called_number: Marco Serrano DID (+12142337577)
+   rang_agents: Marco Serrano
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+203. Caller called back after missed call
+   call_id: 3818288357
+   caller: +1 817-233-8665
+   missed_reason: out_of_opening_hours
+   callback_call_id: 3818288642
+   callback_answered_by: null
+   seconds_after: 2
+
+204. Caller called back after missed call
+   call_id: 3818291555
+   caller: +1 407-745-7730
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3818293340
+   callback_answered_by: null
+   seconds_after: 46
+
+205. Suspected failed answer or unanswered ring
+   call_id: 3818291555
+   caller: +1 407-745-7730
+   called_number: Alfredo Quezada DID (+14076983435)
+   rang_agents: Alfredo Quezada
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+206. Suspected failed answer or unanswered ring
+   call_id: 3818293340
+   caller: +1 407-745-7730
+   called_number: Alfredo Quezada DID (+14076983435)
+   rang_agents: Alfredo Quezada
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+207. Suspected failed answer or unanswered ring
+   call_id: 3818311073
+   caller: +1 407-745-7730
+   called_number: Alfredo Quezada DID (+14076983435)
+   rang_agents: Alfredo Quezada
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+208. Suspected failed answer or unanswered ring
+   call_id: 3818334782
+   caller: +1 808-896-9899
+   called_number: Niño Cinco DID (+12142337578)
+   rang_agents: Ana Manlunas, Jhonrey Joaquin
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+209. Caller called back after missed call
+   call_id: 3818336434
+   caller: +1 406-781-5217
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3818339303
+   callback_answered_by: Ana Manlunas
+   seconds_after: 58
+
+210. Suspected failed answer or unanswered ring
+   call_id: 3818336434
+   caller: +1 406-781-5217
+   called_number: Concierge DFW/HOU (+12142337576)
+   rang_agents: Ana Manlunas, Jhonrey Joaquin
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+211. Suspected failed answer or unanswered ring
+   call_id: 3818355210
+   caller: +1 718-669-0786
+   called_number: Gerardo Gomez DID (+14055946925)
+   rang_agents: Gerardo Gomez
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+212. Suspected failed answer or unanswered ring
+   call_id: 3818373456
+   caller: +1 469-271-5633
+   called_number: Concierge DFW/HOU (+12142337576)
+   rang_agents: Jhonrey Joaquin, Ana Manlunas
+   reason: Agents were rung, no answer event was recorded, and not every rung agent declined.
+
+213. Caller called back after missed call
+   call_id: 3818407032
+   caller: +1 469-761-3965
+   missed_reason: no_available_agent
+   callback_call_id: 3818407234
+   callback_answered_by: null
+   seconds_after: 8
 

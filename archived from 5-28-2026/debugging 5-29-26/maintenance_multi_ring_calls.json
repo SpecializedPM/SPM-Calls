@@ -1,0 +1,40 @@
+[
+  {
+    "call_id": 3814452536,
+    "number": "Emergency Maintenance ALL",
+    "result": "ANSWERED",
+    "answered_by": "Jessica Vazquez",
+    "answered_by_email": "jessica@specialized247.com",
+    "rang_agents": [
+      {
+        "name": "Jhonrey Joaquin",
+        "email": "joaquin@specialized247.com"
+      },
+      {
+        "name": "Jessica Vazquez",
+        "email": "jessica@specialized247.com"
+      }
+    ]
+  },
+  {
+    "call_id": 3817804763,
+    "number": "ORL NEW Maintenance",
+    "result": "MISSED",
+    "answered_by": null,
+    "answered_by_email": null,
+    "rang_agents": [
+      {
+        "name": "Alfredo Quezada",
+        "email": "alfredo@specialized247.com"
+      },
+      {
+        "name": "John Simon",
+        "email": "john@specialized247.com"
+      },
+      {
+        "name": "George Melendez",
+        "email": "george@specialized247.com"
+      }
+    ]
+  }
+]

@@ -449,7 +449,7 @@ function getRingAttempts(calls) {
                     answered_by: core.answered_by_name,
                     source: 'aircall_ringing_on_agent'
                 });
-            });
+            }); 
 
             return;
         }
@@ -500,14 +500,29 @@ function getExecutiveMetrics(calls) {
 
     const allHistoricalCalls = Object.values(calls).filter(call => call.call_core);
 
+    [3817502210, 3816776158].forEach(id => {
+    const call = calls[id];
+    const core = call?.call_core || {};
+    const routing = call?.routing_analysis || {};
+
+});
+
     const allCalls = allHistoricalCalls.filter(call =>
         isTodayCentral(call.call_core?.started_at)
     );
 
-    const answeredCalls = allCalls.filter(call => call.derived_flags?.answered);
-    const missedCalls = allCalls.filter(call => call.derived_flags?.missed);
+    const inboundCalls = allCalls.filter(call =>
+        call.call_core?.direction === 'inbound'
+    );
 
-    const businessHourCalls = allCalls.filter(call =>
+    const outboundCalls = allCalls.filter(call =>
+        call.call_core?.direction === 'outbound'
+    );
+    
+    const answeredCalls = inboundCalls.filter(call => call.derived_flags?.answered);
+    const missedCalls = inboundCalls.filter(call => call.derived_flags?.missed);
+
+    const businessHourCalls = inboundCalls.filter(call =>
         isBusinessHoursCentral(call.call_core?.started_at)
     );
 
@@ -520,7 +535,7 @@ function getExecutiveMetrics(calls) {
             ? ((businessHourAnsweredCalls.length / businessHourCalls.length) * 100).toFixed(1)
             : '0.0';
 
-    const afterHoursCalls = allCalls.filter(call =>
+    const afterHoursCalls = inboundCalls.filter(call =>
         !isBusinessHoursCentral(call.call_core?.started_at)
     );
 
@@ -534,11 +549,11 @@ function getExecutiveMetrics(calls) {
             : '0.0';
 
     const companyAnswerRate =
-        allCalls.length > 0
-            ? ((answeredCalls.length / allCalls.length) * 100).toFixed(1)
+        inboundCalls.length > 0
+            ? ((answeredCalls.length / inboundCalls.length) * 100).toFixed(1)
             : '0.0';
 
-    const routedCalls = allCalls.filter(call => {
+    const routedCalls = inboundCalls.filter(call => {
         const routing = call.routing_analysis || {};
         const rangAgents = routing.rang_agents || [];
         return rangAgents.length > 0;
@@ -555,11 +570,12 @@ function getExecutiveMetrics(calls) {
 
     const userDailyStats = {};
 
-    allCalls.forEach(call => {
+        inboundCalls.forEach(call => {
         const core = call.call_core || {};
         const routing = call.routing_analysis || {};
         const rangAgents = routing.rang_agents || [];
         const declinedAgents = routing.declined_agents || [];
+
 
         rangAgents.forEach(agent => {
             const key = agent.email || agent.name || agent.id || 'unknown';
@@ -598,6 +614,34 @@ function getExecutiveMetrics(calls) {
                 userDailyStats[key].missedCalls += 1;
             }
         });
+
+        const answeredEmail = core.answered_by_email;
+
+if (answeredEmail) {
+    const alreadyCountedAsRing = rangAgents.some(agent =>
+        agent.email === answeredEmail
+    );
+
+    const key = answeredEmail;
+
+    if (!userDailyStats[key]) {
+        userDailyStats[key] = {
+            name: core.answered_by_name || answeredEmail,
+            email: answeredEmail,
+            totalRings: 0,
+            answeredCalls: 0,
+            declinedCalls: 0,
+            missedCalls: 0
+        };
+    }
+
+    if (!alreadyCountedAsRing) {
+        userDailyStats[key].totalRings += 1;
+        userDailyStats[key].answeredCalls += 1;
+    }
+}
+
+        
     });
 
     const modifiedCompanyOutcomes = getModifiedCompanyOutcomes(calls);
@@ -634,6 +678,8 @@ function getExecutiveMetrics(calls) {
 
     return {
         allCalls,
+        inboundCalls,
+        outboundCalls,
         allHistoricalCalls,
         answeredCalls,
         missedCalls,
