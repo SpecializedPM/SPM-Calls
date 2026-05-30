@@ -474,6 +474,92 @@ app.get('/debug-calls/:ids', (req, res) => {
     res.json(results);
 });
 
+app.get('/backfill-call/:id', async (req, res) => {
+    const callId = req.params.id;
+
+    try {
+        const response = await fetch(`https://api.aircall.io/v1/calls/${callId}`, {
+            headers: {
+                Authorization: `Basic ${Buffer.from(`${process.env.AIRCALL_API_ID}:${process.env.AIRCALL_API_TOKEN}`).toString('base64')}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            return res.status(response.status).json(data);
+        }
+
+        calls[callId] = calls[callId] || {};
+
+        calls[callId].api_snapshots = calls[callId].api_snapshots || {};
+        calls[callId].api_snapshots.v1_call = data;
+
+        const apiCall = data.call;
+
+        calls[callId].call_core = {
+            call_id: apiCall.id,
+            call_uuid: apiCall.sid,
+            direction: apiCall.direction,
+            caller_number: apiCall.raw_digits,
+            called_number_name: apiCall.number?.name || null,
+            called_number_digits: apiCall.number?.digits || null,
+            result: apiCall.status === 'done' && apiCall.answered_at ? 'ANSWERED' : 'MISSED',
+            status: apiCall.status,
+            missed_call_reason: apiCall.missed_call_reason,
+            started_at: apiCall.started_at,
+            answered_at: apiCall.answered_at,
+            ended_at: apiCall.ended_at,
+            duration: apiCall.duration,
+            answered_by_name: apiCall.user?.name || null,
+            answered_by_email: apiCall.user?.email || null,
+            team_names: apiCall.teams?.map(team => team.name) || []
+        };
+
+        calls[callId].derived_flags = {
+            answered: Boolean(apiCall.answered_at),
+            missed: !apiCall.answered_at,
+            voicemail_left: Boolean(apiCall.voicemail),
+            owner_answered: false,
+            owner_unavailable: false,
+            owner_skipped: false,
+            answered_by_backup_agent: false,
+            callback_after_miss: false,
+            suspected_failed_answer: false
+        };
+
+        calls[callId].routing_analysis = calls[callId].routing_analysis || {
+            did_owner_email: null,
+            did_owner_status_at_call_time: null,
+            rang_agents: [],
+            declined_agents: [],
+            answered_by: apiCall.user
+                ? {
+                    id: apiCall.user.id,
+                    name: apiCall.user.name,
+                    email: apiCall.user.email,
+                    answered_at: apiCall.answered_at
+                }
+                : null,
+            why_owner_did_not_answer: 'Backfilled from Aircall API'
+        };
+
+        writeAllFiles();
+
+        res.json({
+            success: true,
+            call_id: callId,
+            call: calls[callId]
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
 app.get('/debug-team-mapping', (req, res) => {
     const roster = loadJson('aircall_roster.json', {
         users: [],
