@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 
 //location for aircall.js functions
@@ -45,6 +46,8 @@ const reportingState = loadJson('reporting_state.json', {
     started_at: Math.floor(Date.now() / 1000),
     stopped_at: null
 });
+
+const { buildExecutiveHtml } = require('./reports/executiveHtml');
 
 const numberOwners = {};
 
@@ -179,6 +182,23 @@ async function backfillBusinessDayCalls() {
         importedCount,
         from
     };
+}
+
+// ===== Daily Snapshot Helpers =====
+
+function isCallOnDate(call, dateString) {
+    const unixTimestamp =
+        call.call_core?.started_at ||
+        call.call_core?.created_at ||
+        call.timestamp;
+
+    if (!unixTimestamp) return false;
+
+    const localDate = new Date(unixTimestamp * 1000).toLocaleDateString('en-CA', {
+        timeZone: 'America/Chicago'
+    });
+
+    return localDate === dateString;
 }
 
 app.post('/webhooks/aircall', async (req, res) => {
@@ -338,6 +358,55 @@ app.get('/find-aircall-user', async (req, res) => {
     res.json(matches);
 });
 
+app.get('/daily-snapshot', (req, res) => {
+    const date = req.query.date;
+
+    if (!date) {
+        return res.status(400).send('Missing date. Use /daily-snapshot?date=YYYY-MM-DD');
+    }
+
+    const roster = loadJson('aircall_roster.json', {
+        users: [],
+        numbers: [],
+        teams: []
+    });
+
+    const dayCallsArray = Object.values(calls).filter(call =>
+        isCallOnDate(call, date)
+    );
+
+    const dayCalls = {};
+    dayCallsArray.forEach(call => {
+        const id = call.call_core?.call_id || call.id || call.call_id;
+        if (id) dayCalls[id] = call;
+    });
+
+    const metrics = getExecutiveMetrics(dayCalls, {
+        snapshotDate: date
+    });
+
+    const reportingStatus = {
+        status: 'Snapshot',
+        started: `${date} 12:00 AM CT`,
+        ended: `${date} 11:59 PM CT`
+    };
+
+    const html = buildExecutiveHtml(
+        metrics,
+        reportingStatus,
+        teamMappings,
+        userRoleOverrides,
+        roster
+    );
+
+    fs.mkdirSync('snapshots', { recursive: true });
+
+    const htmlPath = `snapshots/daily_snapshot_${date}.html`;
+    fs.writeFileSync(htmlPath, html);
+
+    res.send(html);
+});
+
 app.get('/users', async (req, res) => {
     await writeUsersFile();
     res.sendFile(path.join(__dirname, 'users_report.html'));
@@ -414,7 +483,7 @@ async function syncRecentAircallCalls() {
     console.log(`Fetched ${allApiCalls.length} calls`);
 
     const missing = allApiCalls.filter(apiCall =>
-        apiCall.direction === 'inbound' &&
+        ['inbound', 'outbound'].includes(apiCall.direction) &&
         !calls[String(apiCall.id)]
     );
 
@@ -433,7 +502,7 @@ async function syncRecentAircallCalls() {
 
     return {
         checked_count: allApiCalls.length,
-        missing_inbound_count: missing.length,
+        missing_call_count: missing.length,
         backfilled_count: backfilled.length,
         call_count_before: beforeCount,
         call_count_after: afterCount,

@@ -1,5 +1,5 @@
 EXCEPTIONS REPORT
-Generated: May 29, 2026, 9:58:07 PM CDT
+Generated: May 30, 2026, 10:09:15 PM CDT
 
 1. Caller called back after missed call
    call_id: 3814046815
@@ -1788,4 +1788,172 @@ Generated: May 29, 2026, 9:58:07 PM CDT
    callback_call_id: 3818407234
    callback_answered_by: null
    seconds_after: 8
+
+237. Caller called back after missed call
+   call_id: 3818508417
+   caller: +1 813-526-6028
+   missed_reason: out_of_opening_hours
+   callback_call_id: 3818508652
+   callback_answered_by: null
+   seconds_after: 76
+
+238. Caller called back after missed call
+   call_id: 3818857828
+   caller: +1 817-907-3190
+   missed_reason: no_available_agent
+   callback_call_id: 3818858068
+   callback_answered_by: null
+   seconds_after: 3
+
+239. Caller called back after missed call
+   call_id: 3818858068
+   caller: +1 817-907-3190
+   missed_reason: no_available_agent
+   callback_call_id: 3818864176
+   callback_answered_by: Ana Huizar
+   seconds_after: 406
+
+240. Caller called back after missed call
+   call_id: 3818886077
+   caller: +1 231-329-6917
+   missed_reason: out_of_opening_hours
+   callback_call_id: 3818886332
+   callback_answered_by: null
+   seconds_after: 8
+
+241. Caller called back after missed call
+   call_id: 3818914709
+   caller: +1 317-937-8439
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3818918498
+   callback_answered_by: null
+   seconds_after: 133
+
+242. Caller called back after missed call
+   call_id: 3818918498
+   caller: +1 317-937-8439
+   missed_reason: abandoned_in_ivr
+   callback_call_id: 3818919281
+   callback_answered_by: null
+   seconds_after: 16
+
+243. Caller called back after missed call
+   call_id: 3818919281
+   caller: +1 317-937-8439
+   missed_reason: out_of_opening_hours
+   callback_call_id: 3818919961
+   callback_answered_by: null
+   seconds_after: 35
+
+244. Caller called back after missed call
+   call_id: 3818931688
+   caller: +1 940-867-9891
+   missed_reason: no_available_agent
+   callback_call_id: 3818932548
+   callback_answered_by: Ana Huizar
+   seconds_after: 41
+
+245. Caller called back after missed call
+   call_id: 3818931762
+   caller: +1 214-803-7683
+   missed_reason: abandoned_in_ivr
+   callback_call_id: 3818934090
+   callback_answered_by: null
+   seconds_after: 134
+
+246. Caller called back after missed call
+   call_id: 3818961226
+   caller: +1 214-803-7683
+   missed_reason: abandoned_in_ivr
+   callback_call_id: 3818964285
+   callback_answered_by: Jhonrey Joaquin
+   seconds_after: 175
+
+247. Caller called back after missed call
+   call_id: 3818971122
+   caller: +1 214-803-7683
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3818972063
+   callback_answered_by: null
+   seconds_after: 13
+
+248. Caller called back after missed call
+   call_id: 3818972063
+   caller: +1 214-803-7683
+   missed_reason: agents_did_not_answer
+   callback_call_id: 3818972986
+   callback_answered_by: Ana Huizar
+   seconds_after: 3
+
+249. Caller called back after missed call
+   call_id: 3819037423
+   caller: +1 510-500-2525
+   missed_reason: no_available_agent
+   callback_call_id: 3819038824
+   callback_answered_by: null
+   seconds_after: 17
+
+250. Caller called back after missed call
+   call_id: 3819038824
+   caller: +1 510-500-2525
+   missed_reason: no_available_agent
+   callback_call_id: 3819039249
+   callback_answered_by: null
+   seconds_after: 8
+
+251. Caller called back after missed call
+   call_id: 3819039249
+   caller: +1 510-500-2525
+   missed_reason: out_of_opening_hours
+   callback_call_id: 3819039416
+   callback_answered_by: Jhonrey Joaquin
+   seconds_after: 6
+
+252. Caller called back after missed call
+   call_id: 3819045430
+   caller: +1 404-548-9296
+   missed_reason: short_abandoned
+   callback_call_id: 3819045465
+   callback_answered_by: null
+   seconds_after: 4
+
+253. Caller called back after missed call
+   call_id: 3819072400
+   caller: +1 940-400-5283
+   missed_reason: out_of_opening_hours
+   callback_call_id: 3819073721
+   callback_answered_by: Jhonrey Joaquin
+   seconds_after: 91
+
+254. Caller called back after missed call
+   call_id: 3819148239
+   caller: +1 806-773-1988
+   missed_reason: no_available_agent
+   callback_call_id: 3819148584
+   callback_answered_by: null
+   seconds_after: 14
+
+255. Caller called back after missed call
+   call_id: 3819195378
+   caller: +1 972-679-3578
+   missed_reason: no_available_agent
+   callback_call_id: 3819197325
+   callback_answered_by: null
+   seconds_after: 192
+
+256. Caller called back after missed call
+   call_id: 3819206494
+   caller: +1 321-488-7317
+   missed_reason: no_available_agent
+   callback_call_id: 3819207174
+   callback_answered_by: null
+   seconds_after: 5
+
+257. Caller called back after missed call
+   call_id: 3819207037
+   caller: +1 317-698-3964
+   missed_reason: no_available_agent
+   callback_call_id: 3819210697
+   callback_answered_by: null
+   seconds_after: 373
 

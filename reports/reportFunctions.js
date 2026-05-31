@@ -485,33 +485,37 @@ function getRingAttempts(calls) {
     return ringAttempts;
 }
 
-function isTodayCentral(unixTimestamp) {
+function isDateCentral(unixTimestamp, targetDate = null) {
     if (!unixTimestamp) return false;
 
-    const nowCentral = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'America/Chicago',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
-    }).format(new Date());
-
-    const callCentral = new Intl.DateTimeFormat('en-US', {
+    const callDate = new Intl.DateTimeFormat('en-CA', {
         timeZone: 'America/Chicago',
         year: 'numeric',
         month: '2-digit',
         day: '2-digit'
     }).format(new Date(unixTimestamp * 1000));
 
-    return nowCentral === callCentral;
+    if (targetDate) {
+        return callDate === targetDate;
+    }
+
+    const todayCentral = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'America/Chicago',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    }).format(new Date());
+
+    return callDate === todayCentral;
 }
 
-function getExecutiveMetrics(calls) {
+function getExecutiveMetrics(calls, options = {}) {
     detectCallbacks(calls);
 
     const allHistoricalCalls = Object.values(calls).filter(call => call.call_core);
 
     const allCalls = allHistoricalCalls.filter(call =>
-        isTodayCentral(call.call_core?.started_at)
+        isDateCentral(call.call_core?.started_at, options.snapshotDate)
     );
 
     const inboundCalls = allCalls.filter(call =>

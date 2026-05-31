@@ -219,7 +219,7 @@
         <div>
             <h1>Aircall Executive Report</h1>
             <div class="subtitle">
-                Generated: 5/30/26, 10:09:15 PM · Auto-refreshes every 30 seconds
+                Generated: 5/30/26, 10:09:28 PM · Auto-refreshes every 30 seconds
             </div>
         </div>
 
@@ -242,12 +242,12 @@
             </tr>
             <tr>
                 <td>
-                    <span class="status-badge status-reporting">
-                        Reporting
+                    <span class="status-badge status-stopped">
+                        Snapshot
                     </span>
                 </td>
-                <td>May 28, 2026, 1:50:16 PM CDT</td>
-                <td>N/A</td>
+                <td>2026-05-30 12:00 AM CT</td>
+                <td>2026-05-30 11:59 PM CT</td>
             </tr>
         </table>
     </div>
@@ -300,7 +300,7 @@
 
     <div class="card executive-card">
         <div class="label">Customer Resolution Rate</div>
-        <div class="metric">64.7%</div>
+        <div class="metric">51.5%</div>
     </div>
 
     <div class="card executive-card">
@@ -1870,7 +1870,7 @@ window.addEventListener('load', () => {
                 <br>
                 <span class="small">Groups quick repeat calls from the same caller into one customer interaction. If one call in that sequence is answered, the interaction counts as successful.</span>
             </td>
-            <td>64.7%</td>
+            <td>51.5%</td>
         </tr>
 
         <tr><td colspan="2" class="group-title">Business Hours Detail</td></tr>
@@ -1913,9 +1913,9 @@ window.addEventListener('load', () => {
 
         <tr><td colspan="2" class="group-title">Recovery Metrics</td></tr>
 
-        <tr><td>Modified customer interactions</td><td>711</td></tr>
-        <tr><td>Successful customer interactions</td><td>460</td></tr>
-        <tr><td>Recovered missed calls</td><td>78</td></tr>
+        <tr><td>Modified customer interactions</td><td>103</td></tr>
+        <tr><td>Successful customer interactions</td><td>53</td></tr>
+        <tr><td>Recovered missed calls</td><td>6</td></tr>
         <tr><td>Callbacks after missed calls</td><td>21</td></tr>
 
         <tr><td colspan="2" class="group-title">Capacity / Staffing Metrics</td></tr>
@@ -1926,8 +1926,8 @@ window.addEventListener('load', () => {
 
         <tr><td colspan="2" class="group-title">Avoidable Miss Metrics</td></tr>
 
-        <tr><td>Declined while available misses</td><td>8</td></tr>
-        <tr><td>Avoidable miss rate of missed calls</td><td>1.9%</td></tr>
+        <tr><td>Declined while available misses</td><td>0</td></tr>
+        <tr><td>Avoidable miss rate of missed calls</td><td>0.0%</td></tr>
 
         <tr><td colspan="2" class="group-title">System / Telemetry Confidence</td></tr>
 
@@ -1937,10 +1937,10 @@ window.addEventListener('load', () => {
                 <br>
                 <span class="small">Missed calls with no captured agent ring data. This can mean true no-ring routing, API-only backfill, webhook gaps, IVR behavior, or incomplete telemetry.</span>
             </td>
-            <td>321</td>
+            <td>72</td>
         </tr>
 
-        <tr><td>Other missed calls</td><td>98</td></tr>
+        <tr><td>Other missed calls</td><td>0</td></tr>
         <tr><td>Suspected failed answers</td><td>0</td></tr>
     </table>
     </div>
@@ -1949,108 +1949,17 @@ window.addEventListener('load', () => {
         <h2>Internal Call Activity</h2>
         <table>
             <tr><th>Metric</th><th>Value</th></tr>
-            <tr><td>Total internal call records</td><td>995</td></tr>
-            <tr><td>Answered internal calls</td><td>498</td></tr>
-            <tr><td>Declined internal calls</td><td>8</td></tr>
-            <tr><td>Unanswered internal calls</td><td>490</td></tr>
-            <tr><td>Internal call answer rate</td><td>50.1%</td></tr>
+            <tr><td>Total internal call records</td><td>130</td></tr>
+            <tr><td>Answered internal calls</td><td>52</td></tr>
+            <tr><td>Declined internal calls</td><td>0</td></tr>
+            <tr><td>Unanswered internal calls</td><td>78</td></tr>
+            <tr><td>Internal call answer rate</td><td>40.0%</td></tr>
         </table>
     </div>
 
     <div class="section">
         <h2>Decline Behavior - Manager Review</h2>
-        
-                <table>
-                    <tr>
-                        <th>User</th>
-                        <th>Email</th>
-                        <th>Declined Calls</th>
-                        <th>Declined While Available</th>
-                        <th>Misses After Decline</th>
-                        <th>Available Decline Rate</th>
-                        <th>Latest Availability</th>
-                        <th>Numbers</th>
-                    </tr>
-                    
-                        <tr>
-                            <td>Alejandro Ramirez</td>
-                            <td>alejandro@specialized247.com</td>
-                            <td>2</td>
-                            <td><span class="badge danger-badge">2</span></td>
-                            <td>2</td>
-                            <td>100.0%</td>
-                            <td>available</td>
-                            <td>Alejandro Ramirez DID (+18178869232)</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Marco Serrano</td>
-                            <td>marco@specialized247.com</td>
-                            <td>1</td>
-                            <td><span class="badge danger-badge">1</span></td>
-                            <td>1</td>
-                            <td>100.0%</td>
-                            <td>available</td>
-                            <td>Marco Serrano DID (+12142337577)</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Jericson Velasco</td>
-                            <td>jericson@specialized247.com</td>
-                            <td>1</td>
-                            <td><span class="badge danger-badge">1</span></td>
-                            <td>1</td>
-                            <td>100.0%</td>
-                            <td>available</td>
-                            <td>DFW Sales (+12142337572)</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Gemma Vazquez</td>
-                            <td>gemma@specialized247.com</td>
-                            <td>1</td>
-                            <td><span class="badge danger-badge">1</span></td>
-                            <td>1</td>
-                            <td>100.0%</td>
-                            <td>available</td>
-                            <td>Gemma Vazquez DID (+14694587784)</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Nancy Guadagnino</td>
-                            <td>nancy@specialized247.com</td>
-                            <td>1</td>
-                            <td><span class="badge danger-badge">1</span></td>
-                            <td>1</td>
-                            <td>100.0%</td>
-                            <td>custom</td>
-                            <td>Nancy Guadagnino DID (+14076983379)</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Glenda Malone</td>
-                            <td>glenda@specialized247.com</td>
-                            <td>1</td>
-                            <td><span class="badge danger-badge">1</span></td>
-                            <td>1</td>
-                            <td>100.0%</td>
-                            <td>available</td>
-                            <td>Glenda Malone DID (+12142337573)</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>April Layacan</td>
-                            <td>april@specialized247.com</td>
-                            <td>1</td>
-                            <td><span class="badge danger-badge">1</span></td>
-                            <td>1</td>
-                            <td>100.0%</td>
-                            <td>available</td>
-                            <td>Concierge DFW/HOU (+12142337576)</td>
-                        </tr>
-                    
-                </table>
-                
+        <p>No declined calls detected.</p>
     </div>
 
 
@@ -2069,601 +1978,253 @@ window.addEventListener('load', () => {
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814046815</td>
-                            <td>+1 978-578-8443</td>
+                            <td>3818508417</td>
+                            <td>+1 813-526-6028</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814053981</span>
+                                <br><span class="small">Callback call: 3818508652</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814053981</td>
-                            <td>+1 978-578-8443</td>
+                            <td>3818857828</td>
+                            <td>+1 817-907-3190</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814062798</span>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814053981</td>
-                            <td>+1 978-578-8443</td>
-                            <td>Ica Roxas DID (+14699915851)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
+                                <br><span class="small">Callback call: 3818858068</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814054878</td>
-                            <td>+1 770-310-8519</td>
+                            <td>3818858068</td>
+                            <td>+1 817-907-3190</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814057001</span>
+                                <br><span class="small">Callback call: 3818864176</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814074309</td>
-                            <td>+1 817-888-1335</td>
+                            <td>3818886077</td>
+                            <td>+1 231-329-6917</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814087991</span>
+                                <br><span class="small">Callback call: 3818886332</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814084729</td>
-                            <td>+1 214-827-5210</td>
+                            <td>3818914709</td>
+                            <td>+1 317-937-8439</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814085559</span>
+                                <br><span class="small">Callback call: 3818918498</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814085559</td>
-                            <td>+1 214-827-5210</td>
+                            <td>3818918498</td>
+                            <td>+1 317-937-8439</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814094314</span>
+                                <br><span class="small">Callback call: 3818919281</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814088417</td>
-                            <td>+1 904-526-3817</td>
+                            <td>3818919281</td>
+                            <td>+1 317-937-8439</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814093154</span>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814088417</td>
-                            <td>+1 904-526-3817</td>
-                            <td>Jennyvyl Suba DID (+19017168032)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
+                                <br><span class="small">Callback call: 3818919961</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814091195</td>
-                            <td>+1 817-470-1442</td>
+                            <td>3818931688</td>
+                            <td>+1 940-867-9891</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814092989</span>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814093154</td>
-                            <td>+1 904-526-3817</td>
-                            <td>Jennyvyl Suba DID (+19017168032)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814120705</td>
-                            <td>+1 254-715-3983</td>
-                            <td>Concierge DFW/HOU (+12142337576)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814131592</td>
-                            <td>+1 817-686-4291</td>
-                            <td>Liz Rodriguez DID (+18178869238)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
+                                <br><span class="small">Callback call: 3818932548</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814137245</td>
-                            <td>+1 239-227-1984</td>
+                            <td>3818931762</td>
+                            <td>+1 214-803-7683</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814138706</span>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814137245</td>
-                            <td>+1 239-227-1984</td>
-                            <td>Jennyvyl Suba DID (+19017168032)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
+                                <br><span class="small">Callback call: 3818934090</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814172425</td>
-                            <td>+1 478-293-8071</td>
+                            <td>3818961226</td>
+                            <td>+1 214-803-7683</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814178181</span>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814172425</td>
-                            <td>+1 478-293-8071</td>
-                            <td>Concierge DFW/HOU (+12142337576)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
+                                <br><span class="small">Callback call: 3818964285</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814172580</td>
-                            <td>+1 213-414-2856</td>
+                            <td>3818971122</td>
+                            <td>+1 214-803-7683</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814173382</span>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814172841</td>
-                            <td>+1 305-988-7380</td>
-                            <td>Gemma Vazquez DID (+14694587784)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
+                                <br><span class="small">Callback call: 3818972063</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814173382</td>
-                            <td>+1 213-414-2856</td>
+                            <td>3818972063</td>
+                            <td>+1 214-803-7683</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814175617</span>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814178181</td>
-                            <td>+1 478-293-8071</td>
-                            <td>DFW Sales (+12142337572)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814202244</td>
-                            <td>+1 317-363-1783</td>
-                            <td>Concierge IND (+13178915695)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
+                                <br><span class="small">Callback call: 3818972986</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814222658</td>
-                            <td>+1 347-419-5321</td>
+                            <td>3819037423</td>
+                            <td>+1 510-500-2525</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814224467</span>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814222658</td>
-                            <td>+1 347-419-5321</td>
-                            <td>Concierge DFW/HOU (+12142337576)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814238193</td>
-                            <td>+1 281-728-8240</td>
-                            <td>Garrett George DID (+14695061683)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
+                                <br><span class="small">Callback call: 3819038824</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814246001</td>
-                            <td>+1 682-999-2919</td>
+                            <td>3819038824</td>
+                            <td>+1 510-500-2525</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814248116</span>
+                                <br><span class="small">Callback call: 3819039249</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814254148</td>
-                            <td>+1 336-466-1697</td>
+                            <td>3819039249</td>
+                            <td>+1 510-500-2525</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814259338</span>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814254148</td>
-                            <td>+1 336-466-1697</td>
-                            <td>Concierge DFW/HOU (+12142337576)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814259338</td>
-                            <td>+1 336-466-1697</td>
-                            <td>DFW/SAT/HOU/OKC Resident Accounting (+18172007054)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
+                                <br><span class="small">Callback call: 3819039416</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814306677</td>
-                            <td>+1 321-422-9051</td>
+                            <td>3819045430</td>
+                            <td>+1 404-548-9296</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814309573</span>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814307338</td>
-                            <td>+1 404-839-9962</td>
-                            <td>Concierge ATL (+14044813792)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814309573</td>
-                            <td>+1 321-422-9051</td>
-                            <td>Concierge DFW/HOU (+12142337576)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814310869</td>
-                            <td>+1 786-556-3331</td>
-                            <td>Gemma Vazquez DID (+14694587784)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
+                                <br><span class="small">Callback call: 3819045465</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814325955</td>
-                            <td>+1 904-945-6887</td>
+                            <td>3819072400</td>
+                            <td>+1 940-400-5283</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814328616</span>
+                                <br><span class="small">Callback call: 3819073721</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814339021</td>
-                            <td>+1 404-433-1449</td>
+                            <td>3819148239</td>
+                            <td>+1 806-773-1988</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814348121</span>
+                                <br><span class="small">Callback call: 3819148584</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814339541</td>
-                            <td>+1 972-807-9264</td>
+                            <td>3819195378</td>
+                            <td>+1 972-679-3578</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814340166</span>
+                                <br><span class="small">Callback call: 3819197325</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814348121</td>
-                            <td>+1 404-433-1449</td>
+                            <td>3819206494</td>
+                            <td>+1 321-488-7317</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814366501</span>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814348121</td>
-                            <td>+1 404-433-1449</td>
-                            <td>Client Accounting (+18176970589)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
+                                <br><span class="small">Callback call: 3819207174</span>
                             </td>
                         </tr>
                     
                         <tr>
                             <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814349602</td>
-                            <td>+1 980-474-0109</td>
+                            <td>3819207037</td>
+                            <td>+1 317-698-3964</td>
                             <td></td>
                             <td>
                                 
                                 
-                                <br><span class="small">Callback call: 3814351099</span>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814366501</td>
-                            <td>+1 404-433-1449</td>
-                            <td>ATL Sales (+14045968429)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814366896</td>
-                            <td>+1 469-271-5633</td>
-                            <td></td>
-                            <td>
-                                
-                                
-                                <br><span class="small">Callback call: 3814371166</span>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814366896</td>
-                            <td>+1 469-271-5633</td>
-                            <td>Concierge DFW/HOU (+12142337576)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814371166</td>
-                            <td>+1 469-271-5633</td>
-                            <td>Concierge DFW/HOU (+12142337576)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814374981</td>
-                            <td>+1 678-796-3096</td>
-                            <td>Concierge DFW/HOU (+12142337576)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814377516</td>
-                            <td>+1 407-968-9692</td>
-                            <td>Concierge ORL/TPA (+14076983382)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814377857</td>
-                            <td>+1 904-526-3817</td>
-                            <td>Jennyvyl Suba DID (+19017168032)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814387135</td>
-                            <td>+1 404-563-3106</td>
-                            <td>Concierge ATL (+14044813792)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Caller called back after missed call</span></td>
-                            <td>3814390525</td>
-                            <td>+1 817-886-9233</td>
-                            <td></td>
-                            <td>
-                                
-                                
-                                <br><span class="small">Callback call: 3814406455</span>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814390525</td>
-                            <td>+1 817-886-9233</td>
-                            <td>Concierge BHM (+12054177715)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><span class="badge">Suspected failed answer or unanswered ring</span></td>
-                            <td>3814406455</td>
-                            <td>+1 817-886-9233</td>
-                            <td>Concierge BHM (+12054177715)</td>
-                            <td>
-                                Agents were rung, no answer event was recorded, and not every rung agent declined.
-                                
-                                
+                                <br><span class="small">Callback call: 3819210697</span>
                             </td>
                         </tr>
                     
