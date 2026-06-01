@@ -799,13 +799,7 @@ app.listen(PORT, '0.0.0.0', () => {
     console.log('APPLICATION STARTED');
     console.log(`Server running on port ${PORT} — started ${new Date().toLocaleString()}`);
     console.log('========================================');
-
-    console.log('ENV CHECK:', {
-    hasAircallId: Boolean(process.env.AIRCALL_API_ID),
-    hasAircallToken: Boolean(process.env.AIRCALL_API_TOKEN),
-    aircallIdLength: process.env.AIRCALL_API_ID?.length || 0,
-    aircallTokenLength: process.env.AIRCALL_API_TOKEN?.length || 0
-});
+    
 });
 
 const SYNC_INTERVAL_MS = 60 * 60 * 1000;
