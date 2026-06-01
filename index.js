@@ -794,9 +794,9 @@ app.get('/find-aircall-user', async (req, res) => {
 // SERVER STARTUP & SCHEDULED JOBS
 // =============================================================================
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log('========================================');
-    console.log('🚨 NODEMON RESTART DETECTED 🚨');
+    console.log('APPLICATION STARTED');
     console.log(`Server running on port ${PORT} — started ${new Date().toLocaleString()}`);
     console.log('========================================');
 });
