@@ -1,6 +1,6 @@
 async function aircallApi(apiPath) {
     if (!process.env.AIRCALL_API_ID || !process.env.AIRCALL_API_TOKEN) {
-        console.log('Missing AIRCALL_API_ID or AIRCALL_API_TOKEN in .env');
+        console.log('Missing AIRCALL_API_ID or AIRCALL_API_TOKEN in environment variables');
         return null;
     }
 
