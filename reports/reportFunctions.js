@@ -1,27 +1,41 @@
 const fs = require('fs');
 const path = require('path');
 
-function loadRoster() {
-    const filePath = path.join(__dirname, '..', 'aircall_roster.json');
-
-    if (!fs.existsSync(filePath)) {
-        return { users: [], numbers: [], teams: [] };
-    }
-
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-}
-
 const { buildExecutiveHtml } = require('./executiveHtml');
+const { TIMEZONE, CALLBACK_WINDOW_SECONDS, BUSINESS_HOURS_START, BUSINESS_HOURS_END } = require('../config/constants');
 const { buildUsersHtml } = require('./usersHtml');
-const { buildBackfillTestHtml } = require('./backfillHtml');
+const { buildBackfillHtml } = require('./backfillHtml');
 
 const OUTPUT_DIR = path.join(__dirname, '..');
 
+
+// =============================================================================
+// FORMATTING HELPERS
+// =============================================================================
+
+// Accepts a Unix timestamp (seconds). Used for call event times.
+function formatTime(unixTimestamp) {
+    if (!unixTimestamp) return 'unknown';
+
+    return new Date(unixTimestamp * 1000).toLocaleString('en-US', {
+        timeZone: TIMEZONE,
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        timeZoneName: 'short'
+    });
+}
+
+// Accepts a JS Date or ISO string. Used for reporting session timestamps.
 function formatCentralTime(value) {
     if (!value) return 'N/A';
 
     return new Date(value).toLocaleString('en-US', {
-        timeZone: 'America/Chicago',
+        timeZone: TIMEZONE,
         year: 'numeric',
         month: 'short',
         day: '2-digit',
@@ -37,37 +51,90 @@ function writeOutputFile(filename, content) {
     fs.writeFileSync(path.join(OUTPUT_DIR, filename), content);
 }
 
-function formatTime(unixTimestamp) {
-    if (!unixTimestamp) return 'unknown';
-
-    return new Date(unixTimestamp * 1000).toLocaleString('en-US', {
-        timeZone: 'America/Chicago',
-        year: 'numeric',
-        month: 'short',
-        day: '2-digit',
-        hour: 'numeric',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: true,
-        timeZoneName: 'short'
-    });
-}
-
 function getReportingStatusText(reportingState) {
     if (!reportingState) {
-        return {
-            status: 'Unknown',
-            started: 'unknown',
-            ended: 'unknown'
-        };
+        return { status: 'Unknown', started: 'unknown', ended: 'unknown' };
     }
 
     return {
         status: reportingState.is_reporting ? 'Reporting' : 'Not Reporting',
         started: formatTime(reportingState.started_at),
-        ended: reportingState.stopped_at ? formatTime(reportingState.stopped_at) : 'N/A'
+        ended: reportingState.stopped_at ? formatTime(reportingState.stopped_at) : 'N/A',
+        lastBackfill: reportingState.last_backfill || null
     };
 }
+
+// Reads aircall_roster.json from disk each time it's needed.
+// Not cached because roster syncs can happen mid-session.
+function loadRoster() {
+    const filePath = path.join(__dirname, '..', 'data', 'aircall_roster.json');
+
+    if (!fs.existsSync(filePath)) {
+        return { users: [], numbers: [], teams: [] };
+    }
+
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
+
+// =============================================================================
+// DATE & TIME HELPERS
+// =============================================================================
+
+// Checks whether a Unix timestamp falls on a given calendar date in Central time.
+// If no targetDate is provided, checks against today.
+// en-CA format (YYYY-MM-DD) is used because it's unambiguous and easy to compare.
+function isDateCentral(unixTimestamp, targetDate = null) {
+    if (!unixTimestamp) return false;
+
+    const callDate = new Intl.DateTimeFormat('en-CA', {
+        timeZone: TIMEZONE,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    }).format(new Date(unixTimestamp * 1000));
+
+    if (targetDate) {
+        return callDate === targetDate;
+    }
+
+    const todayCentral = new Intl.DateTimeFormat('en-CA', {
+        timeZone: TIMEZONE,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    }).format(new Date());
+
+    return callDate === todayCentral;
+}
+
+// Business hours = Mon–Fri, 7:00 AM to 4:59 PM Central.
+// Weekends are excluded to prevent Saturday calls from inflating business-hour answer rates.
+function isBusinessHoursCentral(unixTimestamp) {
+    if (!unixTimestamp) return false;
+
+    const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: TIMEZONE,
+        hour: 'numeric',
+        hour12: false,
+        weekday: 'short'
+    }).formatToParts(new Date(unixTimestamp * 1000));
+
+    const hour = Number(parts.find(p => p.type === 'hour')?.value);
+    const weekday = parts.find(p => p.type === 'weekday')?.value;
+
+    const isWeekend = weekday === 'Sat' || weekday === 'Sun';
+
+    return !isWeekend && hour >= BUSINESS_HOURS_START && hour < BUSINESS_HOURS_END;
+}
+
+
+// =============================================================================
+// STATUS CLASSIFICATION
+// Aircall surfaces agent status in several overlapping fields (availability_status,
+// substatus, status). These helpers normalize across all three so callers don't
+// need to know which field is authoritative for a given event type.
+// =============================================================================
 
 function isBusyStatus(agent = {}) {
     const statusText = [
@@ -102,6 +169,21 @@ function isAvailableStatus(agent = {}) {
     return agent.available === true || statusText.includes('available');
 }
 
+
+// =============================================================================
+// CALL ANALYSIS
+// These functions derive higher-level signals from the raw call records.
+// All accept a pre-filtered array of calls, not the full calls object.
+// =============================================================================
+
+// Detects when a missed call is followed by another call from the same number
+// within 10 minutes. Sets callback_after_miss flag and records callback details.
+//
+// Two-pass design: first reset all flags to false, then detect. This prevents
+// stale true values from a previous run if a call's outcome changed (e.g. after backfill).
+//
+// Accepts the full calls object because it needs to mutate flags across all records
+// and detect callbacks that may span the date boundary.
 function detectCallbacks(calls) {
     const allCalls = Object.values(calls);
 
@@ -125,7 +207,7 @@ function detectCallbacks(calls) {
             if (!other.call_core.started_at) return false;
             if (other.call_core.started_at <= missedEnd) return false;
 
-            return other.call_core.started_at - missedEnd <= 600;
+            return other.call_core.started_at - missedEnd <= CALLBACK_WINDOW_SECONDS;
         });
 
         if (callback) {
@@ -143,33 +225,30 @@ function detectCallbacks(calls) {
     });
 }
 
-function getModifiedCompanyOutcomes(calls) {
-    const allCalls = Object.values(calls)
+// "Customer Resolution Rate" — an alternative to raw answer rate that accounts
+// for customers who called back and were eventually reached.
+//
+// The core insight: raw answer rate treats a missed call followed by an answered
+// callback as 1 miss + 1 answer (penalizing the company twice for one interaction).
+// This metric groups rapid re-calls from the same number within 10 minutes into a
+// single "customer session" and asks: did the customer reach someone this session?
+function getCustomerResolutionMetrics(callsArray) {
+    const allCalls = callsArray
         .filter(call => call.call_core)
-        .sort((a, b) => {
-            const aTime = a.call_core.started_at || 0;
-            const bTime = b.call_core.started_at || 0;
-            return aTime - bTime;
-        });
+        .sort((a, b) => (a.call_core.started_at || 0) - (b.call_core.started_at || 0));
 
     const sessions = [];
     const groupedByCaller = {};
 
     allCalls.forEach(call => {
-        const caller =
-            call.call_core.caller_number ||
-            `unknown-${call.call_core.call_id}`;
+        const caller = call.call_core.caller_number || `unknown-${call.call_core.call_id}`;
 
         if (!groupedByCaller[caller]) groupedByCaller[caller] = [];
         groupedByCaller[caller].push(call);
     });
 
     Object.values(groupedByCaller).forEach(callerCalls => {
-        callerCalls.sort((a, b) => {
-            const aTime = a.call_core.started_at || 0;
-            const bTime = b.call_core.started_at || 0;
-            return aTime - bTime;
-        });
+        callerCalls.sort((a, b) => (a.call_core.started_at || 0) - (b.call_core.started_at || 0));
 
         let currentSession = [];
 
@@ -180,16 +259,11 @@ function getModifiedCompanyOutcomes(calls) {
             }
 
             const previousCall = currentSession[currentSession.length - 1];
-
-            const previousEnd =
-                previousCall.call_core.ended_at ||
-                previousCall.call_core.started_at ||
-                0;
-
+            const previousEnd = previousCall.call_core.ended_at || previousCall.call_core.started_at || 0;
             const currentStart = call.call_core.started_at || 0;
             const secondsBetween = currentStart - previousEnd;
 
-            if (secondsBetween >= 0 && secondsBetween <= 600) {
+            if (secondsBetween >= 0 && secondsBetween <= CALLBACK_WINDOW_SECONDS) {
                 currentSession.push(call);
             } else {
                 sessions.push(currentSession);
@@ -209,7 +283,6 @@ function getModifiedCompanyOutcomes(calls) {
     const recoveredMissedSessions = sessions.filter(session => {
         const hasMissedCall = session.some(call => call.derived_flags?.missed);
         const hasAnsweredCall = session.some(call => call.derived_flags?.answered);
-
         return hasMissedCall && hasAnsweredCall;
     });
 
@@ -219,17 +292,20 @@ function getModifiedCompanyOutcomes(calls) {
             : '0.0';
 
     return {
-        totalModifiedCalls: sessions.length,
-        successfulModifiedCalls: successfulSessions.length,
-        recoveredMissedCalls: recoveredMissedSessions.length,
-        modifiedCompanyAnswerRate
+        totalSessions: sessions.length,
+        resolvedSessions: successfulSessions.length,
+        recoveredSessions: recoveredMissedSessions.length,
+        customerResolutionRate: modifiedCompanyAnswerRate
     };
 }
 
-function getMissedCallBreakdown(calls) {
-    const missedCalls = Object.values(calls).filter(call =>
-        call.derived_flags?.missed
-    );
+// Categorizes missed calls into four buckets to explain WHY calls were missed:
+//   busyCapacity       — all rung agents were on calls or in wrap-up
+//   declinedAvailable  — at least one agent declined while showing as available
+//   noRing             — no ring telemetry arrived at all (IVR drop, direct voicemail, etc.)
+//   other              — agents were rung but none of the above conditions apply
+function getMissedCallBreakdown(callsArray) {
+    const missedCalls = callsArray.filter(call => call.derived_flags?.missed);
 
     let busyCapacityMisses = 0;
     let declinedWhileAvailableMisses = 0;
@@ -245,7 +321,6 @@ function getMissedCallBreakdown(calls) {
             const matchingRangAgent = rangAgents.find(agent =>
                 agent.email === declined.email || agent.id === declined.id
             );
-
             return isAvailableStatus(matchingRangAgent || declined);
         });
 
@@ -272,7 +347,7 @@ function getMissedCallBreakdown(calls) {
         declinedWhileAvailableMisses,
         noRingMisses,
         otherMisses,
-        busyMissRateOfAllCalls: '0.0',
+        busyMissRateOfAllCalls: null,
         busyMissRateOfMissedCalls:
             totalMissed > 0
                 ? ((busyCapacityMisses / totalMissed) * 100).toFixed(1)
@@ -284,10 +359,13 @@ function getMissedCallBreakdown(calls) {
     };
 }
 
-function getDeclineBehavior(calls) {
+// Aggregates decline behavior per agent across the call set.
+// Sorted by declinedWhileAvailable descending — the most operationally concerning
+// behavior is an agent who was available and chose not to answer.
+function getDeclineBehavior(callsArray) {
     const byUser = {};
 
-    Object.values(calls).forEach(call => {
+    callsArray.forEach(call => {
         const core = call.call_core || {};
         const routing = call.routing_analysis || {};
         const rangAgents = routing.rang_agents || [];
@@ -325,18 +403,12 @@ function getDeclineBehavior(calls) {
             }
 
             const numberLabel =
-                `${core.called_number_name || 'Unknown number'} ` +
-                `(${core.called_number_digits || 'unknown digits'})`;
+                `${core.called_number_name || 'Unknown number'} (${core.called_number_digits || 'unknown digits'})`;
 
             byUser[key].associatedNumbers[numberLabel] = true;
 
-            if (agent.availability_status) {
-                byUser[key].latestAvailability = agent.availability_status;
-            }
-
-            if (agent.substatus) {
-                byUser[key].latestSubstatus = agent.substatus;
-            }
+            if (agent.availability_status) byUser[key].latestAvailability = agent.availability_status;
+            if (agent.substatus) byUser[key].latestSubstatus = agent.substatus;
         });
     });
 
@@ -357,17 +429,89 @@ function getDeclineBehavior(calls) {
             if (b.declinedWhileAvailable !== a.declinedWhileAvailable) {
                 return b.declinedWhileAvailable - a.declinedWhileAvailable;
             }
-
             return b.declinedCalls - a.declinedCalls;
         });
 }
 
-function buildExceptions(calls) {
-    detectCallbacks(calls);
+// Produces one ring attempt record per agent per call.
+// Each record represents a single employee's interaction with a single call.
+//
+// Fallback path: when no ringing_on_agent events arrived (common for backfilled
+// calls or certain IVR routing paths), we emit one synthetic attempt at the
+// call level. The answering agent gets credit; missed calls without ring data
+// are captured so the overall ring attempt count stays accurate.
+function getRingAttempts(callsArray) {
+    const ringAttempts = [];
 
+    callsArray.forEach(call => {
+        const core = call.call_core || {};
+        const routing = call.routing_analysis || {};
+        const rangAgents = routing.rang_agents || [];
+        const declinedAgents = routing.declined_agents || [];
+
+        if (rangAgents.length > 0) {
+            rangAgents.forEach(agent => {
+                const declined = declinedAgents.some(d =>
+                    d.email === agent.email || d.id === agent.id
+                );
+
+                const answeredByThisAgent =
+                    core.answered_by_email &&
+                    agent.email &&
+                    core.answered_by_email === agent.email;
+
+                ringAttempts.push({
+                    call_id: core.call_id,
+                    caller: core.caller_number,
+                    called_number_name: core.called_number_name,
+                    called_number_digits: core.called_number_digits,
+                    agent_name: agent.name,
+                    agent_email: agent.email,
+                    ring_time: agent.ring_time,
+                    availability_status: agent.availability_status,
+                    substatus: agent.substatus,
+                    declined,
+                    answered_by_this_agent: answeredByThisAgent,
+                    call_result: core.result,
+                    answered_by: core.answered_by_name,
+                    source: 'aircall_ringing_on_agent'
+                });
+            });
+
+            return;
+        }
+
+        ringAttempts.push({
+            call_id: core.call_id,
+            caller: core.caller_number,
+            called_number_name: core.called_number_name,
+            called_number_digits: core.called_number_digits,
+            agent_name: core.answered_by_name || core.called_number_name || 'unknown',
+            agent_email: core.answered_by_email || null,
+            ring_time: core.started_at,
+            availability_status: 'unknown',
+            substatus: 'unknown',
+            declined: false,
+            answered_by_this_agent: Boolean(core.answered_by_email || core.answered_by_name),
+            call_result: core.result,
+            answered_by: core.answered_by_name,
+            source: 'fallback_call_level_attempt'
+        });
+    });
+
+    return ringAttempts;
+}
+
+// Collects anomalies that warrant manual investigation:
+//   DID owner skipped       — the DID's assigned owner was never rung
+//   Answered by backup      — someone other than the DID owner took the call
+//   Callback after miss     — caller called back within 10 minutes of a miss
+//   Suspected failed answer — agents were rung, call ended missed, but not all declined
+//                             (suggests a softphone or routing failure)
+function buildExceptions(callsArray) {
     const exceptions = [];
 
-    Object.values(calls).forEach(call => {
+    callsArray.forEach(call => {
         const core = call.call_core || {};
         const flags = call.derived_flags || {};
         const routing = call.routing_analysis || {};
@@ -423,92 +567,82 @@ function buildExceptions(calls) {
     return exceptions;
 }
 
-function getRingAttempts(calls) {
-    const ringAttempts = [];
 
-    Object.values(calls).forEach(call => {
+// =============================================================================
+// USER STATS COMPUTATION
+// Extracted so it can be called twice in getExecutiveMetrics — once for all
+// today's calls, once for the live-window subset.
+// =============================================================================
+
+function computeUserStats(inboundCalls, roster) {
+    const stats = {};
+
+    inboundCalls.forEach(call => {
         const core = call.call_core || {};
         const routing = call.routing_analysis || {};
         const rangAgents = routing.rang_agents || [];
         const declinedAgents = routing.declined_agents || [];
 
-        if (rangAgents.length > 0) {
-            rangAgents.forEach(agent => {
-                const declined = declinedAgents.some(d =>
-                    d.email === agent.email || d.id === agent.id
-                );
+        rangAgents.forEach(agent => {
+            const key = agent.email || agent.name || agent.id || 'unknown';
+            if (!stats[key]) {
+                stats[key] = { name: agent.name || 'Unknown', email: agent.email || '', totalRings: 0, answeredCalls: 0, declinedCalls: 0, missedCalls: 0 };
+            }
+            stats[key].totalRings += 1;
+            const declined = declinedAgents.some(d => d.email === agent.email || d.id === agent.id);
+            const answeredByUser = core.answered_by_email && agent.email && core.answered_by_email === agent.email;
+            if (answeredByUser) stats[key].answeredCalls += 1;
+            if (declined) stats[key].declinedCalls += 1;
+            if (call.derived_flags?.missed) stats[key].missedCalls += 1;
+        });
 
-                const answeredByThisAgent =
-                    core.answered_by_email &&
-                    agent.email &&
-                    core.answered_by_email === agent.email;
-
-                ringAttempts.push({
-                    call_id: core.call_id,
-                    caller: core.caller_number,
-                    called_number_name: core.called_number_name,
-                    called_number_digits: core.called_number_digits,
-                    agent_name: agent.name,
-                    agent_email: agent.email,
-                    ring_time: agent.ring_time,
-                    availability_status: agent.availability_status,
-                    substatus: agent.substatus,
-                    declined,
-                    answered_by_this_agent: answeredByThisAgent,
-                    call_result: core.result,
-                    answered_by: core.answered_by_name,
-                    source: 'aircall_ringing_on_agent'
-                });
-            }); 
-
-            return;
+        // Answered-by fallback: agent answered but wasn't in rang_agents.
+        const answeredEmail = core.answered_by_email;
+        if (answeredEmail) {
+            const alreadyCountedAsRing = rangAgents.some(agent => agent.email === answeredEmail);
+            if (!stats[answeredEmail]) {
+                stats[answeredEmail] = { name: core.answered_by_name || answeredEmail, email: answeredEmail, totalRings: 0, answeredCalls: 0, declinedCalls: 0, missedCalls: 0 };
+            }
+            if (!alreadyCountedAsRing) {
+                stats[answeredEmail].totalRings += 1;
+                stats[answeredEmail].answeredCalls += 1;
+            }
         }
 
-        ringAttempts.push({
-            call_id: core.call_id,
-            caller: core.caller_number,
-            called_number_name: core.called_number_name,
-            called_number_digits: core.called_number_digits,
-            agent_name: core.answered_by_name || core.called_number_name || 'unknown',
-            agent_email: core.answered_by_email || null,
-            ring_time: core.started_at,
-            availability_status: 'unknown',
-            substatus: 'unknown',
-            declined: false,
-            answered_by_this_agent: Boolean(core.answered_by_email || core.answered_by_name),
-            call_result: core.result,
-            answered_by: core.answered_by_name,
-            source: 'fallback_call_level_attempt'
-        });
+        // DID fallback: missed call on a personal DID with no ring telemetry.
+        const isMissed = call.derived_flags?.missed;
+        const numberName = String(core.called_number_name || '');
+        const isDidCall = numberName.toLowerCase().endsWith(' did');
+        if (isMissed && isDidCall && rangAgents.length === 0) {
+            const didOwnerName = numberName.replace(/\s+DID$/i, '').trim().toLowerCase();
+            const didOwner = (roster.users || []).find(user =>
+                String(user.name || '').trim().toLowerCase() === didOwnerName
+            );
+            if (didOwner?.email) {
+                const key = String(didOwner.email).toLowerCase();
+                if (!stats[key]) {
+                    stats[key] = { name: didOwner.name || numberName, email: key, totalRings: 0, answeredCalls: 0, declinedCalls: 0, missedCalls: 0 };
+                }
+                stats[key].totalRings += 1;
+                stats[key].missedCalls += 1;
+            }
+        }
     });
 
-    return ringAttempts;
+    return stats;
 }
 
-function isDateCentral(unixTimestamp, targetDate = null) {
-    if (!unixTimestamp) return false;
 
-    const callDate = new Intl.DateTimeFormat('en-CA', {
-        timeZone: 'America/Chicago',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
-    }).format(new Date(unixTimestamp * 1000));
+// =============================================================================
+// METRICS AGGREGATION
+// =============================================================================
 
-    if (targetDate) {
-        return callDate === targetDate;
-    }
-
-    const todayCentral = new Intl.DateTimeFormat('en-CA', {
-        timeZone: 'America/Chicago',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
-    }).format(new Date());
-
-    return callDate === todayCentral;
-}
-
+// Central computation function. Accepts the full calls object and an optional
+// snapshotDate (YYYY-MM-DD) to scope results to a specific day. Without
+// snapshotDate, scopes to today in Central time.
+//
+// allHistoricalCalls is retained in the return value so the dashboard can show
+// all-time context (e.g. total calls ever tracked) alongside daily figures.
 function getExecutiveMetrics(calls, options = {}) {
     detectCallbacks(calls);
 
@@ -518,25 +652,16 @@ function getExecutiveMetrics(calls, options = {}) {
         isDateCentral(call.call_core?.started_at, options.snapshotDate)
     );
 
-    const inboundCalls = allCalls.filter(call =>
-        call.call_core?.direction === 'inbound'
-    );
+    const inboundCalls = allCalls.filter(call => call.call_core?.direction === 'inbound');
+    const outboundCalls = allCalls.filter(call => call.call_core?.direction === 'outbound');
 
-    const outboundCalls = allCalls.filter(call =>
-        call.call_core?.direction === 'outbound'
-    );
-    
     const answeredCalls = inboundCalls.filter(call => call.derived_flags?.answered);
     const missedCalls = inboundCalls.filter(call => call.derived_flags?.missed);
 
     const businessHourCalls = inboundCalls.filter(call =>
         isBusinessHoursCentral(call.call_core?.started_at)
     );
-
-    const businessHourAnsweredCalls = businessHourCalls.filter(call =>
-        call.derived_flags?.answered
-    );
-
+    const businessHourAnsweredCalls = businessHourCalls.filter(call => call.derived_flags?.answered);
     const businessHourRawAnswerRate =
         businessHourCalls.length > 0
             ? ((businessHourAnsweredCalls.length / businessHourCalls.length) * 100).toFixed(1)
@@ -545,11 +670,7 @@ function getExecutiveMetrics(calls, options = {}) {
     const afterHoursCalls = inboundCalls.filter(call =>
         !isBusinessHoursCentral(call.call_core?.started_at)
     );
-
-    const afterHoursAnsweredCalls = afterHoursCalls.filter(call =>
-        call.derived_flags?.answered
-    );
-
+    const afterHoursAnsweredCalls = afterHoursCalls.filter(call => call.derived_flags?.answered);
     const afterHoursRawAnswerRate =
         afterHoursCalls.length > 0
             ? ((afterHoursAnsweredCalls.length / afterHoursCalls.length) * 100).toFixed(1)
@@ -560,141 +681,47 @@ function getExecutiveMetrics(calls, options = {}) {
             ? ((answeredCalls.length / inboundCalls.length) * 100).toFixed(1)
             : '0.0';
 
-    const routedCalls = inboundCalls.filter(call => {
-        const routing = call.routing_analysis || {};
-        const rangAgents = routing.rang_agents || [];
-        return rangAgents.length > 0;
-    });
-
-    const routedAnsweredCalls = routedCalls.filter(call =>
-        call.derived_flags?.answered
+    const routedCalls = inboundCalls.filter(call =>
+        (call.routing_analysis?.rang_agents || []).length > 0
     );
-
+    const routedAnsweredCalls = routedCalls.filter(call => call.derived_flags?.answered);
     const routedAnswerRate =
         routedCalls.length > 0
             ? ((routedAnsweredCalls.length / routedCalls.length) * 100).toFixed(1)
             : '0.0';
 
-    const userDailyStats = {};
-    const roster = loadRoster();    
+    // --- Per-agent stats ---
+    // Built from three sources in priority order:
+    //   1. rang_agents: agent was explicitly rung (most reliable)
+    //   2. answered_by fallback: agent answered but no ring event exists (backfilled or IVR)
+    //   3. DID fallback: call was missed on a " DID" number with no ring telemetry —
+    //      attribute the miss to the owner by matching the number name to roster.
+    //      e.g. "Ana Smith DID" → find user named "Ana Smith" in roster.
 
-        inboundCalls.forEach(call => {
-        const core = call.call_core || {};
-        const routing = call.routing_analysis || {};
-        const rangAgents = routing.rang_agents || [];
-        const declinedAgents = routing.declined_agents || [];
+    const roster = loadRoster();
+    const userDailyStats = computeUserStats(inboundCalls, roster);
 
+    // Live-window stats: same computation but scoped to calls that started after the
+    // server booted. These are calls where ring/miss events arrived via live webhooks,
+    // so attribution is accurate. Null when no liveWindowStart is provided (e.g. snapshots).
+    const liveWindowUserStats = options.liveWindowStart
+        ? computeUserStats(
+            inboundCalls.filter(call =>
+                (call.call_core?.started_at || 0) >= options.liveWindowStart
+            ),
+            roster
+          )
+        : null;
 
-        rangAgents.forEach(agent => {
-            const key = agent.email || agent.name || agent.id || 'unknown';
-
-            if (!userDailyStats[key]) {
-                userDailyStats[key] = {
-                    name: agent.name || 'Unknown',
-                    email: agent.email || '',
-                    totalRings: 0,
-                    answeredCalls: 0,
-                    declinedCalls: 0,
-                    missedCalls: 0
-                };
-            }
-
-            userDailyStats[key].totalRings += 1;
-
-            const declined = declinedAgents.some(d =>
-                d.email === agent.email || d.id === agent.id
-            );
-
-            const answeredByUser =
-                core.answered_by_email &&
-                agent.email &&
-                core.answered_by_email === agent.email;
-
-            if (answeredByUser) {
-                userDailyStats[key].answeredCalls += 1;
-            }
-
-            if (declined) {
-                userDailyStats[key].declinedCalls += 1;
-            }
-
-            if (call.derived_flags?.missed) {
-                userDailyStats[key].missedCalls += 1;
-            }
-        });
-
-        const answeredEmail = core.answered_by_email;
-
-        if (answeredEmail) {
-            const alreadyCountedAsRing = rangAgents.some(agent =>
-                agent.email === answeredEmail
-            );
-
-            const key = answeredEmail;
-
-            if (!userDailyStats[key]) {
-                userDailyStats[key] = {
-                    name: core.answered_by_name || answeredEmail,
-                    email: answeredEmail,
-                    totalRings: 0,
-                    answeredCalls: 0,
-                    declinedCalls: 0,
-                    missedCalls: 0
-                };
-            }
-
-            if (!alreadyCountedAsRing) {
-                userDailyStats[key].totalRings += 1;
-                userDailyStats[key].answeredCalls += 1;
-            }
-        }
-
-        const isMissed = call.derived_flags?.missed;
-        const numberName = String(core.called_number_name || '');
-        const isDidCall = numberName.toLowerCase().endsWith(' did');
-
-        if (isMissed && isDidCall && rangAgents.length === 0) {
-            const didOwnerName = numberName
-                .replace(/\s+DID$/i, '')
-                .trim()
-                .toLowerCase();
-
-            const didOwner = (roster.users || []).find(user =>
-                String(user.name || '').trim().toLowerCase() === didOwnerName
-            );
-
-            if (didOwner?.email) {
-                const key = String(didOwner.email).toLowerCase();
-
-                if (!userDailyStats[key]) {
-                    userDailyStats[key] = {
-                        name: didOwner.name || numberName,
-                        email: key,
-                        totalRings: 0,
-                        answeredCalls: 0,
-                        declinedCalls: 0,
-                        missedCalls: 0
-                    };
-                }
-
-                userDailyStats[key].totalRings += 1;
-                userDailyStats[key].missedCalls += 1;
-            }
-        }
-
-        
-    });
-
-    const modifiedCompanyOutcomes = getModifiedCompanyOutcomes(calls);
-    const missedCallBreakdown = getMissedCallBreakdown(calls);
+    const customerResolution = getCustomerResolutionMetrics(allCalls);
+    const missedCallBreakdown = getMissedCallBreakdown(inboundCalls);
 
     missedCallBreakdown.busyMissRateOfAllCalls =
         allCalls.length > 0
             ? ((missedCallBreakdown.busyCapacityMisses / allCalls.length) * 100).toFixed(1)
             : '0.0';
 
-    const ringAttempts = getRingAttempts(calls);
-
+    const ringAttempts = getRingAttempts(inboundCalls);
     const answeredRingAttempts = ringAttempts.filter(r => r.answered_by_this_agent);
     const declinedRingAttempts = ringAttempts.filter(r => r.declined);
     const unansweredRingAttempts = ringAttempts.filter(r =>
@@ -706,16 +733,11 @@ function getExecutiveMetrics(calls, options = {}) {
             ? ((answeredRingAttempts.length / ringAttempts.length) * 100).toFixed(1)
             : '0.0';
 
-    const callbacksAfterMiss = allCalls.filter(call =>
-        call.derived_flags?.callback_after_miss
-    );
+    const callbacksAfterMiss = allCalls.filter(call => call.derived_flags?.callback_after_miss);
+    const suspectedFailedAnswers = allCalls.filter(call => call.derived_flags?.suspected_failed_answer);
 
-    const suspectedFailedAnswers = allCalls.filter(call =>
-        call.derived_flags?.suspected_failed_answer
-    );
-
-    const exceptions = buildExceptions(calls);
-    const declineBehavior = getDeclineBehavior(calls);
+    const exceptions = buildExceptions(allCalls);
+    const declineBehavior = getDeclineBehavior(inboundCalls);
 
     return {
         allCalls,
@@ -741,7 +763,7 @@ function getExecutiveMetrics(calls, options = {}) {
 
         userDailyStats,
 
-        modifiedCompanyOutcomes,
+        customerResolution,
         missedCallBreakdown,
 
         ringAttempts,
@@ -755,9 +777,19 @@ function getExecutiveMetrics(calls, options = {}) {
         suspectedFailedAnswers,
 
         exceptions,
-        declineBehavior
+        declineBehavior,
+
+        liveWindowUserStats,
+        liveWindowStart: options.liveWindowStart || null
     };
 }
+
+
+// =============================================================================
+// REPORT WRITERS
+// Each writer calls getExecutiveMetrics independently, so reports are always
+// computed from the same current state when writeAllFiles is called.
+// =============================================================================
 
 function writeExecutiveReport(calls, reportingState = null) {
     const metrics = getExecutiveMetrics(calls);
@@ -768,7 +800,7 @@ function writeExecutiveReport(calls, reportingState = null) {
 
     output += `EXECUTIVE CALL REPORT\n`;
     output += `Generated: ${new Date().toLocaleString('en-US', {
-        timeZone: 'America/Chicago',
+        timeZone: TIMEZONE,
         year: 'numeric',
         month: 'short',
         day: '2-digit',
@@ -789,8 +821,8 @@ function writeExecutiveReport(calls, reportingState = null) {
     output += `Answered calls: ${metrics.answeredCalls.length}\n`;
     output += `Missed calls: ${metrics.missedCalls.length}\n`;
     output += `Raw answer rate: ${metrics.companyAnswerRate}%\n`;
-    output += `Customer resolution rate: ${metrics.modifiedCompanyOutcomes.modifiedCompanyAnswerRate}%\n`;
-    output += `Recovered missed calls: ${metrics.modifiedCompanyOutcomes.recoveredMissedCalls}\n`;
+    output += `Customer resolution rate: ${metrics.customerResolution.customerResolutionRate}%\n`;
+    output += `Recovered missed calls: ${metrics.customerResolution.recoveredSessions}\n`;
     output += `Callbacks after missed calls: ${metrics.callbacksAfterMiss.length}\n`;
     output += `Occupancy missed calls: ${missed.busyCapacityMisses}\n`;
     output += `Declined while available misses: ${missed.declinedWhileAvailableMisses}\n`;
@@ -826,43 +858,37 @@ function writeExecutiveHtmlReport(
     reportingState = null,
     teamMappings = [],
     userRoleOverrides = {},
-    roster = {}
+    roster = {},
+    liveWindowStart = null
 ) {
-    const metrics = getExecutiveMetrics(calls);
+    const metrics = getExecutiveMetrics(calls, { liveWindowStart });
     const reportingStatus = getReportingStatusText(reportingState);
 
-    const html = buildExecutiveHtml(
-        metrics,
-        reportingStatus,
-        teamMappings,
-        userRoleOverrides,
-        roster
-    );
+    const html = buildExecutiveHtml(metrics, reportingStatus, teamMappings, userRoleOverrides, roster);
 
     writeOutputFile('executive_report.html', html);
 }
 
 function writeUsersHtmlReport(users = [], numbers = []) {
-    const html = buildUsersHtml(users, numbers);
-
-    writeOutputFile('users_report.html', html);
+    writeOutputFile('users_report.html', buildUsersHtml(users, numbers));
 }
 
-function writeBackfillTestHtmlReport(calls, reportingState = null) {
+function writeBackfillHtmlReport(calls, reportingState = null) {
     const metrics = getExecutiveMetrics(calls);
-    const html = buildBackfillTestHtml(metrics, reportingState);
-
-    writeOutputFile('backfill_test_report.html', html);
+    writeOutputFile('backfill_report.html', buildBackfillHtml(metrics, reportingState));
 }
 
 function writeExceptionsReport(calls) {
-    const exceptions = buildExceptions(calls);
+    const todayCalls = Object.values(calls).filter(
+        call => call.call_core && isDateCentral(call.call_core?.started_at)
+    );
+    const exceptions = buildExceptions(todayCalls);
 
     let output = '';
 
     output += `EXCEPTIONS REPORT\n`;
     output += `Generated: ${new Date().toLocaleString('en-US', {
-        timeZone: 'America/Chicago',
+        timeZone: TIMEZONE,
         year: 'numeric',
         month: 'short',
         day: '2-digit',
@@ -891,29 +917,19 @@ function writeExceptionsReport(calls) {
     writeOutputFile('exceptions_report.txt', output);
 }
 
-function isBusinessHoursCentral(unixTimestamp) {
-    if (!unixTimestamp) return false;
 
-    const parts = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'America/Chicago',
-        hour: 'numeric',
-        hour12: false,
-        weekday: 'short'
-    }).formatToParts(new Date(unixTimestamp * 1000));
-
-    const hour = Number(parts.find(part => part.type === 'hour')?.value);
-
-    return hour >= 7 && hour < 17;
-}
+// =============================================================================
+// EXPORTS
+// =============================================================================
 
 module.exports = {
+    isDateCentral,
     detectCallbacks,
     buildExceptions,
     getExecutiveMetrics,
     writeExecutiveReport,
     writeExecutiveHtmlReport,
     writeUsersHtmlReport,
-    writeBackfillTestHtmlReport,
-    writeExceptionsReport,
-    getExecutiveMetrics
+    writeBackfillHtmlReport,
+    writeExceptionsReport
 };

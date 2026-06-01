@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const DATA_DIR = path.join(__dirname, '..');
+const DATA_DIR = path.join(__dirname, '..', 'data');
 
 function getFilePath(filename) {
     return path.join(DATA_DIR, filename);

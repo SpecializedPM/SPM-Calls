@@ -1,3 +1,5 @@
+const { TIMEZONE } = require('../config/constants');
+
 function escapeHtml(value) {
     if (value === null || value === undefined) return '';
     return String(value)
@@ -10,7 +12,7 @@ function escapeHtml(value) {
 
 function formatCentralDateTime(date = new Date()) {
     return date.toLocaleString('en-US', {
-        timeZone: 'America/Chicago',
+        timeZone: TIMEZONE,
         dateStyle: 'short',
         timeStyle: 'medium'
     });
@@ -36,6 +38,20 @@ function buildExecutiveHtml(metrics, reportingStatus, teamMappings = [], userRol
             missedCalls: stats.missedCalls || 0,
             declinedCalls: stats.declinedCalls || 0,
             occupancyMisses: stats.occupancyMisses || 0
+        };
+    }
+
+    function getLiveStats(email) {
+        const rosterUser = getRosterUser(email);
+        const stats = metrics.liveWindowUserStats?.[email] || {};
+
+        return {
+            name: stats.name || rosterUser?.name || email,
+            email,
+            totalRings: stats.totalRings || 0,
+            answeredCalls: stats.answeredCalls || 0,
+            missedCalls: stats.missedCalls || 0,
+            declinedCalls: stats.declinedCalls || 0
         };
     }
 
@@ -168,6 +184,65 @@ function buildExecutiveHtml(metrics, reportingStatus, teamMappings = [], userRol
         </div>
     `;
 }).join('');
+    const liveWindowStartFormatted = metrics.liveWindowStart
+        ? formatCentralDateTime(new Date(metrics.liveWindowStart * 1000))
+        : null;
+
+    const liveTeamSections = metrics.liveWindowUserStats
+        ? teamMappings.map(team => {
+            const teamUsers = (team.users || [])
+                .filter(email => getRosterUser(email))
+                .map(email => getLiveStats(email));
+
+            const teamTotalRings = teamUsers.reduce((sum, u) => sum + u.totalRings, 0);
+            const teamAnswered = teamUsers.reduce((sum, u) => sum + u.answeredCalls, 0);
+            const teamMissed = teamUsers.reduce((sum, u) => sum + u.missedCalls, 0);
+            const teamDeclined = teamUsers.reduce((sum, u) => sum + u.declinedCalls, 0);
+            const teamAnswerRate = teamTotalRings > 0 ? Math.round((teamAnswered / teamTotalRings) * 100) : 0;
+
+            return `
+            <div class="section team-section live-section">
+                <div class="team-header">
+                    <div>
+                        <h2>${escapeHtml(team.team_name)} Team <span class="live-window-badge">Live Session</span></h2>
+                    </div>
+                </div>
+
+                <div class="team-metric-grid">
+                    <div class="live-team-card"><div class="label">Team Answer Rate</div><div class="metric">${teamAnswerRate}%</div></div>
+                    <div class="live-team-card"><div class="label">Total Calls</div><div class="metric">${teamTotalRings}</div></div>
+                    <div class="live-team-card"><div class="label">Answered</div><div class="metric">${teamAnswered}</div></div>
+                    <div class="live-team-card"><div class="label">Missed</div><div class="metric">${teamMissed}</div></div>
+                    <div class="live-team-card"><div class="label">Declined</div><div class="metric">${teamDeclined}</div></div>
+                </div>
+
+                <table>
+                    <tr><th>Employee</th><th>Answer Rate</th><th>Total Calls</th><th>Answered</th><th>Missed</th><th>Declined</th></tr>
+                    ${(team.users || []).filter(email => getRosterUser(email)).map(email => {
+                        const user = getLiveStats(email);
+                        const rate = user.totalRings > 0 ? Math.round((user.answeredCalls / user.totalRings) * 100) : 0;
+                        return `<tr>
+                            <td>${escapeHtml(user.name || email)}</td>
+                            <td>${rate}%</td>
+                            <td>${user.totalRings}</td>
+                            <td>${user.answeredCalls}</td>
+                            <td>${user.missedCalls}</td>
+                            <td>${user.declinedCalls}</td>
+                        </tr>`;
+                    }).join('')}
+                    <tr class="team-total-row">
+                        <td><strong>Team Total</strong></td>
+                        <td><strong>${teamAnswerRate}%</strong></td>
+                        <td><strong>${teamTotalRings}</strong></td>
+                        <td><strong>${teamAnswered}</strong></td>
+                        <td><strong>${teamMissed}</strong></td>
+                        <td><strong>${teamDeclined}</strong></td>
+                    </tr>
+                </table>
+            </div>`;
+        }).join('')
+        : '';
+
     return `
 <!DOCTYPE html>
 <html>
@@ -381,6 +456,14 @@ function buildExecutiveHtml(metrics, reportingStatus, teamMappings = [], userRol
         .btn-stop { background: #f59e0b; }
         .btn-reset { background: #dc2626; }
         .btn-users { background: #4f46e5; }
+        .btn-backfill { background: #0891b2; }
+        .backfill-status { color: #666; font-size: 12px; margin-top: 8px; }
+
+        .live-section { border-left: 4px solid #16a34a; }
+        .live-team-card { background: #2d6a4f; color: white; border-radius: 10px; padding: 8px; }
+        .live-team-card .label { color: white; }
+        .live-team-card .metric { color: white; }
+        .live-window-badge { display: inline-block; background: #dcfce7; color: #166534; font-size: 12px; font-weight: bold; padding: 3px 8px; border-radius: 999px; margin-left: 8px; vertical-align: middle; }
     </style>
 </head>
 
@@ -395,10 +478,16 @@ function buildExecutiveHtml(metrics, reportingStatus, teamMappings = [], userRol
 
         <div>
             <button class="btn-users" onclick="window.location.href='/users'">Users & Numbers</button>
+            <button id="backfillBtn" class="btn-backfill" onclick="runBackfill()">Backfill Today</button>
             <button class="btn-refresh" onclick="window.location.reload()">Refresh</button>
             <button class="btn-start" onclick="window.location.href='/start-reporting'">Start Reporting</button>
             <button class="btn-stop" onclick="window.location.href='/stop-reporting'">Stop Reporting</button>
             <button class="btn-reset" onclick="if(confirm('Reset all datasets?')) window.location.href='/reset';">Reset Data</button>
+            <div id="backfillStatus" class="backfill-status">${
+                reportingStatus.lastBackfill
+                    ? `Last backfill: ${formatCentralDateTime(new Date(reportingStatus.lastBackfill.ran_at * 1000))} — ${reportingStatus.lastBackfill.inbound_count} inbound · ${reportingStatus.lastBackfill.outbound_count} outbound`
+                    : `No backfill run this session`
+            }</div>
         </div>
     </div>
 
@@ -470,7 +559,7 @@ function buildExecutiveHtml(metrics, reportingStatus, teamMappings = [], userRol
 
     <div class="card executive-card">
         <div class="label">Customer Resolution Rate</div>
-        <div class="metric">${metrics.modifiedCompanyOutcomes.modifiedCompanyAnswerRate}%</div>
+        <div class="metric">${metrics.customerResolution.customerResolutionRate}%</div>
     </div>
 
     <div class="card executive-card">
@@ -481,10 +570,36 @@ function buildExecutiveHtml(metrics, reportingStatus, teamMappings = [], userRol
 
     <div class="section">
         <h2>Team Performance</h2>
+        <p class="small">All calls today — includes backfilled data. Ring attribution for missed calls on group numbers requires live webhook data.</p>
         ${teamSections}
     </div>
 
+    ${liveTeamSections ? `
+    <div class="section">
+        <h2>Team Performance — Live Session <span class="live-window-badge">Since ${liveWindowStartFormatted}</span></h2>
+        <p class="small">Only calls captured via live webhooks since the server started. Ring attribution is accurate for all call types.</p>
+        ${liveTeamSections}
+    </div>` : ''}
+
 <script>
+async function runBackfill() {
+    const btn = document.getElementById('backfillBtn');
+    const status = document.getElementById('backfillStatus');
+    btn.disabled = true;
+    btn.textContent = 'Backfilling...';
+    status.textContent = 'Backfill running...';
+    try {
+        const res = await fetch('/backfill-today');
+        const result = await res.json();
+        status.textContent = 'Backfill complete — reloading...';
+        window.location.reload();
+    } catch (e) {
+        status.textContent = 'Backfill failed. Check server logs.';
+        btn.disabled = false;
+        btn.textContent = 'Backfill Today';
+    }
+}
+
 const userDailyStats = ${JSON.stringify(metrics.userDailyStats || {})};
 
 function saveAndShowUserStats() {
@@ -596,7 +711,7 @@ window.addEventListener('load', () => {
                 <br>
                 <span class="small">Groups quick repeat calls from the same caller into one customer interaction. If one call in that sequence is answered, the interaction counts as successful.</span>
             </td>
-            <td>${metrics.modifiedCompanyOutcomes.modifiedCompanyAnswerRate}%</td>
+            <td>${metrics.customerResolution.customerResolutionRate}%</td>
         </tr>
 
         <tr><td colspan="2" class="group-title">Business Hours Detail</td></tr>
@@ -639,9 +754,9 @@ window.addEventListener('load', () => {
 
         <tr><td colspan="2" class="group-title">Recovery Metrics</td></tr>
 
-        <tr><td>Modified customer interactions</td><td>${metrics.modifiedCompanyOutcomes.totalModifiedCalls}</td></tr>
-        <tr><td>Successful customer interactions</td><td>${metrics.modifiedCompanyOutcomes.successfulModifiedCalls}</td></tr>
-        <tr><td>Recovered missed calls</td><td>${metrics.modifiedCompanyOutcomes.recoveredMissedCalls}</td></tr>
+        <tr><td>Total customer sessions</td><td>${metrics.customerResolution.totalSessions}</td></tr>
+        <tr><td>Resolved customer sessions</td><td>${metrics.customerResolution.resolvedSessions}</td></tr>
+        <tr><td>Recovered missed calls</td><td>${metrics.customerResolution.recoveredSessions}</td></tr>
         <tr><td>Callbacks after missed calls</td><td>${metrics.callbacksAfterMiss.length}</td></tr>
 
         <tr><td colspan="2" class="group-title">Capacity / Staffing Metrics</td></tr>

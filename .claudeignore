@@ -1,0 +1,12 @@
+calls.json
+user_status_history.json
+aircall_roster.json
+reporting_state.json
+executive_report.html
+executive_report.txt
+exceptions_report.txt
+backfill_test_report.html
+users_report.html
+snapshots/
+archived from 5-28-2026/
+node_modules/

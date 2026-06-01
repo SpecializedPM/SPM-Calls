@@ -203,6 +203,9 @@ const teamMappings = [
     },
     {
         team_name: 'Management',
+        manager: null,
+        supervisors: [],
+        subteams: {},
         users: [
             'alejandro@specialized247.com',
             'jeremy@specialized247.com',

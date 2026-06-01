@@ -1,10 +1,10 @@
-function buildBackfillTestHtml(metrics) {
+function buildBackfillHtml(metrics) {
     return `
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Backfill Test Report</title>
+    <title>Backfill Report</title>
 
     <style>
         body {
@@ -38,11 +38,11 @@ function buildBackfillTestHtml(metrics) {
     <button onclick="window.location.href='/report'">Executive Report</button>
 
     <div class="section">
-        <h1>Backfill Test Dashboard</h1>
+        <h1>Backfill Dashboard</h1>
 
         <p>Total Calls: ${metrics.allCalls.length}</p>
         <p>Raw Answer Rate: ${metrics.companyAnswerRate}%</p>
-        <p>Customer Resolution Rate: ${metrics.modifiedCompanyOutcomes.modifiedCompanyAnswerRate}%</p>
+        <p>Customer Resolution Rate: ${metrics.customerResolution.customerResolutionRate}%</p>
         <p>Occupancy Misses: ${metrics.missedCallBreakdown.busyCapacityMisses}</p>
         <p>Declined While Available Misses: ${metrics.missedCallBreakdown.declinedWhileAvailableMisses}</p>
         <p>Calls Missing Ring Telemetry: ${metrics.missedCallBreakdown.noRingMisses}</p>
@@ -52,4 +52,4 @@ function buildBackfillTestHtml(metrics) {
 `;
 }
 
-module.exports = { buildBackfillTestHtml };
+module.exports = { buildBackfillHtml };

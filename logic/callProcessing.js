@@ -1,8 +1,11 @@
+const { aircallApi } = require('../services/aircallApi');
+const { TIMEZONE } = require('../config/constants');
+
 function formatTime(unixTimestamp) {
     if (!unixTimestamp) return 'unknown';
 
     return new Date(unixTimestamp * 1000).toLocaleString('en-US', {
-        timeZone: 'America/Chicago',
+        timeZone: TIMEZONE,
         dateStyle: 'short',
         timeStyle: 'medium'
     });
@@ -284,8 +287,8 @@ function updateDerivedFlags(call) {
     );
 }
 
-async function enrichCallFromApi(call, data = {}, aircallApi) {
-    if (!call || !call.call_core || !aircallApi) return;
+async function enrichCallFromApi(call, data = {}) {
+    if (!call || !call.call_core) return;
 
     const callId = call.call_core.call_id;
 
